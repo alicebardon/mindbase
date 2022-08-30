@@ -1,4 +1,6 @@
 class CategoriesController < ApplicationController
+  JS_COMMENT = %r/^(.*)\/{2}\s*\$(.*)/
+  RUBY_COMMENT = /^(.*)#\s*\$(.*)/
 
   def index
     @categories = Category.where(user: current_user)
@@ -42,7 +44,7 @@ class CategoriesController < ApplicationController
     parse_source_code(uploaded_file.read)
   end
 
-  private
+    private
 
   def parse_source_code(text)
     @sample_text = "// This is a javascript comment
@@ -71,8 +73,6 @@ class CategoriesController < ApplicationController
     @notes = Note.all
     @comment_char = "//"
   end
-
-  private
 
   def cat_params
     params.require(:category).permit(:name, :category_type)
