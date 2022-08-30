@@ -1,4 +1,6 @@
 class NotesController < ApplicationController
+  JS_COMMENT = %r/^(.*)\/{2}\s*\$(.*)/
+  RUBY_COMMENT = %r/^(.*)#\s*\$(.*)/
   def new
   end
 
@@ -12,5 +14,9 @@ class NotesController < ApplicationController
   end
 
   def destroy
+  end
+
+  def parse_source_code(text)
+
   end
 end
