@@ -37,19 +37,13 @@ class CategoriesController < ApplicationController
 
   def upload_file
     uploaded_file = params[:source_code]
-    # File.open(Rails.root.join('public', 'uploads',
-    #                           uploaded_file.original_filename),
-    #                           'wb') do |file|
-    #   file.write(uploaded_file.read)
-    # end
-    # raise
     parse_source_code(uploaded_file.read)
     user = User.last
     random_category = Category.last.nil? ? Category.create(name: "javascript", user: user, category_type: "language") : Category.last
     redirect_to category_path(random_category)
   end
 
-    private
+  private
 
   def parse_source_code(text)
     @sample_text = "// This is a javascript comment
