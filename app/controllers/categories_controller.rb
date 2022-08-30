@@ -71,7 +71,6 @@ class CategoriesController < ApplicationController
                    language: 'javascript')
     end
     @notes = Note.all
-    @comment_char = "//"
   end
 
   def cat_params
