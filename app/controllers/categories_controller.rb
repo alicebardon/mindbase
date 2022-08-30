@@ -1,6 +1,6 @@
 class CategoriesController < ApplicationController
   def index
-    @categories = Category.all
+    @categories = Category.where(user: current_user)
   end
 
   def show
@@ -8,9 +8,12 @@ class CategoriesController < ApplicationController
   end
 
   def new
+    @user = current_user
+    @category = Category.new
   end
 
   def create
+
   end
 
   def edit

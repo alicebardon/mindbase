@@ -8,11 +8,11 @@
 
 puts "Cleaning DB..."
 CategoryNote.destroy_all
-User.find(1234).destroy if User.find(1234).valid?
 Note.destroy_all
 Category.destroy_all
+User.destroy_all
 
-test_user = User.create(id: 1234, email: "user@test.com", password: "1234567", first_name: "test")
+test_user = User.create(email: "user@test.com", password: "1234567", first_name: "test")
 
 puts "Creating notes..."
 note1 = Note.create(
