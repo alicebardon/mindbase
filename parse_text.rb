@@ -16,12 +16,16 @@ js_code = "// This is a javascript comment
           } // This is a comment I don't want to upload to Mindbase"
 
 def parse_source_code(text)
+  user = User.first
   matches = text.scan(JS_COMMENT)
   code_snippets = []
   comments = []
   matches.each do |match_pair|
-    code_snippets << match_pair[0]
-    comments << match_pair[1]
+    Note.create!(code_content: match_pair[0],
+                 content: match_pair[1],
+                 user: user,
+                 file_path: '/app/code.txt',
+                 language: 'javascript')
   end
-  code_snippets
+  @notes = Note.all
 end
