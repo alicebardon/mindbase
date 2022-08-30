@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   # root "articles#index"
 
   resources :categories do
-    resources :notes, except: %i[show index]
+    resources :notes, except: %i[new create show index]
   end
+  resources :notes, only: %i[new create]
 end
