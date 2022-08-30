@@ -5,4 +5,8 @@ class Note < ApplicationRecord
 
   validates :content, presence: true
   validates :user_id, presence: true
+
+  def all_categories_names
+    categories.pluck(:name)
+  end
 end
