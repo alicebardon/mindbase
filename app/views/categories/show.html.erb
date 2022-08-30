@@ -6,6 +6,7 @@
 
 
   <h1><%= @category.name %></h1>
+  <%= link_to "delete category", category_path(@category),data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "delete-btn" %>
 
   <% @category.notes.each do |note| %>
     <div class="note_content">
@@ -15,5 +16,10 @@
       <%= note.code_content %>
     </div>
   <% end %>
+
+  <br>
+  <button>
+    <%= link_to "Add note", new_note_path(@category) %>
+  </button>
 
 </div>
