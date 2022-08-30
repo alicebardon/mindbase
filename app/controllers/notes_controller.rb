@@ -1,5 +1,5 @@
 class NotesController < ApplicationController
-  before_action :set_restaurant, only: [:show, :edit, :update, :destroy]
+  before_action :set_category, only: [:show, :edit, :update, :destroy]
 
   def new
     @note = Note.new
@@ -7,10 +7,10 @@ class NotesController < ApplicationController
 
   def create
     @note = Note.new(note_params)
-    # create a note_category
+    @note.user = current_user
     if @note.save
-      category_ids = params[:note][:category_ids].delete("")
-      category_ids.each { |cat| NoteCategory.create(note: @note, category: cat) }
+      params[:note][:category_ids].delete("")
+      params[:note][:category_ids].each { |cat| CategoryNote.create(note: @note, category_id: cat.to_i) }
       redirect_to root_path
     else
       render :new, status: :unprocessable_entity
@@ -18,25 +18,37 @@ class NotesController < ApplicationController
   end
 
   def edit
-    @note = Note.find(params[:note_id])
-    @note.update(note_params)
+    @note = Note.find(params[:id])
   end
 
   def update
-
+  @note = Note.find(params[:id])
+  if @note.update(note_params_edit)
+    redirect_to category_path(@category)
+  else
+    render :edit, status: :unprocessable_entity
+  end
   end
 
   def destroy
+    @note = Note.find(params[:id])
+    @note.destroy
+    # No need for app/views/restaurants/destroy.html.erb
+    redirect_to category_path(@category)
   end
 
   private
 
-  def set_restaurant
+  def set_category
     @category = Category.find(params[:category_id])
   end
 
   def note_params
     params.require(:note).permit(:content, :code_content, :language, :file_path)
+  end
+
+  def note_params_edit
+    params.require(:note).permit(:content, :code_content)
   end
 
 end

@@ -8,3 +8,9 @@
   <br>
   <%= f.submit %>
 <% end %>
+
+<br>
+<%= link_to "Delete This Note",
+  category_note_path([@category, @note]),
+  data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
+%>
