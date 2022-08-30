@@ -16,4 +16,10 @@
     </div>
   <% end %>
 
+  <h3>All Notes</h3>
+  <ul>
+    <% @notes.each do |note| %>
+      <li><%= "#{note[:code_content]} // #{note[:content]}" %></li>
+    <% end %>
+  </ul>
 </div>

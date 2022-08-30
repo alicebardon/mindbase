@@ -6,8 +6,7 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "articles#index"
 
-  get '/categories/upload_file', to: 'categories#upload_file', as: 'upload'
-  post '/categories/process_file', to: 'categories#process_file', as: 'process_file'
+  post '/categories/upload_file', to: 'categories#upload_file', as: 'upload'
   resources :categories do
     resources :notes, except: %i[new create show index]
   end

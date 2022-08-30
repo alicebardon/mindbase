@@ -8,6 +8,7 @@ class CategoriesController < ApplicationController
 
   def show
     @category = Category.find(params[:id])
+    @notes = Note.all
   end
 
   def new
@@ -36,12 +37,16 @@ class CategoriesController < ApplicationController
 
   def upload_file
     uploaded_file = params[:source_code]
-    File.open(Rails.root.join('public', 'uploads',
-                              uploaded_file.original_filename),
-                              'wb') do |file|
-      file.write(uploaded_file.read)
-    end
+    # File.open(Rails.root.join('public', 'uploads',
+    #                           uploaded_file.original_filename),
+    #                           'wb') do |file|
+    #   file.write(uploaded_file.read)
+    # end
+    # raise
     parse_source_code(uploaded_file.read)
+    user = User.last
+    random_category = Category.last.nil? ? Category.create(name: "javascript", user: user, category_type: "language") : Category.last
+    redirect_to category_path(random_category)
   end
 
     private
@@ -55,11 +60,6 @@ class CategoriesController < ApplicationController
                 # This is a python comment
                 <!-- This is an HTML comment -->
                 /* This is a CSS comment */"
-
-    @js_code = "// This is a javascript comment
-            for (let i = 0; i < 10; i++) { // $ This is a javascript comment for Mindbase
-            console.log(array[i]); // $ I would like to upload this to Mindbase
-            } // This is a comment I don't want to upload to Mindbase"
     Note.destroy_all
     user = User.first
     matches = text.scan(JS_COMMENT)
@@ -70,7 +70,6 @@ class CategoriesController < ApplicationController
                    file_path: '/app/code.txt',
                    language: 'javascript')
     end
-    @notes = Note.all
   end
 
   def cat_params
