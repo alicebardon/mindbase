@@ -1,2 +1,13 @@
 <h1>Notes#new</h1>
 <p>Find me in app/views/notes/new.html.erb</p>
+
+<%= simple_form_for @note do |f| %>
+  <%= f.input :content %>
+  <%= f.input :code_content %>
+  <%= f.input :language %>
+  <%= f.association :categories, collection: Category.where(user: current_user) %>
+  <%= link_to "Create New Category", new_category_path %>
+  <br>
+  <br>
+  <%= f.submit %>
+<% end %>

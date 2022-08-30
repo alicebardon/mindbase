@@ -1,2 +1,10 @@
 <h1>Notes#edit</h1>
 <p>Find me in app/views/notes/edit.html.erb</p>
+
+<%= simple_form_for [@category, @note] do |f| %>
+  <%= f.input :content %>
+  <%= f.input :code_content %>
+  <br>
+  <br>
+  <%= f.submit %>
+<% end %>
