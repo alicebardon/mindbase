@@ -1,12 +1,21 @@
-<h1>DASHBOARD</h1>
+<div class="container">
 
-<ul>
-  <% @categories.each do |category| %>
-    <%if current_user = category.user %>
-      <li><%= link_to category.name, category_path(category) %></li>
+  <h1>DASHBOARD</h1>
+
+  <ul>
+    <% @categories.each do |category| %>
+      <%if current_user = category.user %>
+        <li><%= link_to category.name, category_path(category) %></li>
+      <% end %>
     <% end %>
+<<<<<<< HEAD
   <% end %>
 </ul>
 
 <h3>Upload Your Source Code</h3>
 <%= render 'shared/file_upload' %>
+=======
+  </ul>
+
+</div>
+>>>>>>> master

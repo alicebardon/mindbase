@@ -1,4 +1,5 @@
 class CategoriesController < ApplicationController
+
   def index
     @categories = Category.where(user: current_user)
   end
@@ -13,7 +14,13 @@ class CategoriesController < ApplicationController
   end
 
   def create
-
+    @category = Category.new(cat_params)
+    @category.user =current_user
+    if @category.save
+      redirect_to category_path(@category)
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   def edit
@@ -63,5 +70,11 @@ class CategoriesController < ApplicationController
     end
     @notes = Note.all
     @comment_char = "//"
+  end
+
+  private
+
+  def cat_params
+    params.require(:category).permit(:name, :category_type)
   end
 end

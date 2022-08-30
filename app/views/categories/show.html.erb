@@ -1,8 +1,19 @@
-<h1><%= @category.name %></h1>
 
-<% @category.notes.each do |note| %>
-<%= note.content %>
-<% end %>
+<div class="container">
 
 <button><%= link_to "Back to Dashboard", categories_path %>
 </button>
+
+
+  <h1><%= @category.name %></h1>
+
+  <% @category.notes.each do |note| %>
+    <div class="note_content">
+      <%= note.content %>
+    </div>
+    <div class="code_content">
+      <%= note.code_content %>
+    </div>
+  <% end %>
+
+</div>
