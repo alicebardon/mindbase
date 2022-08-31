@@ -2,17 +2,19 @@ class CategoriesController < ApplicationController
   JS_COMMENT = %r/^(.*)\/{2}\s*\$(.*)/
   RUBY_COMMENT = /^(.*)#\s*\$(.*)/
 
+
     def index
       if params[:query].present?
-        @categories = Category.where("name ILIKE ?", "%#{params[:query]}%")
+        sql_query = <<~SQL
+          categories.name ILIKE :query
+          OR notes.content ILIKE :query
+          OR notes.code_content ILIKE :query
+        SQL
+        @categories = Category.joins(:category_notes).joins(:notes).where(sql_query, query: "%#{params[:query]}%")
       else
         @categories = Category.all
       end
     end
-
-  # def index
-  #   @categories = Category.where(user: current_user)
-  # end
 
   def show
     @category = Category.find(params[:id])
