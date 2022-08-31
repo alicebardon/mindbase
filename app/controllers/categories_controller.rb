@@ -1,7 +1,11 @@
 class CategoriesController < ApplicationController
-  def index
-    @categories = Category.where(user: current_user)
-  end
+    def index
+      if params[:query].present?
+        @categories = Category.where("name ILIKE ?", "%#{params[:query]}%")
+      else
+        @categories = Category.all
+      end
+    end
 
   def show
     @category = Category.find(params[:id])

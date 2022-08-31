@@ -10,7 +10,15 @@
     </button> %>
 
     <div class="searchbar">
-      <input type="text" placeholder="Search..">
+      <%# <input type="text" placeholder="Search.."> %>
+      <%= form_with url: categories_path, method: :get, class: "d-flex" do %>
+        <%= text_field_tag :query,
+          params[:query],
+          class: "form-control",
+          placeholder: "Search"
+        %>
+      <%= submit_tag "Search", class: "btn btn-primary" %>
+    <% end %>
     </div>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
