@@ -28,7 +28,7 @@
   <h1><%= @category.name %></h1>
   <%= link_to "delete category", category_path(@category),data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "delete-btn" %>
 
-  <% @category.notes.each do |note| %>
+  <% @notes.each do |note| %>
     <div class="note_content">
       <%= note.content %>
     </div>
@@ -36,13 +36,6 @@
       <%= note.code_content %>
     </div>
   <% end %>
-
-  <h3>All Notes</h3>
-  <ul>
-    <% @notes.each do |note| %>
-      <li><%= "#{note[:code_content]} // #{note[:content]}" %></li>
-    <% end %>
-  </ul>
 
    <br>
   <button>
