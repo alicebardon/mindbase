@@ -22,12 +22,12 @@ class NotesController < ApplicationController
   end
 
   def update
-  @note = Note.find(params[:id])
-  if @note.update(note_params_edit)
-    redirect_to category_path(@category)
-  else
-    render :edit, status: :unprocessable_entity
-  end
+    @note = Note.find(params[:id])
+    if @note.update(note_params_edit)
+      redirect_to category_path(@category)
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   def destroy
@@ -50,5 +50,4 @@ class NotesController < ApplicationController
   def note_params_edit
     params.require(:note).permit(:content, :code_content)
   end
-
 end

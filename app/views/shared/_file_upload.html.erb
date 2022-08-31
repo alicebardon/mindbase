@@ -1,0 +1,20 @@
+<%= form_with url: upload_path, multipart: true do |form| %>
+  <%= form.label :language, "Programming Language" %>
+  <%= form.text_field :language %>
+  <%= form.fields_for :categories do |cat|  %>
+  <br>
+  <strong>Categories:</strong>
+    <% @categories.each do |cat1| %>
+      <br>
+      <%= cat.check_box :name, { multiple: true }, cat1.name, false %>
+      <%= cat.label :name, cat1.name %>
+    <% end %>
+  <% end %>
+  <br>
+  <%= link_to "Create New Category", new_category_path %>
+  <br>
+  <br>
+
+  <%= file_field_tag :source_code %>
+  <%= form.submit "Upload" %>
+<% end %>
