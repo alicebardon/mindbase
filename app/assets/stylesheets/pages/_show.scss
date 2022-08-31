@@ -22,4 +22,9 @@ a {
   border: 1px solid black;
   box-shadow: 0 10px 7px lightgrey, 0 0 0 6px #ffffffeb;
   transform: scale(0.6);
+  margin-right: -65px;
+
+  button {
+    border: none;
+  }
 }
