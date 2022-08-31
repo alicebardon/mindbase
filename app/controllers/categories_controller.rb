@@ -32,7 +32,6 @@ class CategoriesController < ApplicationController
 
   def update
     @category = Category.find(params[:id])
-
     if @category.update(cat_params)
       redirect_to category_path(@category)
     else
@@ -48,7 +47,9 @@ class CategoriesController < ApplicationController
   end
 
   def upload_file
-    uploaded_file = params[:source_code]
+    uploaded_file = file_upload_params[:source_code]
+    categories = file_upload_params[:categories]
+    language = file_upload_params[:language]
     parse_source_code(uploaded_file.read)
     user = User.last
     random_category = Category.last.nil? ? Category.create(name: "javascript", user: user, category_type: "language") : Category.last
@@ -80,5 +81,10 @@ class CategoriesController < ApplicationController
 
   def cat_params
     params.require(:category).permit(:name, :category_type)
+  end
+
+  def file_upload_params
+    raise
+    params.require(:source_code).permit(:language, :categories)
   end
 end

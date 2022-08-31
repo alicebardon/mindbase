@@ -1,13 +1,13 @@
 <%= form_with url: upload_path, multipart: true do |form| %>
   <%= form.label :language, "Programming Language" %>
   <%= form.text_field :language %>
-  <%= form.fields_for :categories do |cat|  %>
+  <%= form.fields_for :categories do |cat_form|  %>
   <br>
   <strong>Categories:</strong>
-    <% @categories.each do |cat1| %>
+    <% @categories.each do |category| %>
       <br>
-      <%= cat.check_box :name, { multiple: true }, cat1.name, false %>
-      <%= cat.label :name, cat1.name %>
+      <%= cat_form.check_box :name, { multiple: true }, category.name, false %>
+      <%= cat_form.label :name, category.name %>
     <% end %>
   <% end %>
   <br>
