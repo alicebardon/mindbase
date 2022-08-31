@@ -1,8 +1,27 @@
 
 <div class="container">
 
-<button><%= link_to "Back to Dashboard", categories_path %>
-</button>
+<div class="head_show">
+
+  <button><%= link_to "Back to Dashboard", categories_path %>
+  </button>
+
+  <div class="searchbar_show">
+    <%# <input type="text" placeholder="Search.."> %>
+    <%= form_with url: category_path, method: :get, class: "d-flex" do %>
+      <%= text_field_tag :query,
+        params[:query],
+        # class: "form-control",
+        placeholder: "Search"
+      %>
+
+      <i class="fa-solid fa-magnifying-glass"><%= submit_tag %></i>
+
+  <% end %>
+  </div>
+
+</div>
+
 
 
   <h1><%= @category.name %></h1>

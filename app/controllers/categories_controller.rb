@@ -18,7 +18,13 @@ class CategoriesController < ApplicationController
 
   def show
     @category = Category.find(params[:id])
-    @notes = Note.all
+
+    if params[:query].present?
+      sql_query = "content ILIKE :query OR code_content ILIKE :query"
+      @notes = Note.where(sql_query, query: "%#{params[:query]}%")
+    else
+      @notes = Note.all
+    end
   end
 
   def new
