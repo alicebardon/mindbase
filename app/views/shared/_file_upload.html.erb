@@ -1,15 +1,8 @@
 <%= form_with model: @note, url: upload_path, multipart: true do |form| %>
   <%= form.label :language, "Programming Language" %>
   <%= form.text_field :language %>
-  <%= form.fields_for :categories, @note.categories do |cat_form|  %>
-  <br>
-  <strong>Categories:</strong>
-    <% @categories.each do |category| %>
-      <br>
-      <%= cat_form.check_box :name, { multiple: true }, category.name, false %>
-      <%= cat_form.label :name, category.name %>
-    <% end %>
-  <% end %>
+  <%= form.label :category, "Categories:" %>
+  <%= collection_check_boxes(:note, :category_ids, Category.where(user: current_user), :id, :name) %>
   <br>
   <%= link_to "Create New Category", new_category_path %>
   <br>

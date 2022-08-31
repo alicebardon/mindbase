@@ -48,35 +48,26 @@ class CategoriesController < ApplicationController
   end
 
   def upload_file
-    uploaded_file = file_upload_params[:source_code]
-    categories = file_upload_params[:categories]
-    language = file_upload_params[:language]
-    parse_source_code(uploaded_file.read)
-    user = User.last
-    random_category = Category.last.nil? ? Category.create(name: "javascript", user: user, category_type: "language") : Category.last
-    redirect_to category_path(random_category)
+    uploaded_file = file_params
+    parse_file(uploaded_file, params)
+    redirect_to categories_path, notice: "File successfully uploaded"
   end
 
   private
 
-  def parse_source_code(text)
-    @sample_text = "// This is a javascript comment
-                for (let i = 0; i < 10; i++) { // $ This is a javascript comment for Mindbase
-                  console.log(array[i]); // $ I would like to upload this to Mindbase
-                # This is a ruby comment
-                array.each do |elem| # $ This is a ruby comment for Mindbase
-                # This is a python comment
-                <!-- This is an HTML comment -->
-                /* This is a CSS comment */"
-    Note.destroy_all
-    user = User.first
-    matches = text.scan(JS_COMMENT)
-    matches.each do |match_pair|
-      Note.create!(code_content: match_pair[0],
-                   content: match_pair[1],
-                   user: user,
-                   file_path: '/app/code.txt',
-                   language: 'javascript')
+  def parse_file(file, params)
+    params[:note][:category_ids].delete("")
+    programming_language = file.content_type.split("/")[1]
+    matches = file.read.scan(JS_COMMENT)
+    matches.each do |content_pair|
+      note = Note.create!(code_content: content_pair[0],
+                          content: content_pair[1],
+                          user: current_user,
+                          file_path: '/app/code.txt',
+                          language: programming_language)
+      params[:note][:category_ids].each do |cat_id|
+        CategoryNote.create!(note: note, category_id: cat_id.to_i)
+      end
     end
   end
 
@@ -84,7 +75,7 @@ class CategoriesController < ApplicationController
     params.require(:category).permit(:name, :category_type)
   end
 
-  def file_upload_params
-    params.permit(:source_code, :language, :categories)
+  def file_params
+    params.require(:source_code)
   end
 end

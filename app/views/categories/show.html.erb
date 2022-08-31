@@ -20,7 +20,7 @@
   <h3>All Notes</h3>
   <ul>
     <% @notes.each do |note| %>
-      <li><%= "#{note[:code_content]} // #{note[:content]}" %></li>
+      <li><%= "Category: #{note.categories[0].name} | #{note[:code_content]} // #{note[:content]}" %></li>
     <% end %>
   </ul>
 
