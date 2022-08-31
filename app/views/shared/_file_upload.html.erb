@@ -1,7 +1,7 @@
-<%= form_with url: upload_path, multipart: true do |form| %>
+<%= form_with model: @note, url: upload_path, multipart: true do |form| %>
   <%= form.label :language, "Programming Language" %>
   <%= form.text_field :language %>
-  <%= form.fields_for :categories do |cat_form|  %>
+  <%= form.fields_for :categories, @note.categories do |cat_form|  %>
   <br>
   <strong>Categories:</strong>
     <% @categories.each do |category| %>

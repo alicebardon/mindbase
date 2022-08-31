@@ -4,6 +4,7 @@ class CategoriesController < ApplicationController
 
   def index
     @categories = Category.where(user: current_user)
+    @note = Note.new
   end
 
   def show
@@ -84,7 +85,6 @@ class CategoriesController < ApplicationController
   end
 
   def file_upload_params
-    raise
-    params.require(:source_code).permit(:language, :categories)
+    params.permit(:source_code, :language, :categories)
   end
 end
