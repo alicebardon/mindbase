@@ -18,7 +18,7 @@ class CategoriesController < ApplicationController
 
   def create
     @category = Category.new(cat_params)
-    @category.user =current_user
+    @category.user = current_user
     if @category.save
       redirect_to new_note_path
     else
