@@ -1,7 +1,7 @@
-<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
+<div class="navbar navbar-expand-sm navbar-light navbar-mindbase">
   <div class="container-fluid ">
     <%= link_to categories_path, class: "navbar-brand" do %>
-      <%= image_tag "Mindbase_logo.png" %>
+      <%= image_tag "Logo - Pajamas.png" %>
       <h4>Mindbase</h4>
     <% end %>
 
@@ -9,32 +9,35 @@
       <span class="navbar-toggler-icon"></span>
     </button> %>
 
-    <div class="searchbar">
-      <%# <input type="text" placeholder="Search.."> %>
-      <%= form_with url: categories_path, method: :get, class: "d-flex" do %>
-        <%= text_field_tag :query,
-          params[:query],
-          # class: "form-control",
-          placeholder: "Search"
-        %>
-
-      <%= button_tag  do %>
-      <i class="fa-solid fa-magnifying-glass"></i>
-      <% end %>
-
-    <% end %>
-    </div>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto navbar_btn">
+      <ul class="navbar-nav me-auto navbar_right">
         <%# if user_signed_in? %>
-          <li class="nav-item active">
-            <%= link_to "+ Add Notes", "#", class: "nav-link" %>
-          </li>
+        <div class="searchbar">
+          <%= form_with url: categories_path, method: :get, class: "d-flex" do %>
+          <%= text_field_tag :query,
+            params[:query],
+            # class: "form-control",
+            placeholder: "Search" %>
+
+          <%= button_tag  do %>
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <% end %>
+
+        <% end %>
+      </div>
+
+          <div class="nav-item upload">
+            <i class="fa-solid fa-square-plus"></i>
+            <%= link_to "Upload Code", "#", class: "nav-link" %>
+          </div>
           <li class="nav-item dropdown">
+          <div id="user_letter">
             <%= link_to "#", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false do %>
-              <i class="fa-solid fa-ellipsis-vertical"></i>
+              <%# <i class="fa-solid fa-ellipsis-vertical"></i> %>
+              <%= current_user.first_name.chr.upcase %>
             <% end %>
+          </div>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
               <%= link_to "Settings", "#", class: "dropdown-item" %>
               <%= link_to "Log out", destroy_user_session_path, class: "dropdown-item", data: {turbo_method: :delete} %>

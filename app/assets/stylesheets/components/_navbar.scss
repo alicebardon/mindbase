@@ -1,14 +1,14 @@
-.navbar-lewagon {
+.navbar-mindbase {
   justify-content: space-between;
-  background: white;
+  background: #222261;
 }
 
-.navbar-lewagon .navbar-collapse {
+.navbar-mindbase .navbar-collapse {
   flex-grow: 0;
 }
 
-.navbar-lewagon .navbar-brand img {
-  width: 50px;
+.navbar-mindbase .navbar-brand img {
+  width: 24px;
 }
 
 .navbar-brand {
@@ -17,28 +17,47 @@
 
   h4 {
     margin-bottom: -4px;
-    margin-left: 2px;
+    margin-left: 10px;
+    font-family: Inter, sans-serif;
+    color: white;
+    font-weight: bold;
+
   }
 }
 
-.navbar_btn {
+
+.upload {
+  display: flex;
+  align-items: center;
+  color: #E1D8F9;
+  font-family: Inter, sans-serif;
+
+}
+
+
+.navbar_right {
   display: flex;
   align-items: center;
   justify-content: space-around;
 }
 
 .nav-link {
-    color: #4A4A4A;
+    color: #E1D8F9;
     // border: 1px solid #4A4A4A;
     // padding: 8px 24px;
     // border-radius: 50px;
     font-weight: lighter;
-    opacity: 0.6;
+    // opacity: 0.6;
     transition: opacity 0.3s ease;
   }
 
   .nav-link:hover {
     opacity: 1;
+  }
+
+  #navbarDropdown {
+    border-radius: 50%;
+
   }
 
 input {
@@ -85,5 +104,12 @@ input[type="text"]::placeholder {
 }
 
 .avatar {
-  color: grey;
+  // border: 1px solid white;
+  // border-radius: 50%;
+  color: #E1D8F9;
+}
+
+#user_letter {
+  border: 1px solid white;
+  border-radius: 50px;
 }
