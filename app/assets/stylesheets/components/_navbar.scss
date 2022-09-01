@@ -1,6 +1,20 @@
 .navbar-mindbase {
   justify-content: space-between;
   background: #222261;
+
+  input {
+    color: #E1D8F9;
+    font-family: Nunito;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    background-color: transparent;
+
+  }
+
+  input::placeholder {
+    color: #E1D8F9;
+  }
 }
 
 .navbar-mindbase .navbar-collapse {
@@ -43,32 +57,20 @@
 
 .nav-link {
     color: #E1D8F9;
-    // border: 1px solid #4A4A4A;
-    // padding: 8px 24px;
-    // border-radius: 50px;
     font-weight: lighter;
-    // opacity: 0.6;
     transition: opacity 0.3s ease;
   }
 
-  .nav-link:hover {
-    opacity: 1;
-  }
+  // .nav-link:hover {
+  //   opacity: 1;
+  // }
 
   #navbarDropdown {
     border-radius: 50%;
 
   }
 
-input {
-  color: black;
-  font-family: Nunito;
-  padding: 0;
-  margin: 0;
-  border: 0;
-  background-color: transparent;
 
-}
 
 // .form-control {
 //   display: none;
@@ -77,7 +79,7 @@ input {
   display: flex;
   flex-direction: row;
   justify-content: left;
-  align-items: flex-start;
+  align-items: center;
   padding: 8px 12px 8px 8px;
 
   width: 311px;
@@ -85,6 +87,7 @@ input {
 
   background: rgba(255, 255, 255, 0.16);
   border-radius: 4px;
+  color: #E1D8F9;
 
   // flex: none;
   // order: 0;
@@ -92,17 +95,6 @@ input {
   // flex-grow: 0;
 
 }
-
-// input[type="text"] {
-//   width: 100%;
-//   // height: 96px;
-//   font-size: 24px;
-//   line-height: 1;
-// }
-
-// input[type="text"]::placeholder {
-//   color: grey;
-// }
 
 .avatar {
   // border: 1px solid white;

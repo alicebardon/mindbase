@@ -15,11 +15,11 @@
         <%# if user_signed_in? %>
         <div class="searchbar">
           <i class="fa-solid fa-magnifying-glass"></i>
-          <%= form_with url: categories_path, method: :get, class: "d-flex" do %>
+          <%= form_with url: categories_path, method: :get, class: "d-flex search_form" do %>
           <%= text_field_tag :query,
             params[:query],
             # class: "form-control",
-            placeholder: "Search" %>
+            placeholder: " Search or jump to.." %>
           <% end %>
         </div>
 
