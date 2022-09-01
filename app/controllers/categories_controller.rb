@@ -65,13 +65,13 @@ class CategoriesController < ApplicationController
 
   def upload_file
     uploaded_file = file_params
-    parse_file(uploaded_file, params)
+    parse_file(uploaded_file)
     redirect_to categories_path, notice: "File successfully uploaded"
   end
 
   private
 
-  def parse_file(file, params)
+  def parse_file(file)
     params[:note][:category_ids].delete("")
     programming_language = file.content_type.split("/")[1]
     matches = file.read.scan(JS_COMMENT)
