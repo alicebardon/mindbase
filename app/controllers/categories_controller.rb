@@ -9,8 +9,9 @@ class CategoriesController < ApplicationController
         OR notes.content ILIKE :query
         OR notes.code_content ILIKE :query
       SQL
-      @categories = Category.joins(:notes).where(sql_query, query: "%#{params[:query]}%")
-      # raise
+      @categories = Category.joins(:notes)
+                            .where(sql_query, query: "%#{params[:query]}%")
+                            .distinct
     else
       @categories = Category.all
     end
