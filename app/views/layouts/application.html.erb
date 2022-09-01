@@ -12,8 +12,10 @@
 
   <body>
 
-  <%= render "shared/navbar" %>
-    <%= yield %>
+  <% if request.path != "/users/sign_in" && request.path != "/users/sign_up" && request.path != "/users/password/new" %>
+    <%= render "shared/navbar" %>
+      <% end %>
+  <%= yield %>
 
     <%= render "shared/flashes" %>
   </body>

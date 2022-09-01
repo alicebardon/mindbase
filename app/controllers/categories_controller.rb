@@ -13,7 +13,7 @@ class CategoriesController < ApplicationController
                             .where(sql_query, query: "%#{params[:query]}%")
                             .distinct
     else
-      @categories = Category.all
+      @categories = current_user.categories
     end
   end
 
