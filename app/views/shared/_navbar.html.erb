@@ -5,20 +5,14 @@
       <h4>Mindbase</h4>
     <% end %>
 
-    <%# <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button> %>
-
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto navbar_right">
-        <%# if user_signed_in? %>
         <div class="searchbar">
           <i class="fa-solid fa-magnifying-glass"></i>
           <%= form_with url: categories_path, method: :get, class: "d-flex search_form" do %>
           <%= text_field_tag :query,
             params[:query],
-            # class: "form-control",
             placeholder: "Search or jump to.." %>
           <% end %>
         </div>
@@ -44,11 +38,6 @@
             </li>
           </ul>
         </div>
-        <%# else %>
-          <!--li class="nav-item"-->
-            <%#= link_to "Login", new_user_session_path, class: "nav-link" %>
-          <!--/li-->
-        <%# end %>
       </ul>
     </div>
   </div>

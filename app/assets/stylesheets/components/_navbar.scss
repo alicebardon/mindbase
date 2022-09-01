@@ -37,7 +37,6 @@
     font-family: Inter, sans-serif;
     color: white;
     font-weight: bold;
-
   }
 }
 
@@ -54,7 +53,6 @@
     color: #E1D8F9;
   }
 
-
 }
 
 .upload:hover {
@@ -62,29 +60,18 @@
   opacity: 1;
 }
 
-
 .navbar_right {
   display: flex;
   align-items: center;
   justify-content: space-around;
 }
 
-
-  // .nav-link:hover {
-  //   opacity: 1;
-  // }
-
   #navbarDropdown {
     border-radius: 50%;
 
   }
 
-
-
-// .form-control {
-//   display: none;
-// }
-.searchbar {
+  .searchbar {
   display: flex;
   flex-direction: row;
   justify-content: left;
@@ -99,19 +86,12 @@
   color: #E1D8F9;
   opacity: 0.7;
 
-  // flex: none;
-  // order: 0;
-  // align-self: stretch;
-  // flex-grow: 0;
-
   i {
     margin-right: 7px;
   }
 }
 
 .avatar {
-  // border: 1px solid white;
-  // border-radius: 50%;
   color: #E1D8F9;
 }
 
