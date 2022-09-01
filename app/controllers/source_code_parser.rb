@@ -1,23 +1,24 @@
 class SourceCodeParser
-
   LANGUAGE_EXTENSION = {
-    ruby: %w[rb],
-    perl: %w[pl],
-    python: %w[py],
-    r: %w[r],
-    erlang: %w[erl],
-    javascript: %w[js],
-    c: %w[c],
-    cpp: %w[cpp cc],
-    java: %w[java],
-    kotlin: %w[kt],
-    c_sharp: %w[cs],
-    php: %w[php],
-    golang: %w[go],
-    rust: %w[rs],
-    haskell: %w[hs],
-    html: %w[htm html],
-    css: %w[css scss]
+    rb: "Ruby",
+    pl: "Perl",
+    py: "Python",
+    r: "r",
+    erl: "erlang",
+    js: "javascript",
+    c: "c",
+    cpp: "C++",
+    java: "Java",
+    kt: "kotlin",
+    cs: "C#",
+    php: "PHP",
+    go: "Golang",
+    rs: "Rust",
+    hs: "Haskell",
+    html: "HTML",
+    htm: "HTML",
+    css: "CSS",
+    scss: "CSS"
     }
 
   LANGUAGE_COMMENT_CHAR = {
@@ -57,16 +58,29 @@ class SourceCodeParser
   def self.parse_file(file, params, user)
     params[:note][:category_ids].delete("")
     file_name = params[:source_code].original_filename
-    code_language = file_name.split(".").last
-    match_pattern = COMMENT_PATTERNS[LANGUAGE_COMMENT_CHAR[code_language.to_sym]]
+    programming_language = LANGUAGE_EXTENSION[file_name.split(".").last.downcase.to_sym]
+
+    # Create category for programming language if it does not yet exist
+    eligible_categories = Category.where("name ILIKE :query", query: "%#{programming_language}%")
+    if eligible_categories.empty?
+      Category.create(name: programming_language.capitalize, category_type: "language", user: user)
+    else
+      language_category = eligible_categories.first
+    end
+    match_pattern = COMMENT_PATTERNS[LANGUAGE_COMMENT_CHAR[programming_language.downcase.to_sym]]
     matches = file.read.scan(match_pattern)
+    # raise
     matches.each do |content|
+      raise
       note = Note.create!(before_comment: content[0],
                           comment: content[1],
                           after_comment: content[2],
                           user: user,
                           file_path: file_name,
-                          language: code_language)
+                          language: programming_language)
+      # Place note in its language category
+      CategoryNote.create(note: note, category: language_category)
+      # Place note in the categories selected by the user
       params[:note][:category_ids].each do |cat_id|
         CategoryNote.create!(note: note, category_id: cat_id.to_i)
       end
