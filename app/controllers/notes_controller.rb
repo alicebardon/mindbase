@@ -1,5 +1,5 @@
 class NotesController < ApplicationController
-  before_action :set_category, only: [:show, :edit, :update, :destroy]
+  before_action :set_category, only: %i[show edit update destroy]
 
   def new
     @note = Note.new
