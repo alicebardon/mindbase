@@ -18,7 +18,7 @@ class CategoriesController < ApplicationController
     @category = Category.find(params[:id])
 
     if params[:query].present?
-      sql_query = "content ILIKE :query OR code_content ILIKE :query"
+      sql_query = "comment ILIKE :query OR before_comment ILIKE :query OR after_comment ILIKE :query"
       @notes = @category.notes.where(sql_query, query: "%#{params[:query]}%")
     else
       @notes = @category.notes

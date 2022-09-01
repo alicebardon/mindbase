@@ -19,24 +19,27 @@ note1 = Note.create(
   file_path: "/projects/rails_project/app/controllers/page_controller.rb",
   language: "ruby",
   user: test_user,
-  code_content: "class PagesController < ApplicationController",
-  content: "This is how you intert from a parent class"
+  before_comment: "class PagesController < ApplicationController",
+  comment: "This is how you intert from a parent class",
+  after_comment: "include ApplicationHelper"
 )
 
 note2 = Note.create(
   file_path: "/projects/rails_project/app/controllers/routes.rb",
   language: "ruby",
   user: test_user,
-  code_content: "resources :hello do",
-  content: "This is how you start nested resources"
+  before_comment: "resources :workspaces do",
+  comment: "This is how you start nested resources",
+  after_comment: "\tresources :bookings\nend"
 )
 
 note3 = Note.create(
   file_path: "/projects/rails_project/app/controllers/assets.js",
   language: "javascript",
   user: test_user,
-  code_content: "import '@hotwired/turbo-rails'",
-  content: "Make sure you have this in your JS assets"
+  before_comment: "import '@hotwired/turbo-rails'",
+  comment: "Make sure you have this in your JS assets",
+  after_comment: ""
 )
 
 if note1.valid? && note2.valid? && note3.valid?

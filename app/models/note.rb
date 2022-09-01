@@ -3,7 +3,7 @@ class Note < ApplicationRecord
   has_many :category_notes, dependent: :destroy
   has_many :categories, through: :category_notes
 
-  validates :content, presence: true
+  validates :comment, presence: true
   validates :language, presence: true
   validates :user_id, presence: true
 

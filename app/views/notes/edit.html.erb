@@ -2,8 +2,9 @@
 <p>Find me in app/views/notes/edit.html.erb</p>
 
 <%= simple_form_for [@category, @note] do |f| %>
-  <%= f.input :content %>
-  <%= f.input :code_content %>
+  <%= f.input :before_comment %>
+  <%= f.input :comment %>
+  <%= f.input :after_comment %>
   <br>
   <br>
   <%= f.submit %>

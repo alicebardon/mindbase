@@ -29,11 +29,14 @@
   <%= link_to "delete category", category_path(@category),data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "delete-btn" %>
 
   <% @notes.each do |note| %>
+    <div class="code_content">
+      <%= note.before_comment %>
+    </div>
     <div class="note_content">
-      <%= note.content %>
+      <%= note.comment %>
     </div>
     <div class="code_content">
-      <%= note.code_content %>
+      <%= note.after_comment %>
     </div>
   <% end %>
 
