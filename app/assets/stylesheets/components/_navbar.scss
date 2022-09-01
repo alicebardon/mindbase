@@ -9,11 +9,13 @@
     margin: 0;
     border: 0;
     background-color: transparent;
+    opacity: 0.7;
 
   }
 
   input::placeholder {
     color: #E1D8F9;
+    opacity: 0.7;
   }
 }
 
@@ -22,7 +24,7 @@
 }
 
 .navbar-mindbase .navbar-brand img {
-  width: 24px;
+  width: 17px;
 }
 
 .navbar-brand {
@@ -45,7 +47,19 @@
   align-items: center;
   color: #E1D8F9;
   font-family: Inter, sans-serif;
+  opacity: 0.7;
+  padding-left: 2rem;
 
+  .nav-link {
+    color: #E1D8F9;
+  }
+
+
+}
+
+.upload:hover {
+  color: #E1D8F9;
+  opacity: 1;
 }
 
 
@@ -55,11 +69,6 @@
   justify-content: space-around;
 }
 
-.nav-link {
-    color: #E1D8F9;
-    font-weight: lighter;
-    transition: opacity 0.3s ease;
-  }
 
   // .nav-link:hover {
   //   opacity: 1;
@@ -88,6 +97,7 @@
   background: rgba(255, 255, 255, 0.16);
   border-radius: 4px;
   color: #E1D8F9;
+  opacity: 0.7;
 
   // flex: none;
   // order: 0;
@@ -102,7 +112,29 @@
   color: #E1D8F9;
 }
 
+.user_dropdown{
+  display: flex;
+  align-items: center;
+
+  .dropdown {
+    display: flex;
+  }
+
+  a {
+    margin-top: 4px;
+  }
+}
+
+
+
 #user_letter {
-  border: 1px solid white;
-  border-radius: 50px;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  padding: 8px;
+  border: 1px solid #E1D8F9;
+  color: #E1D8F9;
+  text-align: center;
+  font: 15px Arial, sans-serif;
+  background: rgba(31, 117, 203, 0.25);
 }
