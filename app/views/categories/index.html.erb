@@ -3,12 +3,15 @@
   <h1>DASHBOARD</h1>
 
   <ul>
-    <% @categories.each do |category| %>
-      <%if current_user == category.user %>
-        <li><%= link_to category.name, category_path(category) %></li>
+      <% @categories.group_by {|c| c.category_type }.each do |cat_type, categories| %>
+        <p><%= cat_type %></p>
+        <% categories.each do |cat| %>
+          <p><%= cat.name %>
+          <%= "Notes: #{cat.notes.count}" %>
+          <%= "Files: #{cat.notes.map {|note| note.file_path }.uniq.size}" %>
+        <% end %>
       <% end %>
-    <% end %>
-</ul>
+  </ul>
 
 <%= render 'shared/file_upload' %>
 </div>
