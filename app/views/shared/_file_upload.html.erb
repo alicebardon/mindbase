@@ -1,13 +1,17 @@
-<%= form_with model: @note, url: upload_path, multipart: true do |form| %>
-  <%= form.label :language, "Programming Language" %>
-  <%= form.text_field :language %>
-  <%= form.label :category, "Categories:" %>
-  <%= collection_check_boxes(:note, :category_ids, Category.where(user: current_user), :id, :name) %>
-  <br>
-  <%= link_to "Create New Category", new_category_path %>
-  <br>
-  <br>
+<div class="popup" id="popup">
+<h3>Upload Your Source Code</h3>
+  <%= form_with model: @note, url: upload_path, multipart: true do |form| %>
+    <%= form.label :language, "Programming Language" %>
+    <%= form.text_field :language %>
+    <%= form.label :category, "Categories:" %>
+    <%= collection_check_boxes(:note, :category_ids, Category.where(user: current_user), :id, :name) %>
+    <br>
+    <%= link_to "Create New Category", new_category_path %>
+    <br>
+    <br>
 
-  <%= file_field_tag :source_code %>
-  <%= form.submit "Upload" %>
-<% end %>
+    <%= file_field_tag :source_code %>
+    <%= form.submit "Upload" %>
+  <% end %>
+</div>
+<div id="overlay"></div>
