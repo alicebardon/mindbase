@@ -12,7 +12,7 @@
 
   <body>
 
-  <% if request.path != "/users/sign_in" && request.path != "/users/sign_up" && request.path != "/users/password/new" %>
+  <% unless ["/users/sign_in", "/users/sign_up", "/users/sign_up"].include?(request.path) %>
     <%= render "shared/navbar" %>
       <% end %>
   <%= yield %>
