@@ -90,14 +90,17 @@ class SourceCodeParser
   end
 
   def self.clean_text(note, language)
-    raise
+    # raise
     code_before_comment = note.first
     if note.last.include?("\n")
       note_parts = note.last.partition("\n")
-      comment = note_parts.first
+      comment = note_parts.first.strip
       code_after_comment = note_parts.last
+      if code_after_comment.end_with?(LANGUAGE_COMMENT_CHAR[language.downcase.to_sym])
+        code_after_comment.chomp!(LANGUAGE_COMMENT_CHAR[language.downcase.to_sym]).chomp!
+      end
     else
-      comment = note.last
+      comment = note.last.strip
       code_after_comment = ""
     end
     [code_before_comment, comment, code_after_comment]
