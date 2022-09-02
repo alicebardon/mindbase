@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_30_094410) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_01_141944) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -33,13 +33,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_30_094410) do
   end
 
   create_table "notes", force: :cascade do |t|
-    t.string "content"
+    t.string "comment"
     t.string "file_path"
     t.string "language"
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "code_content"
+    t.string "before_comment"
+    t.string "after_comment"
     t.index ["user_id"], name: "index_notes_on_user_id"
   end
 

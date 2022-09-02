@@ -1,7 +1,4 @@
 class CategoriesController < ApplicationController
-  JS_COMMENT = %r/^(.*)\/{2}\s*\$(.*)/
-  RUBY_COMMENT = /^(.*)#\s*\$(.*)/
-
   def index
     if params[:query].present?
       sql_query = <<~SQL
@@ -21,7 +18,7 @@ class CategoriesController < ApplicationController
     @category = Category.find(params[:id])
 
     if params[:query].present?
-      sql_query = "content ILIKE :query OR code_content ILIKE :query"
+      sql_query = "comment ILIKE :query OR before_comment ILIKE :query OR after_comment ILIKE :query"
       @notes = @category.notes.where(sql_query, query: "%#{params[:query]}%")
     else
       @notes = @category.notes
@@ -65,27 +62,11 @@ class CategoriesController < ApplicationController
 
   def upload_file
     uploaded_file = file_params
-    parse_file(uploaded_file, params)
+    SourceCodeParser.parse_file(uploaded_file, params, current_user)
     redirect_to categories_path, notice: "File successfully uploaded"
   end
 
   private
-
-  def parse_file(file, params)
-    params[:note][:category_ids].delete("")
-    programming_language = file.content_type.split("/")[1]
-    matches = file.read.scan(JS_COMMENT)
-    matches.each do |content_pair|
-      note = Note.create!(code_content: content_pair[0],
-                          content: content_pair[1],
-                          user: current_user,
-                          file_path: '/app/code.txt',
-                          language: programming_language)
-      params[:note][:category_ids].each do |cat_id|
-        CategoryNote.create!(note: note, category_id: cat_id.to_i)
-      end
-    end
-  end
 
   def cat_params
     params.require(:category).permit(:name, :category_type)
