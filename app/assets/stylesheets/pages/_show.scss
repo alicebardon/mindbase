@@ -1,9 +1,30 @@
 .code_content {
   // border: 1px solid grey;
   background-color: lightgray;
+  padding: 20px 16px 20px 32px;
+  flex-grow: 1;
+  flex-shrink: 1;
+  text-align: left;
   font-family: SFMono-Regular, Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace;
   font-size: 85%;
-  padding: 20px 16px 20px 32px;
+  tab-size: 2;
+  padding: 34px 16px 32px 32px;
+  min-height: 1em;
+  color: rgb(55, 53, 47);
+  white-space: pre;
+}
+
+.note_content {
+  flex-grow: 1;
+  flex-shrink: 1;
+  text-align: left;
+  font-family: SFMono-Regular, Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace;
+  font-size: 85%;
+  tab-size: 2;
+  padding: 34px 16px 32px 32px;
+  min-height: 1em;
+  color: rgb(55, 53, 47);
+  white-space: pre;
 }
 
 a {

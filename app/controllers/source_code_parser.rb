@@ -1,4 +1,7 @@
 class SourceCodeParser
+  OPENING_CHAR = "$"
+  CLOSING_CHAR = "$$"
+
   LANGUAGE_EXTENSION = {
     rb: "Ruby",
     pl: "Perl",
@@ -37,8 +40,8 @@ class SourceCodeParser
     golang: "//",
     rust: "//",
     haskell: "--",
-    html: "<!--  -->",
-    css: "/*  */"
+    html: "<!--",
+    css: "/*"
   }
 
   # This pattern captures all of the text on the same line as the special comment,
@@ -47,12 +50,12 @@ class SourceCodeParser
   # A closing comment is the language's comment character directly followed by two dollar signs ($$).
   # e.g. in Java a special comment would be //$ and a special closing comment would be //$$.
   COMMENT_PATTERNS = {
-    "//" => /^(.*)\/{2}\$([^$]*)\R([^$]*)[\/{2}]{0,1}\${2}/,
-    "#" => /^(.*)#\$([^\$]*)\R([^\$]*)\#{0,1}\${2}/,
+    "//" => /^(.*)\/{2}\$([^$\n]*)$([^$]*)[\/{2}]{0,1}\${2}/,
+    "#" => /^(.*)#\$([^\$]*)\${2}/,
     "<!--  -->" => /^(.*)<!--\$([^\$]*)[-->]*([^\$]*)\${2}-->/,
     "/*  */" => /^(.*)\/\*\$([^$]*)[\*\/]*([^$]*)\${2}\*\//,
     "--" => /^(.*)\-{2}\$([^$]*)\R*(.*)[--]*\${2}/,
-    "%" => /^(.*)%\$([^\$]*)\R*(.*)\%*\${2}/
+    "%" => /^(.*)%\$([^$\n]*)\n*(.*)\%*\${2}/
   }
 
   def self.parse_file(file, params, user)
@@ -69,11 +72,11 @@ class SourceCodeParser
     end
     match_pattern = COMMENT_PATTERNS[LANGUAGE_COMMENT_CHAR[programming_language.downcase.to_sym]]
     matches = file.read.scan(match_pattern)
-    # raise
     matches.each do |content|
-      note = Note.create!(before_comment: content[0],
-                          comment: content[1],
-                          after_comment: content[2],
+      clean_content = clean_text(content, programming_language)
+      note = Note.create!(before_comment: clean_content[0],
+                          comment: clean_content[1],
+                          after_comment: clean_content[2],
                           user: user,
                           file_path: file_name,
                           language: programming_language)
@@ -84,5 +87,22 @@ class SourceCodeParser
         CategoryNote.create!(note: note, category_id: cat_id.to_i)
       end
     end
+  end
+
+  def self.clean_text(note, language)
+    # raise
+    code_before_comment = note.first
+    if note.last.include?("\n")
+      note_parts = note.last.partition("\n")
+      comment = note_parts.first.strip
+      code_after_comment = note_parts.last
+      if code_after_comment.end_with?(LANGUAGE_COMMENT_CHAR[language.downcase.to_sym])
+        code_after_comment.chomp!(LANGUAGE_COMMENT_CHAR[language.downcase.to_sym]).chomp!
+      end
+    else
+      comment = note.last.strip
+      code_after_comment = ""
+    end
+    [code_before_comment, comment, code_after_comment]
   end
 end
