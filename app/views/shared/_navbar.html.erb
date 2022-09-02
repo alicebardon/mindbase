@@ -33,7 +33,7 @@
                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                   <a class="dropdown-item" href="#"> <strong><%= current_user.first_name.capitalize%></strong> <br> <%= current_user.email %></a>
                   <a class="dropdown-item" href="#">Settings</a>
-                  <a class="dropdown-item" data-turbo-method="delete" href="#">Sign out</a>
+                  <%= link_to "Log out", destroy_user_session_path, class: "dropdown-item", data: {turbo_method: :delete} %>
                 </div>
             </li>
           </ul>

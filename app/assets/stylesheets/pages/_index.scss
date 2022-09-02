@@ -8,3 +8,80 @@ a {
 body {
   height: 100vh;
 }
+
+.container {
+  width: 65%;
+}
+
+h1 {
+
+width: 720px;
+height: 52px;
+left: 259px;
+top: 103px;
+
+font-family: 'Helvetica Neue';
+font-style: normal;
+font-weight: 700;
+font-size: 45px;
+line-height: 52px;
+}
+
+.cat-type {
+  font-family: 'Helvetica Neue';
+  font-style: normal;
+  font-weight: bold;
+
+}
+.cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+.card-cat {
+  // border: 1px solid black;
+  margin: 16px;
+  background-color: #E9F3FC;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+
+  width: 180px;
+  height: 130px;
+
+  display: flex;
+
+}
+.cat-name {
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+  font-size: 16px;
+  padding: 12px;
+
+}
+.cat-info {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  flex-direction: column;
+  width: 92px;
+  margin: 4px;
+}
+
+.cat-notes, .cat-files {
+  font-size: 10px;
+  margin: 2px;
+  border-radius: 10px;
+  padding-left: 7px;
+  padding-right: 7px;
+  font-weight: bold;
+}
+
+.cat-notes {
+  background: #E1D8F9;
+  color: #5943B6;
+}
+
+.cat-files {
+  background: #CBE2F9;
+  color: #0B5CAD;
+}
