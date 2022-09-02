@@ -4,11 +4,11 @@
   <div class="row">
     <ul>
 
-      <div class="col-12">
+      <%# <div class="col-12"> %>
         <% @categories.group_by {|c| c.category_type }.each do |cat_type, categories| %>
           <p class="cat-type"><%= cat_type %></p>
               <div class="cards">
-            <% categories.each do |cat| %>
+                <% categories.each do |cat| %>
                 <div class="card-cat">
                     <%= link_to cat.name, category_path(cat), class: "cat-name" %>
                     <div class="cat-info">
@@ -24,7 +24,7 @@
             </div>
 
         <% end %>
-      </div>
+      <%# </div> %>
     </ul>
   </div>
 
