@@ -4,7 +4,7 @@
 const lowNumber = parseInt(prompt('Enter a positive low integer value: ')); //$ in JS const is used often
 const highNumber = parseInt(prompt('Enter a positive high integer value: '));
 
-console.log ('Armstrong Numbers:'); //$ printing to the console
+console.log ('Armstrong Numbers:'); //$ printing to the console$$
 
 // looping through lowNumber to highNumber
 for (let i = lowNumber; i <= highNumber; i++) {
@@ -12,9 +12,9 @@ for (let i = lowNumber; i <= highNumber; i++) {
     // converting number to string
     //$ if you want to later reassign the variable, use 'let'
     let numberOfDigits = i.toString().length;
+    //$$
 
     let sum = 0;
-    //$$
 
     // create a temporary variable
     let temp = i; // I do NOT want to see this comment on Mindbase
@@ -31,5 +31,5 @@ for (let i = lowNumber; i <= highNumber; i++) {
 
     if (sum == i) { //$ if block
         console.log(i);
-    }
+    } //$$
 }

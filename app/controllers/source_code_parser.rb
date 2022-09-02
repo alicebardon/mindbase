@@ -47,12 +47,12 @@ class SourceCodeParser
   # A closing comment is the language's comment character directly followed by two dollar signs ($$).
   # e.g. in Java a special comment would be //$ and a special closing comment would be //$$.
   COMMENT_PATTERNS = {
-    "//" => /^(.*)\/{2}\$([^$]*)\n([^$]*)\/{2}\${2}/,
-    "#" => /^(.*)#\$([^\$]*)\n([^\$]*)#\${2}/,
-    "<!--  -->" => /^(.*)<!--\$([^\$]*)-->([^\$]*)<!--\${2}/,
-    "/*  */" => /^(.*)\/\*\$([^$]*)\*\/([^$]*)\/\*\${2}/,
-    "--" => /^(.*)\-{2}\$([^$]*)\n([^$]*)--\${2}/,
-    "%" => /^(.*)%\$([^\$]*)\n([^\$]*)\%\${2}/
+    "//" => /^(.*)\/{2}\$([^$]*)\R([^$]*)[\/{2}]{0,1}\${2}/,
+    "#" => /^(.*)#\$([^\$]*)\R([^\$]*)\#{0,1}\${2}/,
+    "<!--  -->" => /^(.*)<!--\$([^\$]*)[-->]*([^\$]*)\${2}-->/,
+    "/*  */" => /^(.*)\/\*\$([^$]*)[\*\/]*([^$]*)\${2}\*\//,
+    "--" => /^(.*)\-{2}\$([^$]*)\R*(.*)[--]*\${2}/,
+    "%" => /^(.*)%\$([^\$]*)\R*(.*)\%*\${2}/
   }
 
   def self.parse_file(file, params, user)
@@ -61,17 +61,16 @@ class SourceCodeParser
     programming_language = LANGUAGE_EXTENSION[file_name.split(".").last.downcase.to_sym]
 
     # Create category for programming language if it does not yet exist
-    eligible_categories = Category.where("name ILIKE :query", query: "%#{programming_language}%")
-    if eligible_categories.empty?
+    matching_categories = Category.where("name ILIKE :query", query: "%#{programming_language}%")
+    if matching_categories.empty?
       Category.create(name: programming_language.capitalize, category_type: "language", user: user)
     else
-      language_category = eligible_categories.first
+      language_category = matching_categories.first
     end
     match_pattern = COMMENT_PATTERNS[LANGUAGE_COMMENT_CHAR[programming_language.downcase.to_sym]]
     matches = file.read.scan(match_pattern)
     # raise
     matches.each do |content|
-      raise
       note = Note.create!(before_comment: content[0],
                           comment: content[1],
                           after_comment: content[2],

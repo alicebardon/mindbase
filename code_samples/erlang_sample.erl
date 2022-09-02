@@ -2,33 +2,33 @@
 -compile([export_all]).
 
 
---$ beginning of a block of code
+%$ beginning of a block of code
 serve() ->
     receive
         Request ->
             io:format("Handling: ~s~n", [Request]),
             serve()
     end.
---$$ End of block
+%$$ End of block
 
 
 
-math() -> --$ This is how you define a function in Erlang
+math() -> %$ This is how you define a function in Erlang $$
     receive
-        {add, X, Y} -> --$ This is how you define a lambda function
+        {add, X, Y} -> %$ This is how you define a lambda function $$
             io:format("~p + ~p = ~p~n", [X,Y,X+Y]),
             math();
         {sub, X, Y} ->
             io:format("~p - ~p = ~p~n", [X,Y,X-Y]),
             math()
-    end. -- I do NOT want to see this comment in Mindbase
+    end. % I do NOT want to see this comment in Mindbase
 
 
 
 make_request(ServerId, Msg) ->
     ServerId ! Msg.
 
---$ Run a process
+%$ Run a process
 run() ->
     Pid = spawn(?MODULE, serve, []),
     make_request(Pid, request1),
@@ -40,4 +40,4 @@ run() ->
     Pid2 ! {add, 1, 2},
     Pid2 ! {sub, 3, 2},
     ok.
---$$ End capture
+%$$ End capture

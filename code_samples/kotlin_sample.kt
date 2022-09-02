@@ -27,7 +27,7 @@ fun difference(start: Time, stop: Time): Time {
         start.minutes += 60
     }
 
-    diff.minutes = start.minutes - stop.minutes //$ What happens if I don't close a capture block?
+    diff.minutes = start.minutes - stop.minutes //$ What happens if I don't close a capture block? $$
     diff.hours = start.hours - stop.hours
 
     return diff

@@ -1,4 +1,4 @@
-#include <stdio.h> //$ include an external module //$$
+#include <stdio.h> //$ include an external module $$
 //$ This is a C struct
 struct student {
     char firstName[50];
@@ -7,18 +7,18 @@ struct student {
 } s[5];
 //$$ End capture
 
-int main(int argc, char *argv[]) { //$ This is how you declare the main function in C
+int main(int argc, char *argv[]) { //$ This is how you declare the main function in C $$
     int i;
     printf("Enter information of students:\n");
 
     // storing information
     for (i = 0; i < 5; ++i) {
         s[i].roll = i + 1;
-        printf("\nFor roll number%d,\n", s[i].roll); //$ printing to the terminal (stdout)
+        printf("\nFor roll number%d,\n", s[i].roll); //$ printing to the terminal (stdout) $$
         printf("Enter first name: ");
         scanf("%s", s[i].firstName);
         printf("Enter marks: ");
-        scanf("%f", &s[i].marks); //$ getting user input
+        scanf("%f", &s[i].marks); //$ getting user input$$
     }
     printf("Displaying Information:\n\n"); // I do NOT want to see this comment on Mindbase
 

@@ -30,13 +30,19 @@
 
   <% @notes.each do |note| %>
     <div class="code_content">
-      <%= note.before_comment %>
+      <% if note.before_comment != "" %>
+        <% note.before_comment %>
+      <% end %>
     </div>
     <div class="note_content">
-      <%= note.comment %>
+      <% if note.comment != "" %>
+        <%= note.comment %>
+      <% end %>
     </div>
     <div class="code_content">
-      <%= note.after_comment %>
+      <% if note.after_comment != "" %>
+        <%= note.after_comment %>
+      <% end %>
     </div>
   <% end %>
 

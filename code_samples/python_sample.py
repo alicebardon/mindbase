@@ -2,17 +2,16 @@
 
 #$ import complex math module
 import cmath
-
-a = 1
-b = 5
-c = 6
 #$$
+a = 1
+b = 5 # I do NOT want to see this comment on Mindbase
+c = 6
 
 # calculate the discriminant
 d = (b**2) - (4*a*c)
 
 # find two solutions
-sol1 = (-b-cmath.sqrt(d))/(2*a) #$ a simple math operation
+sol1 = (-b-cmath.sqrt(d))/(2*a) #$ a simple math operation $$
 sol2 = (-b+cmath.sqrt(d))/(2*a)
 
 #$ printing to the console

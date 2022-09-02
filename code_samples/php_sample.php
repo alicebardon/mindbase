@@ -1,10 +1,9 @@
 
-<?php //$ Every PHP script starts like this
-//$$
+<?php //$ Every PHP script starts like this $$
       // This is a sample script from Paul Conrad's Independent Study
       // This script will call the function named foo showing case insensitivity.
       function foo($my_string) {
-              echo "$"."my_string = $my_string<br>"; // I do NOT want to see this comment on Mindbase //$$
+              echo "$"."my_string = $my_string<br>"; // I do NOT want to see this comment on Mindbase
       }
       foo("foo is foo"); //$ PHP is not case sensitive
       Foo("Foo is foo");
@@ -12,4 +11,4 @@
       FOO("FOO is foo");
       //$$
       //$ ending a PHP script
- ?>
+ ?> //$$
