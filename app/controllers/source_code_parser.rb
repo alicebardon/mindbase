@@ -72,7 +72,6 @@ class SourceCodeParser
     end
     match_pattern = COMMENT_PATTERNS[LANGUAGE_COMMENT_CHAR[programming_language.downcase.to_sym]]
     matches = file.read.scan(match_pattern)
-    raise
     matches.each do |content|
       clean_content = clean_text(content, programming_language)
       note = Note.create!(before_comment: clean_content[0],
@@ -91,6 +90,7 @@ class SourceCodeParser
   end
 
   def self.clean_text(note, language)
+    raise
     code_before_comment = note.first
     if note.last.include?("\n")
       note_parts = note.last.partition("\n")
