@@ -5,6 +5,62 @@
 $body-font: "Work Sans", "Helvetica", "sans-serif";
 $headers-font: "Nunito", "Helvetica", "sans-serif";
 
+.UI_Display_04_base {
+  font-family: 'Helvetica Neue';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 32px;
+  /* Neutral/$gray-200 :: #BFBFBF */
+  color: #BFBFBF;
+}
+
+.UI_Display_xl {
+  font-family: 'Helvetica Neue';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 45px;
+  line-height: 52px;
+  /* Neutral/$gray-10 :: #F5F5F5 */
+  color: #F5F5F5;
+}
+
+.UI_Label_Reg_underlined {
+  font-family: 'Helvetica Neue';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+  /* identical to box height, or 114% */
+  text-decoration-line: underline;
+  /* Neutral/$gray-100 :: #DBDBDB */
+  color: #DBDBDB;
+}
+
+.UI_Label_Reg {
+  font-family: 'Helvetica Neue';
+  color: #DBDBDB;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+}
+
+.UI_h2_03_md {
+  font-family: 'Helvetica Neue' !important;
+  font-style: normal !important;
+  font-weight: 700 !important;
+  font-size: 20px !important;
+  line-height: 24px !important;
+  /* identical to box height, or 120% */
+  display: flex !important;
+  align-items: center !important;
+  /* Neutral/$white :: #FFF */
+  color: #FFFFFF !important;
+  margin: 0 auto !important;
+}
+
+
 // To use a font file (.woff) uncomment following lines
 // @font-face {
 //   font-family: "Font Name";
