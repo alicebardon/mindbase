@@ -25,7 +25,7 @@
   <% @notes.each do |note| %>
     <% if note.before_comment != "" %>
       <div class="code_content">
-        <% note.before_comment %>
+        <%= note.before_comment %>
       </div>
     <% end %>
     <% if note.comment != "" %>
