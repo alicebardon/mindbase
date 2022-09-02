@@ -1,49 +1,43 @@
 
 <div class="container">
+  <div class="head_show">
+    <button class="back-button">
+      <%= link_to "Back", categories_path %>
+    </button>
 
-<div class="head_show">
-
-  <button><%= link_to "Back to Dashboard", categories_path %>
-  </button>
-
-  <div class="searchbar_show">
-    <%# <input type="text" placeholder="Search.."> %>
-    <%= form_with url: category_path, method: :get, class: "d-flex" do %>
-      <%= text_field_tag :query,
-        params[:query],
-        # class: "form-control",
-        placeholder: "Search"
-      %>
-      <%= button_tag  do %>
-      <i class="fa-solid fa-magnifying-glass"></i>
+    <div class="searchbar_show">
+      <%= form_with url: category_path, method: :get, class: "d-flex" do %>
+        <%= text_field_tag :query,
+            params[:query],
+            placeholder: "Search" %>
+        <%= button_tag  do %>
+          <i class="fa-solid fa-magnifying-glass"></i>
+        <% end %>
       <% end %>
+    </div>
 
-  <% end %>
   </div>
-
-</div>
-
-
 
   <h1><%= @category.name %></h1>
   <%= link_to "delete category", category_path(@category),data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "delete-btn" %>
 
+  <%# <%= raise %> %>
   <% @notes.each do |note| %>
-    <div class="code_content">
-      <% if note.before_comment != "" %>
+    <% if note.before_comment != "" %>
+      <div class="code_content">
         <% note.before_comment %>
-      <% end %>
-    </div>
-    <div class="note_content">
-      <% if note.comment != "" %>
+      </div>
+    <% end %>
+    <% if note.comment != "" %>
+      <div class="note_content">
         <%= note.comment %>
-      <% end %>
-    </div>
-    <div class="code_content">
-      <% if note.after_comment != "" %>
+      </div>
+    <% end %>
+    <% if note.after_comment != "" %>
+      <div class="code_content">
         <%= note.after_comment %>
-      <% end %>
-    </div>
+      </div>
+    <% end %>
   <% end %>
 
   <br>
