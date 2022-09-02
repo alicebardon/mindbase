@@ -1,17 +1,30 @@
 <div class="container">
 
-  <h1>DASHBOARD</h1>
+  <h1>Your comments, all together now.</h1>
+  <div class="row">
+    <ul>
 
-  <ul>
-      <% @categories.group_by {|c| c.category_type }.each do |cat_type, categories| %>
-        <p><%= cat_type %></p>
-        <% categories.each do |cat| %>
-          <p><%= cat.name %>
-          <%= "Notes: #{cat.notes.count}" %>
-          <%= "Files: #{cat.notes.map {|note| note.file_path }.uniq.size}" %>
+        <% @categories.group_by {|c| c.category_type }.each do |cat_type, categories| %>
+          <p class="cat-type"><%= cat_type %></p>
+              <div class="cards">
+                <% categories.each do |cat| %>
+                <div class="card-cat">
+                    <%= link_to cat.name, category_path(cat), class: "cat-name" %>
+                    <div class="cat-info">
+                      <div class="cat-notes">
+                        <%= "Notes: #{cat.notes.count}"%>
+                      </div>
+                      <div class="cat-files">
+                        <%= "Files: #{cat.notes.map {|note| note.file_path }.uniq.size}"%>
+                      </div>
+                    </div>
+                </div>
+              <% end %>
+            </div>
         <% end %>
-      <% end %>
-  </ul>
+    </ul>
+  </div>
 
-<%= render 'shared/file_upload' %>
+  <%= render 'shared/file_upload' %>
+
 </div>
