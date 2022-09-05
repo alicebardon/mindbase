@@ -54,8 +54,8 @@ class SourceCodeParser
     "#" => /^(.*)#\s*\$([^\$]*)\${2}/,
     "--" => /^(.*)--\s*\$([^$]*)\${2}/,
     "%" => /^(.*)%\s*\$([^$]*)\s*\${2}/,
-    "<!--  -->" => /^(.*)<!--\s*\$([^\$]*)\${2}/,
-    "/*  */" => /^(.*)\/\*\s*\$([^$]+)\${2}/
+    "<!--" => /^(.*)<!--\s*\$([^\$]*)\${2}/,
+    "/*" => /^(.*)\/\*\s*\$([^$]+)\${2}/
   }
 
   def self.parse_file(file, params, user)
@@ -66,42 +66,42 @@ class SourceCodeParser
     # Create category for programming language if it does not yet exist
     matching_categories = Category.where("name ILIKE :query", query: "%#{programming_language}%")
     if matching_categories.empty?
-      Category.create(name: programming_language.capitalize, category_type: "language", user: user)
+      Category.create(name: programming_language.capitalize, category_type: "language", user:)
     else
       language_category = matching_categories.first
     end
     match_pattern = COMMENT_PATTERNS[LANGUAGE_COMMENT_CHAR[programming_language.downcase.to_sym]]
     matches = file.read.scan(match_pattern)
-    matches.each do |content|
-      clean_content = clean_text(content, programming_language)
-      note = Note.create!(before_comment: clean_content[0],
-                          comment: clean_content[1],
-                          after_comment: clean_content[2],
-                          user: user,
-                          file_path: file_name,
+    matches.each do |match|
+      clean_content = clean_text(match, programming_language)
+      note = Note.create!(comment: clean_content.first,
+                          code: clean_content.second,
+                          user:,
+                          file_name:,
                           language: programming_language)
       # Place note in its language category
-      CategoryNote.create(note: note, category: language_category)
+      CategoryNote.create(note:, category: language_category)
       # Place note in the categories selected by the user
       params[:note][:category_ids].each do |cat_id|
-        CategoryNote.create!(note: note, category_id: cat_id.to_i)
+        CategoryNote.create!(note:, category_id: cat_id.to_i)
       end
     end
   end
 
   def self.clean_text(note, language)
-    code_before_comment = note.first
-    if note.last.include?("\n")
+    # code comes after the comment
+    if note.first == ""
       note_parts = note.last.partition("\n")
       comment = note_parts.first.strip
-      code_after_comment = note_parts.last
-      if code_after_comment.end_with?(LANGUAGE_COMMENT_CHAR[language.downcase.to_sym])
-        code_after_comment.chomp!(LANGUAGE_COMMENT_CHAR[language.downcase.to_sym]).chomp!
+      code = note_parts.last.strip
+      if code.end_with?(LANGUAGE_COMMENT_CHAR[language.downcase.to_sym])
+        code.chomp!(LANGUAGE_COMMENT_CHAR[language.downcase.to_sym]).chomp!
       end
+    # code comes before the comment (inline comment)
     else
-      comment = note.last.strip
-      code_after_comment = ""
+      code = note.first.strip
+      comment = note.second.strip
     end
-    [code_before_comment, comment, code_after_comment]
+    [comment, code]
   end
 end
