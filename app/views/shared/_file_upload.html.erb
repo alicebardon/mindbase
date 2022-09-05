@@ -12,6 +12,10 @@
     <div class="categ-title">
       <%= form.label :category, "Choose Categories"%>
     </div>
+
+
+
+
     <div class="categ-list">
     <ul>
       <%= collection_check_boxes(:note, :category_ids, Category.where(user: current_user), :id, :name) do |checkbox|%>
@@ -28,5 +32,10 @@
     <%= form.submit "Import", class: "import-btn" %>
     </div>
   <% end %>
+    <%= simple_form_for Category.new do |c| %>
+    <%= c.input :name %>
+    <%= c.input :category_type %>
+    <%= c.button :submit %>
+    <% end %>
 </div>
 <div id="overlay" data-popup-target ="overlay" data-action="click->popup#closePopup"></div>

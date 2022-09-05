@@ -13,6 +13,11 @@ class CategoriesController < ApplicationController
     else
       @categories = current_user.categories
     end
+
+    # @user = current_user
+    # @category = Category.new
+    #
+
   end
 
   def show
