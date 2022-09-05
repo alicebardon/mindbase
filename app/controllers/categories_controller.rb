@@ -3,9 +3,8 @@ class CategoriesController < ApplicationController
     if params[:query].present?
       sql_query = <<~SQL
         categories.name ILIKE :query
-        OR notes.before_comment ILIKE :query
+        OR notes.code ILIKE :query
         OR notes.comment ILIKE :query
-        OR notes.after_comment ILIKE :query
       SQL
       @categories = Category.joins(:notes)
                             .where(sql_query, query: "%#{params[:query]}%")
@@ -19,7 +18,7 @@ class CategoriesController < ApplicationController
     @category = Category.find(params[:id])
 
     if params[:query].present?
-      sql_query = "before_comment ILIKE :query OR comment ILIKE :query OR after_comment ILIKE :query"
+      sql_query = "code ILIKE :query OR comment ILIKE :query"
       @notes = @category.notes.where(sql_query, query: "%#{params[:query]}%")
     else
       @notes = @category.notes

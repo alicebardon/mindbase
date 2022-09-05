@@ -64,12 +64,11 @@ class SourceCodeParser
     programming_language = LANGUAGE_EXTENSION[file_name.split(".").last.downcase.to_sym]
 
     # Create category for programming language if it does not yet exist
-    matching_categories = Category.where("name ILIKE :query", query: "%#{programming_language}%")
-    if matching_categories.empty?
-      Category.create(name: programming_language.capitalize, category_type: "language", user:)
-    else
-      language_category = matching_categories.first
-    end
+    language_category = Category.find_by("name = :query", query: programming_language.capitalize) ||
+                        Category.create(name: programming_language.capitalize, category_type: "Language", user:)
+
+    raise
+
     match_pattern = COMMENT_PATTERNS[LANGUAGE_COMMENT_CHAR[programming_language.downcase.to_sym]]
     matches = file.read.scan(match_pattern)
     matches.each do |match|

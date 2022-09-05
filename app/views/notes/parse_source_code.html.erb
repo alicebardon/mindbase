@@ -11,6 +11,6 @@
 <h4>My Notes</h4>
 <ul>
   <% @notes.each do |note| %>
-    <li><%= "#{note[:before_comment]} #{@comment_char} #{note[:comment]} #{note[:after_comment]}" %></li>
+    <li><%= "#{note[:code]} #{@comment_char} #{note[:comment]}" %></li>
   <% end %>
 </ul>
