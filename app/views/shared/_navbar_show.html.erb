@@ -1,0 +1,43 @@
+<div class="navbar navbar-expand-sm navbar-light navbar-mindbase">
+  <div class="container-fluid ">
+    <%= link_to categories_path, class: "navbar-brand" do %>
+      <%= image_tag "Logo - Pajamas.png" %>
+      <h4>Mindbase</h4>
+    <% end %>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto navbar_right">
+        <div class="searchbar">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <%= form_with url: category_path(@category), method: :get, class: "d-flex search_form" do %>
+          <%= text_field_tag :query,
+            params[:query],
+            placeholder: "Search #{Category.find(params[:id]).name} notes..." %>
+          <% end %>
+        </div>
+
+        <div data-popup-target="#popup" class="nav-item upload">
+          <i class="fa-solid fa-square-plus"></i>
+          <%= link_to "Upload Code", "#", class: "nav-link" %>
+        </div>
+
+        <div class="user_dropdown">
+          <ul>
+            <li class="nav-item dropdown">
+              <div id="user_letter">
+                <%= current_user.first_name.chr.upcase %>
+              </div>
+                <%= link_to "#", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false do %>
+                <% end %>
+                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="#"> <strong><%= current_user.first_name.capitalize%></strong> <br> <%= current_user.email %></a>
+                  <a class="dropdown-item" href="#">Settings</a>
+                  <%= link_to "Log out", destroy_user_session_path, class: "dropdown-item", data: {turbo_method: :delete} %>
+                </div>
+            </li>
+          </ul>
+        </div>
+      </ul>
+    </div>
+  </div>
+</div>
