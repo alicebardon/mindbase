@@ -44,10 +44,10 @@ class NotesController < ApplicationController
   end
 
   def note_params
-    params.require(:note).permit(:before_comment, :comment, :after_comment, :language, :file_path)
+    params.require(:note).permit(:code, :comment, :language, :file_name)
   end
 
   def note_params_edit
-    params.require(:note).permit(:before_comment, :comment, :after_comment)
+    params.require(:note).permit(:code, :comment)
   end
 end
