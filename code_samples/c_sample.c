@@ -1,5 +1,5 @@
-#include <stdio.h> //$ include an external module $$
-//$ This is a C struct
+#include <stdio.h> //$ include an external module (inline) $$
+//$ This is a C struct (block)
 struct student {
     char firstName[50];
     int roll;
@@ -23,7 +23,8 @@ int main(int argc, char *argv[]) { //$ This is how you declare the main function
     printf("Displaying Information:\n\n"); // I do NOT want to see this comment on Mindbase
 
     // displaying information
-    for (i = 0; i < 5; ++i) { //$ for loop
+    //$ for loop (block)
+    for (i = 0; i < 5; ++i) {
         printf("\nRoll number: %d\n", i + 1);
         printf("First name: ");
         puts(s[i].firstName);

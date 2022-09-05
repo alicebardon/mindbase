@@ -16,15 +16,15 @@
 <%= note.comment %> <!-- DO NOT CHANGE INDENTATION HERE. Should on first indentation-->
       </div>
     <%end%>
-    <% if note.before_comment.gsub(/\s+/, "") != "" %>
+    <% if note.code.gsub(/\s+/, "") != "" %>
         <pre class="highlight-margin">
           <code class= "<%= note.language %>">
-<%= note.before_comment %>  <!-- DO NOT CHANGE INDENTATION HERE. Should on first indentation-->
+<%= note.code %>  <!-- DO NOT CHANGE INDENTATION HERE. Should on first indentation-->
           </code>
         </pre>
     <div class="d-flex flex-row justify-content-between align-items-center">
       <div class="cat-files">
-        <%= note.file_path %>
+        <%= note.file_name %>
       </div>
       <div class="UI_Label_Regular_grey_small">
         <%= note.language.capitalize %>
@@ -38,4 +38,5 @@
   <button>
     <%= link_to "Add note", new_note_path(@category) %>
   </button>
+
 </div>

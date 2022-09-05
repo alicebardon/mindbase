@@ -15,7 +15,7 @@
                         <%= "Notes: #{cat.notes.count}"%>
                       </div>
                       <div class="cat-files">
-                        <%= "Files: #{cat.notes.map {|note| note.file_path }.uniq.size}"%>
+                        <%= "Files: #{cat.notes.map {|note| note.file_name }.uniq.size}"%>
                       </div>
                     </div>
                 </div>
