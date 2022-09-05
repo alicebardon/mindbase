@@ -1,0 +1,23 @@
+<%= form_with url: "/notes", method: :post do |form| %>
+  <div class="code_content">
+
+    <% if note.comment != "" %>
+      <div class="note_content UI_Label_Regular_black" style="margin-bottom: 0px;">
+<%= form.text_field :comment, class: "invisible-form" %> <!-- DO NOT CHANGE INDENTATION HERE. Should on first indentation-->
+      </div>
+    <%end%>
+
+<div>
+  <%= form.text_field :code, class: "white-box" %>  <!-- DO NOT CHANGE INDENTATION HERE. Should on first indentation-->
+</div>
+
+    <div class="d-flex flex-row justify-content-between align-items-center">
+      <div class="cat-files">
+        <%= note.file_name %>
+      </div>
+      <div class="UI_Label_Regular_grey_small">
+        <%= note.language.capitalize %>
+      </div>
+    </div>
+  </div>
+<% end %>

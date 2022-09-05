@@ -9,6 +9,7 @@
   <h1><%= @category.name %></h1>
   <%= link_to "Delete Page", category_path(@category),data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "UI_Label_Reg" %>
   </div>
+
   <% @notes.each do |note| %>
   <div class="code_content">
     <% if note.comment != "" %>
@@ -33,6 +34,8 @@
     <% end %>
   </div>
   <% end %>
+
+  <%= render "shared/new_note", note: Note.last %>
 
   <br>
   <button>
