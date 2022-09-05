@@ -1,40 +1,37 @@
-
-<div class="container">
+<div class="container" data-controller="highlight">
   <div class="head_show">
-    <button class="back-button">
-      <%= link_to "Back", categories_path %>
-    </button>
-
-    <div class="searchbar_show">
-      <%= form_with url: category_path, method: :get, class: "d-flex" do %>
-        <%= text_field_tag :query,
-            params[:query],
-            placeholder: "Search" %>
-        <%= button_tag  do %>
-          <i class="fa-solid fa-magnifying-glass"></i>
-        <% end %>
-      <% end %>
+    <div>
+      <%= link_to "< Back", categories_path, {class: "UI_Label_Reg"} %>
     </div>
-
   </div>
 
+  <div class="d-flex flex-row justify-content-between align-items-center mb-3 mt-3" >
   <h1><%= @category.name %></h1>
-  <%= link_to "delete category", category_path(@category),data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "delete-btn" %>
-
+  <%= link_to "Delete Page", category_path(@category),data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "UI_Label_Reg" %>
+  </div>
   <% @notes.each do |note| %>
-    <div class="note_content">
-      <%= note.comment %>
-    </div>
-    <% if note.code != "" %>
-      <div class="code_content">
-        <pre>
-          <code class= "<%= note.language %>">
-           <%# <code class= "ruby"> %>
-            <%= note.code %>
-            <%= note.language %>
-          </code>
+  <div class="code_content">
+    <% if note.comment != "" %>
+      <div class="note_content UI_Label_Regular_black">
+<%= note.comment %> <!-- DO NOT CHANGE INDENTATION HERE. Should on first indentation-->
       </div>
+    <%end%>
+    <% if note.code.gsub(/\s+/, "") != "" %>
+        <pre class="highlight-margin">
+          <code class= "<%= note.language %>">
+<%= note.code %>  <!-- DO NOT CHANGE INDENTATION HERE. Should on first indentation-->
+          </code>
+        </pre>
+    <div class="d-flex flex-row justify-content-between align-items-center">
+      <div class="cat-files">
+        <%= note.file_name %>
+      </div>
+      <div class="UI_Label_Regular_grey_small">
+        <%= note.language.capitalize %>
+      </div>
+    </div>
     <% end %>
+  </div>
   <% end %>
 
   <br>
@@ -43,20 +40,3 @@
   </button>
 
 </div>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js"></script>
-<script>hljs.highlightAll();</script>
-
----------------------------------------
-
-
-    <pre>
-      <code class="html">
-        &lt;strong&gt; Hello World &lt;/strong&gt;
-      </code>
-    </pre>
-
-
-    <p>here are some notes blah blah blah</p>
-
-    </pre>

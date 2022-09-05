@@ -9,10 +9,11 @@
       <ul class="navbar-nav me-auto navbar_right">
         <div class="searchbar">
           <i class="fa-solid fa-magnifying-glass"></i>
-          <%= form_with url: category_path(@category), method: :get, class: "d-flex search_form" do %>
+          <%= form_with url: category_path(@category), method: :get, class: "d-flex search_form w-100" do %>
           <%= text_field_tag :query,
             params[:query],
-            placeholder: "Search #{Category.find(params[:id]).name} notes..." %>
+            placeholder: "Search #{Category.find(params[:id]).name} notes...",
+            class: "w-100" %>
           <% end %>
         </div>
 
@@ -24,10 +25,10 @@
         <div class="user_dropdown">
           <ul>
             <li class="nav-item dropdown">
-              <div id="user_letter">
-                <%= current_user.first_name.chr.upcase %>
-              </div>
-                <%= link_to "#", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false do %>
+                <%= link_to "#", class: "avatar dropdown-toggle d-flex align-items-center", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false do %>
+                  <div id="user_letter">
+                    <%= current_user.first_name.chr.upcase %>
+                  </div>
                 <% end %>
                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                   <a class="dropdown-item" href="#"> <strong><%= current_user.first_name.capitalize%></strong> <br> <%= current_user.email %></a>
