@@ -21,11 +21,10 @@
   <h1><%= @category.name %></h1>
   <%= link_to "delete category", category_path(@category),data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "delete-btn" %>
 
-  <%# <%= raise %> %>
   <% @notes.each do |note| %>
     <% if note.before_comment != "" %>
       <div class="code_content">
-        <% note.before_comment %>
+        <%= note.before_comment %>
       </div>
     <% end %>
     <% if note.comment != "" %>
