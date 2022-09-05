@@ -66,6 +66,7 @@ class CategoriesController < ApplicationController
   end
 
   def upload_file
+    debugger
     uploaded_file = file_params
     SourceCodeParser.parse_file(uploaded_file, params, current_user)
     redirect_to categories_path, notice: "File successfully uploaded"
