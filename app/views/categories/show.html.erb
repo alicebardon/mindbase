@@ -3,15 +3,12 @@
     <div>
       <%= link_to "< Back", categories_path, {class: "UI_Label_Reg"} %>
     </div>
-
-
   </div>
 
-  <div class="d-flex flex-row justify-content-between align-items-center mb-3" >
+  <div class="d-flex flex-row justify-content-between align-items-center mb-3 mt-3" >
   <h1><%= @category.name %></h1>
   <%= link_to "Delete Page", category_path(@category),data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "UI_Label_Reg" %>
   </div>
-
   <% @notes.each do |note| %>
   <div class="code_content">
     <% if note.comment != "" %>
@@ -36,7 +33,6 @@
     <% end %>
   </div>
   <% end %>
-
 
   <br>
   <button>
