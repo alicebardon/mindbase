@@ -46,16 +46,16 @@ class SourceCodeParser
 
   # This pattern captures all of the text on the same line as the special comment,
   # as well as everything that comes afterwards, up to the special closing comment.
-  # A special comment is the language's comment character directly followed by a dollar sign ($).
-  # A closing comment is the language's comment character directly followed by two dollar signs ($$).
+  # A special comment is the language's comment character followed by (a whitespace and) a dollar sign ($).
+  # A closing comment is the language's comment character followed by (a whitespace and) two dollar signs ($$).
   # e.g. in Java a special comment would be //$ and a special closing comment would be //$$.
   COMMENT_PATTERNS = {
-    "//" => /^(.*)\/{2}\$([^$\n]*)$([^$]*)[\/{2}]{0,1}\${2}/,
-    "#" => /^(.*)#\$([^\$]*)\${2}/,
-    "<!--  -->" => /^(.*)<!--\$([^\$]*)[-->]*([^\$]*)\${2}-->/,
-    "/*  */" => /^(.*)\/\*\$([^$]*)[\*\/]*([^$]*)\${2}\*\//,
-    "--" => /^(.*)\-{2}\$([^$]*)\R*(.*)[--]*\${2}/,
-    "%" => /^(.*)%\$([^$\n]*)\n*(.*)\%*\${2}/
+    "//" => /^(.*)\/{2}\s*\$([^$]*)\${2}/,
+    "#" => /^(.*)#\s*\$([^\$]*)\${2}/,
+    "--" => /^(.*)--\s*\$([^$]*)\${2}/,
+    "%" => /^(.*)%\s*\$([^$]*)\s*\${2}/,
+    "<!--  -->" => /^(.*)<!--\s*\$([^\$]*)\${2}/,
+    "/*  */" => /^(.*)\/\*\s*\$([^$]+)\${2}/
   }
 
   def self.parse_file(file, params, user)
@@ -90,7 +90,6 @@ class SourceCodeParser
   end
 
   def self.clean_text(note, language)
-    # raise
     code_before_comment = note.first
     if note.last.include?("\n")
       note_parts = note.last.partition("\n")
