@@ -66,9 +66,6 @@ class SourceCodeParser
     # Create category for programming language if it does not yet exist
     language_category = Category.find_by("name = :query", query: programming_language.capitalize) ||
                         Category.create(name: programming_language.capitalize, category_type: "Language", user:)
-
-    raise
-
     match_pattern = COMMENT_PATTERNS[LANGUAGE_COMMENT_CHAR[programming_language.downcase.to_sym]]
     matches = file.read.scan(match_pattern)
     matches.each do |match|
@@ -89,7 +86,7 @@ class SourceCodeParser
 
   def self.clean_text(note, language)
     # code comes after the comment
-    if note.first == ""
+    if note.first.strip == ""
       note_parts = note.last.partition("\n")
       comment = note_parts.first.strip
       code = note_parts.last.strip
