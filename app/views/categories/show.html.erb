@@ -22,12 +22,17 @@
   <%= link_to "delete category", category_path(@category),data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "delete-btn" %>
 
   <% @notes.each do |note| %>
-      <div class="note_content">
-        <%= note.comment %>
-      </div>
+    <div class="note_content">
+      <%= note.comment %>
+    </div>
     <% if note.code != "" %>
       <div class="code_content">
-        <%= note.code %>
+        <pre>
+          <code class= "<%= note.language %>">
+           <%# <code class= "ruby"> %>
+            <%= note.code %>
+            <%= note.language %>
+          </code>
       </div>
     <% end %>
   <% end %>
@@ -37,5 +42,21 @@
     <%= link_to "Add note", new_note_path(@category) %>
   </button>
 
-
 </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+
+---------------------------------------
+
+
+    <pre>
+      <code class="html">
+        &lt;strong&gt; Hello World &lt;/strong&gt;
+      </code>
+    </pre>
+
+
+    <p>here are some notes blah blah blah</p>
+
+    </pre>
