@@ -1,7 +1,7 @@
 // program to find Armstrong number between intervals
 
 // take an input
-const lowNumber = parseInt(prompt('Enter a positive low integer value: ')); //$ in JS const is used often
+const lowNumber = parseInt(prompt('Enter a positive low integer value: ')); //$ in JS const is used often (inline) $$
 const highNumber = parseInt(prompt('Enter a positive high integer value: '));
 
 console.log ('Armstrong Numbers:'); //$ printing to the console$$
@@ -10,7 +10,7 @@ console.log ('Armstrong Numbers:'); //$ printing to the console$$
 for (let i = lowNumber; i <= highNumber; i++) {
 
     // converting number to string
-    //$ if you want to later reassign the variable, use 'let'
+    //$ if you want to later reassign the variable, use 'let' (block)
     let numberOfDigits = i.toString().length;
     //$$
 
@@ -24,7 +24,7 @@ for (let i = lowNumber; i <= highNumber; i++) {
     while (temp > 0) {
 
         let remainder = temp % 10;
-        sum += remainder ** numberOfDigits;
+        sum += remainder ** numberOfDigits; //$ inline comment $$
         // removing last digit from the number
         temp = parseInt(temp / 10); // convert float into integer
     }

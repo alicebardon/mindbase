@@ -33,11 +33,10 @@ run() ->
     Pid = spawn(?MODULE, serve, []),
     make_request(Pid, request1),
     make_request(Pid, request2),
-
+% $$ End capture
     timer:sleep(10),
 
     Pid2 = spawn(?MODULE, math, []),
     Pid2 ! {add, 1, 2},
     Pid2 ! {sub, 3, 2},
     ok.
-%$$ End capture
