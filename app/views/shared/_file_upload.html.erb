@@ -1,7 +1,7 @@
 
 
 
-<div class="popup container" data-popup-target="popup">
+<div class="popup popup-container" data-popup-target="popup">
 <h3>Import Your Code</h3>
 
 <h4>Choose File</h4>
@@ -9,8 +9,8 @@
   <%= form_with model: @note, url: upload_path, multipart: true do |form| %>
     <p> Mindbase supports .html, .erb, .js, and .css</p>
     <div class="categories">
-    <div class="categ-list">
-      <%= form.label :category, "Categories:"%>
+    <div class="categ-title">
+      <%= form.label :category, "Choose Categories"%>
     </div>
     <div class="categ-list">
     <ul>
@@ -23,10 +23,10 @@
       <br>
       <%= link_to "Create New Category", new_category_path %>
     </div>
-    <br>
-    <br>
-
-    <%= form.submit "Upload" %>
+    <div class="btn-popup">
+    <button class="cancel-btn">Cancel</button>
+    <%= form.submit "Import", class: "import-btn" %>
+    </div>
   <% end %>
 </div>
 <div id="overlay" data-popup-target ="overlay" data-action="click->popup#closePopup"></div>

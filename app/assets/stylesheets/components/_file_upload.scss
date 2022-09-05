@@ -18,6 +18,11 @@
   max-width: 80%;
 }
 
+.popup-container {
+  width: 400px;
+  padding: 20px;
+}
+
 .popup.active {
   transform: translate(-50%, -50%) scale(1);
 
@@ -46,12 +51,10 @@
   font-family: Inter, sans-serif;
   font-style: normal;
   font-weight: bold;
-  margin-top: 10px;
-  margin-bottom: 0px;
   font-size: 20px;
 }
 
-.popup h4 {
+.popup h4, .categ-title {
   font-family: Inter, sans-serif;
   font-style: normal;
   font-weight: bold;
@@ -68,3 +71,60 @@
   // margin-bottom: 0px;
   font-size: 12px;
 }
+
+
+.popup  ul {
+  list-style-type: none;
+  border-top: 1px solid grey;
+  margin-top: 6px;
+  padding-top: 11px;
+  padding-left: 0.7rem;
+
+ }
+
+
+ .btn-popup {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+ }
+ .import-btn, .cancel-btn {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 3px 5px;
+  border-radius: 4px;
+  margin-top: 15px !important;
+  margin-bottom: 15px !important;
+  margin: 2px;
+ }
+
+ .import-btn {
+  background: #CBE2F9;
+  color: #0B5CAD;
+  border-color: #1F75CB;
+  font-weight: bold;
+  border: 1px solid #0B5CAD;
+
+
+  &:hover {
+    background: #0B5CAD;;
+    border-radius: 4px;
+    color: white;
+    font-weight: bold;
+    border: 1px solid #0B5CAD;
+
+  }
+
+ }
+
+ .cancel-btn {
+  background: #FFFFFF;
+  color: grey;
+  border: 1px solid #BFBFBF;
+
+  &:hover {
+    background: lightgray;
+
+  }
+ }
