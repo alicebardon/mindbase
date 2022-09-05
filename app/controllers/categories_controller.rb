@@ -19,9 +19,9 @@ class CategoriesController < ApplicationController
 
     if params[:query].present?
       sql_query = "code ILIKE :query OR comment ILIKE :query"
-      @notes = @category.notes.where(sql_query, query: "%#{params[:query]}%")
+      @notes = @category.notes.where(sql_query, query: "%#{params[:query]}%").sort_by(&:created_at)
     else
-      @notes = @category.notes
+      @notes = @category.notes.sort_by(&:created_at)
     end
   end
 

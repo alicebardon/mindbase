@@ -28,8 +28,8 @@ for (let i = lowNumber; i <= highNumber; i++) {
         // removing last digit from the number
         temp = parseInt(temp / 10); // convert float into integer
     }
-
-    if (sum == i) { //$ if block
+    //$ if block
+    if (sum == i) {
         console.log(i);
     } //$$
 }
