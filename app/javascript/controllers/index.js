@@ -9,3 +9,6 @@ application.register("hello", HelloController)
 
 import PopupController from "./popup_controller"
 application.register("popup", PopupController)
+
+import HighlightController from "./highlight_controller"
+application.register("highlight", HighlightController)
