@@ -1,8 +1,8 @@
-import java.nio.file.Files; //$ importing an external module$$
+import java.nio.file.Files; //$ importing an external module (inline)$$
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-//$ In Java, all functions are class methods
+//$ In Java, all functions are class methods (block)
 class Main {
   public static void main(String[] args) {
 //$$
@@ -12,7 +12,7 @@ class Main {
 
       // deletes the file
       boolean value = Files.deleteIfExists(path);
-      //$ define an if statement
+      //$ define an if statement (block)
       if(value) {
         System.out.println("JavaFile.java is successfully deleted.");
       }

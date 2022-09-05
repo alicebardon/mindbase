@@ -2,9 +2,8 @@
 <p>Find me in app/views/notes/new.html.erb</p>
 
 <%= simple_form_for @note do |f| %>
-  <%= f.input :before_comment %>
   <%= f.input :comment %>
-  <%= f.input :after_comment %>
+  <%= f.input :code %>
   <%= f.input :language %>
   <%= f.association :categories, collection: Category.where(user: current_user), include_blank: false %>
   <%= link_to "Create New Category", new_category_path %>

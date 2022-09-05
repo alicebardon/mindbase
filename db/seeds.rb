@@ -16,30 +16,27 @@ test_user = User.create(email: "user@test.com", password: "1234567", first_name:
 
 puts "Creating notes..."
 note1 = Note.create(
-  file_path: "/projects/rails_project/app/controllers/page_controller.rb",
+  file_name: "/projects/rails_project/app/controllers/page_controller.rb",
   language: "ruby",
   user: test_user,
-  before_comment: "class PagesController < ApplicationController",
-  comment: "This is how you intert from a parent class",
-  after_comment: "include ApplicationHelper"
+  code: "class PagesController < ApplicationController",
+  comment: "This is how you inherit from a parent class"
 )
 
 note2 = Note.create(
-  file_path: "/projects/rails_project/app/controllers/routes.rb",
+  file_name: "/projects/rails_project/app/controllers/routes.rb",
   language: "ruby",
   user: test_user,
-  before_comment: "resources :workspaces do",
-  comment: "This is how you start nested resources",
-  after_comment: "\tresources :bookings\nend"
+  code: "resources :workspaces do",
+  comment: "This is how you start nested resources"
 )
 
 note3 = Note.create(
-  file_path: "/projects/rails_project/app/controllers/assets.js",
+  file_name: "/projects/rails_project/app/controllers/assets.js",
   language: "javascript",
   user: test_user,
-  before_comment: "import '@hotwired/turbo-rails'",
-  comment: "Make sure you have this in your JS assets",
-  after_comment: ""
+  code: "import '@hotwired/turbo-rails'",
+  comment: "Make sure you have this in your JS assets"
 )
 
 if note1.valid? && note2.valid? && note3.valid?

@@ -5,7 +5,8 @@
       function foo($my_string) {
               echo "$"."my_string = $my_string<br>"; // I do NOT want to see this comment on Mindbase
       }
-      foo("foo is foo"); //$ PHP is not case sensitive
+      //$ PHP is not case sensitive
+      foo("foo is foo");
       Foo("Foo is foo");
       FoO("FoO is foo");
       FOO("FOO is foo");
