@@ -21,6 +21,8 @@
 .popup-container {
   width: 400px;
   padding: 20px;
+  overflow-y: scroll;
+  height:600px;
 }
 
 .popup.active {
