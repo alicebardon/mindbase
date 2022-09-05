@@ -1,10 +1,12 @@
+// ------ POP UP JS -------------------
+
 *, *::after, *::before {
   box-sizing: border-box;
 }
 
 .popup {
   border: 1px solid black;
-  border-radius: 10px;
+  border-radius: 4px;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -36,4 +38,33 @@
 #overlay.active {
   opacity: 1;
   pointer-events: all;
+}
+
+// ------- STYLING PAGE --------
+
+.popup h3 {
+  font-family: Inter, sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  margin-top: 10px;
+  margin-bottom: 0px;
+  font-size: 20px;
+}
+
+.popup h4 {
+  font-family: Inter, sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  margin-top: 10px;
+  margin-bottom: 6px;
+  font-size: 16px;
+}
+
+.popup p {
+  font-family: Inter, sans-serif;
+  font-style: normal;
+  color: grey;
+  // margin-top: 10px;
+  // margin-bottom: 0px;
+  font-size: 12px;
 }

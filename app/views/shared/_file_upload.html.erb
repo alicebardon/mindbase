@@ -1,17 +1,32 @@
-<div class="popup" id="popup">
-<h3>Upload Your Source Code</h3>
+
+
+
+<div class="popup container" data-popup-target="popup">
+<h3>Import Your Code</h3>
+
+<h4>Choose File</h4>
+    <%= file_field_tag :source_code %>
   <%= form_with model: @note, url: upload_path, multipart: true do |form| %>
-    <%= form.label :language, "Programming Language" %>
-    <%= form.text_field :language %>
-    <%= form.label :category, "Categories:" %>
-    <%= collection_check_boxes(:note, :category_ids, Category.where(user: current_user), :id, :name) %>
-    <br>
-    <%= link_to "Create New Category", new_category_path %>
+    <p> Mindbase supports .html, .erb, .js, and .css</p>
+    <div class="categories">
+    <div class="categ-list">
+      <%= form.label :category, "Categories:"%>
+    </div>
+    <div class="categ-list">
+    <ul>
+      <%= collection_check_boxes(:note, :category_ids, Category.where(user: current_user), :id, :name) do |checkbox|%>
+      <li><%= checkbox.check_box %>
+      <%= checkbox.label %></li>
+      <% end %>
+    </ul>
+    </div>
+      <br>
+      <%= link_to "Create New Category", new_category_path %>
+    </div>
     <br>
     <br>
 
-    <%= file_field_tag :source_code %>
     <%= form.submit "Upload" %>
   <% end %>
 </div>
-<div id="overlay"></div>
+<div id="overlay" data-popup-target ="overlay" data-action="click->popup#closePopup"></div>
