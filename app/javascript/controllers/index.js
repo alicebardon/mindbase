@@ -9,3 +9,6 @@ application.register("hello", HelloController)
 
 import HighlightController from "./highlight_controller"
 application.register("highlight", HighlightController)
+
+import NoteController from "./note_controller"
+application.register("note", NoteController)
