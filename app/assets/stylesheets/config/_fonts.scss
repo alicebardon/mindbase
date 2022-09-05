@@ -34,16 +34,7 @@ $headers-font: "Nunito", "Helvetica", "sans-serif";
   /* identical to box height, or 114% */
   text-decoration-line: underline;
   /* Neutral/$gray-100 :: #DBDBDB */
-  color: #DBDBDB;
-}
-
-.UI_Label_Reg {
-  font-family: 'Helvetica Neue';
-  color: #DBDBDB;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 16px;
+  color: #cccaca;
 }
 
 .UI_h2_03_md {
@@ -58,6 +49,45 @@ $headers-font: "Nunito", "Helvetica", "sans-serif";
   /* Neutral/$white :: #FFF */
   color: #FFFFFF !important;
   margin: 0 auto !important;
+}
+
+.UI_Label_Reg {
+  font-family: 'Helvetica Neue';
+  color: #cccaca;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+}
+
+.UI_Label_Regular_black {
+font-family: 'Helvetica Neue';
+font-style: normal;
+font-weight: 400;
+font-size: 14px;
+line-height: 16px;
+/* identical to box height, or 114% */
+color: #000000;
+}
+
+.UI_Label_Regular_grey {
+font-family: 'Helvetica Neue';
+font-style: normal;
+font-weight: 400;
+font-size: 14px;
+line-height: 16px;
+/* identical to box height, or 114% */
+/* Neutral/$gray-700 :: #525252 */
+color: #525252;
+}
+
+.UI_Label_Regular_grey_small {
+font-family: 'Helvetica Neue';
+font-style: normal;
+font-weight: 400;
+font-size: 12px;
+line-height: 14px;
+color: #525252
 }
 
 
