@@ -4,6 +4,9 @@
 
 import { application } from "./application"
 
+import FlashesController from "./flashes_controller"
+application.register("flashes", FlashesController)
+
 import CreateCategoryController from "./create_category_controller"
 application.register("create-category", CreateCategoryController)
 
