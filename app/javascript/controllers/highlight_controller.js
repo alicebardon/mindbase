@@ -5,6 +5,6 @@ import hljs from "highlight.js/lib/common"
 export default class extends Controller {
   connect() {
     hljs.highlightAll();
-    console.log("hello i'm connected");
+    console.log("highlight controller connected");
   }
 }

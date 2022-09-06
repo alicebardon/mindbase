@@ -19,6 +19,48 @@ a {
   text-decoration: none;
 }
 
+.big_button {
+  height: 200px;
+  width: 130%;
+  margin-top: -1.5rem;
+  background-color: transparent;
+  // background-color: blue;
+  cursor: text;
+}
+
+.white-box {
+  width: 100%;
+  padding: 40px 18px;
+  border-radius: 0;
+  border: none;
+  font-family: "SFMono-Regular", "Menlo",
+    "Monaco",
+    "Consolas",
+    "Liberation Mono",
+    "Courier New",
+    monospace;
+  font-size: 0.875em;
+
+  &:focus{
+    outline: none;
+    border-radius: 0;
+  }
+}
+
+.invisible-form {
+  width: 100%;
+  border-radius: 0;
+  border: none;
+  background-color: transparent;
+  padding-bottom: 6px;
+
+  &:focus {
+      outline: none;
+      border-radius: 0;
+    }
+}
+
+
 .head_show {
   display: flex;
   align-items: center;
