@@ -17,7 +17,7 @@
 
   </head>
 
-  <body>
+  <body data-controller="popup">
 
   <% unless params[:id] || ["/users/sign_in", "/users/sign_up", "/users/sign_up", "/categories/#{params[:id]}"].include?(request.path) %>
     <%= render "shared/navbar" %>
@@ -30,5 +30,6 @@
   <%= yield %>
 
     <%= render "shared/flashes" %>
+     <%= render 'shared/file_upload' %>
   </body>
 </html>

@@ -7,8 +7,17 @@ import { application } from "./application"
 import FlashesController from "./flashes_controller"
 application.register("flashes", FlashesController)
 
+import CreateCategoryController from "./create_category_controller"
+application.register("create-category", CreateCategoryController)
+
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 
 import HighlightController from "./highlight_controller"
 application.register("highlight", HighlightController)
+
+import PopupController from "./popup_controller"
+application.register("popup", PopupController)
+
+import NoteController from "./note_controller"
+application.register("note", NoteController)

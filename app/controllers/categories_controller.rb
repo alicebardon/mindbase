@@ -12,7 +12,6 @@ class CategoriesController < ApplicationController
     else
       @categories = current_user.categories
     end
-    flash[:notice] = "Test"
   end
 
   def show
@@ -35,7 +34,7 @@ class CategoriesController < ApplicationController
     @category = Category.new(cat_params)
     @category.user = current_user
     if @category.save
-      redirect_to new_note_path
+      redirect_to upload_path
     else
       render :new, status: :unprocessable_entity
     end

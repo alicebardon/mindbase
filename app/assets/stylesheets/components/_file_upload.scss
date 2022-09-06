@@ -1,10 +1,12 @@
+// ------ POP UP JS -------------------
+
 *, *::after, *::before {
   box-sizing: border-box;
 }
 
 .popup {
   border: 1px solid black;
-  border-radius: 10px;
+  border-radius: 4px;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -14,6 +16,12 @@
   background-color: white;
   width: 500px;
   max-width: 80%;
+}
+
+.popup-container {
+  width: 400px;
+  padding: 20px;
+  // height:600px;
 }
 
 .popup.active {
@@ -37,3 +45,106 @@
   opacity: 1;
   pointer-events: all;
 }
+
+// ------- STYLING PAGE --------
+
+.popup h3 {
+  font-family: Inter, sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.popup h4, .categ-title {
+  font-family: Inter, sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  margin-top: 10px;
+  margin-bottom: 6px;
+  font-size: 16px;
+}
+
+.popup p {
+  font-family: Inter, sans-serif;
+  font-style: normal;
+  color: grey;
+  // margin-top: 10px;
+  // margin-bottom: 0px;
+  font-size: 12px;
+}
+
+.categ-list {
+  overflow-y: scroll;
+  height: 100px;
+}
+
+.popup  ul {
+  list-style-type: none;
+  border-top: 1px solid grey;
+  margin-top: 6px;
+  padding-top: 11px;
+  padding-left: 0.7rem;
+
+ }
+
+ .simple-form {
+  color: blue;
+ }
+ .btn-popup {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+ }
+ .import-btn, .cancel-btn, .add-categ-btn {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 3px 5px;
+  border-radius: 4px;
+  margin-top: 15px !important;
+  margin-bottom: 15px !important;
+  margin: 2px;
+ }
+
+ .import-btn {
+  background: #CBE2F9;
+  color: #0B5CAD;
+  border-color: #1F75CB;
+  font-weight: bold;
+  border: 1px solid #0B5CAD;
+
+
+  &:hover {
+    background: #0B5CAD;
+    border-radius: 4px;
+    color: white;
+    font-weight: bold;
+    border: 1px solid #0B5CAD;
+
+  }
+
+ }
+
+ .add-categ-btn {
+  background: #E1D8F9;
+  color: #5943B6;
+  border-color: #5943B6;
+  font-weight: bold;
+  border: 1px solid #5943B6;
+
+  &:hover {
+    background: #5943B6;
+    color: white;
+  }
+ }
+
+ .cancel-btn {
+  background: #FFFFFF;
+  color: grey;
+  border: 1px solid #BFBFBF;
+
+  &:hover {
+    background: lightgray;
+
+  }
+ }
