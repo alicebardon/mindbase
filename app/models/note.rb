@@ -4,8 +4,8 @@ class Note < ApplicationRecord
   has_many :categories, through: :category_notes
 
   validates :comment, presence: true
-  # validates :language, presence: true
-  # validates :user_id, presence: true ..... Make sure to add back USERID
+  validates :language, presence: true
+  validates :user_id, presence: true
 
   def all_categories_names
     categories.pluck(:name)
