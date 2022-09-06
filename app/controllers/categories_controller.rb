@@ -39,7 +39,7 @@ class CategoriesController < ApplicationController
     @category = Category.new(cat_params)
     @category.user = current_user
     if @category.save
-      redirect_to new_note_path
+      redirect_to upload_path
     else
       render :new, status: :unprocessable_entity
     end
@@ -66,7 +66,6 @@ class CategoriesController < ApplicationController
   end
 
   def upload_file
-    debugger
     uploaded_file = file_params
     SourceCodeParser.parse_file(uploaded_file, params, current_user)
     redirect_to categories_path, notice: "File successfully uploaded"

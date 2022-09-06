@@ -21,8 +21,7 @@
 .popup-container {
   width: 400px;
   padding: 20px;
-  overflow-y: scroll;
-  height:600px;
+  // height:600px;
 }
 
 .popup.active {
@@ -74,6 +73,10 @@
   font-size: 12px;
 }
 
+.categ-list {
+  overflow-y: scroll;
+  height: 100px;
+}
 
 .popup  ul {
   list-style-type: none;
@@ -84,7 +87,9 @@
 
  }
 
-
+ .simple-form {
+  color: blue;
+ }
  .btn-popup {
   display: flex;
   justify-content: flex-end;
