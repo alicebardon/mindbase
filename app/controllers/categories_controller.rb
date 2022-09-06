@@ -12,6 +12,7 @@ class CategoriesController < ApplicationController
     else
       @categories = current_user.categories
     end
+    flash[:notice] = "Test"
   end
 
   def show
