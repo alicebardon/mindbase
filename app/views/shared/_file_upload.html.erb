@@ -1,17 +1,42 @@
-<div class="popup" id="popup">
-<h3>Upload Your Source Code</h3>
-  <%= form_with model: @note, url: upload_path, multipart: true do |form| %>
-    <%= form.label :language, "Programming Language" %>
-    <%= form.text_field :language %>
-    <%= form.label :category, "Categories:" %>
-    <%= collection_check_boxes(:note, :category_ids, Category.where(user: current_user), :id, :name) %>
-    <br>
-    <%= link_to "Create New Category", new_category_path %>
-    <br>
-    <br>
 
-    <%= file_field_tag :source_code %>
-    <%= form.submit "Upload" %>
+
+
+<div class="popup popup-container" data-popup-target="popup" data-controller="create-category">
+  <h3>Import Your Code</h3>
+  <h4>Choose File</h4>
+  <p> Mindbase supports .html, .erb, .js, and .css</p>
+
+  <%= form_with url: upload_path, multipart: true do |form| %>
+    <%= form.file_field :source_code %>
+    <div class="categories">
+      <div class="categ-title">
+        <%= form.label :category, "Choose Categories"%>
+      </div>
+      <div class="categ-list" data-create-category-target="list">
+        <ul>
+          <%= collection_check_boxes(:note, :category_ids, Category.where(user: current_user), :id, :name) do |checkbox|%>
+          <li><%= checkbox.check_box %>
+          <%= checkbox.label %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+
+    <div class="btn-popup">
+    <button class="cancel-btn">Cancel</button>
+    <button class="add-categ-btn" data-action="click->create-category#revealForm">New Category</button>
+    <%= form.submit "Import", class: "import-btn" %>
+    </div>
+
   <% end %>
+
+  <%= simple_form_for Category.new, html:{class: "d-none", data: { create_category_target:"form" }} do |c| %>
+    <%= c.input :name %>
+    <%= c.input :category_type %>
+    <%= c.button :submit %>
+  <% end %>
+
 </div>
-<div id="overlay"></div>
+
+
+<div id="overlay" data-popup-target ="overlay" data-action="click->popup#closePopup"></div>

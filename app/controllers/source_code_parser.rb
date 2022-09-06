@@ -60,7 +60,7 @@ class SourceCodeParser
 
   def self.parse_file(file, params, user)
     params[:note][:category_ids].delete("")
-    file_name = params[:source_code].original_filename
+    file_name = file.original_filename
     programming_language = LANGUAGE_EXTENSION[file_name.split(".").last.downcase.to_sym]
 
     # Create category for programming language if it does not yet exist
