@@ -95,7 +95,7 @@
   justify-content: flex-end;
   align-items: flex-end;
  }
- .import-btn, .cancel-btn {
+ .import-btn, .cancel-btn, .add-categ-btn {
   align-items: center;
   justify-content: center;
   text-align: center;
@@ -115,7 +115,7 @@
 
 
   &:hover {
-    background: #0B5CAD;;
+    background: #0B5CAD;
     border-radius: 4px;
     color: white;
     font-weight: bold;
@@ -123,6 +123,19 @@
 
   }
 
+ }
+
+ .add-categ-btn {
+  background: #E1D8F9;
+  color: #5943B6;
+  border-color: #5943B6;
+  font-weight: bold;
+  border: 1px solid #5943B6;
+
+  &:hover {
+    background: #5943B6;
+    color: white;
+  }
  }
 
  .cancel-btn {

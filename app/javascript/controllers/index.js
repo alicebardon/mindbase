@@ -4,11 +4,14 @@
 
 import { application } from "./application"
 
+import CreateCategoryController from "./create_category_controller"
+application.register("create-category", CreateCategoryController)
+
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 
-import PopupController from "./popup_controller"
-application.register("popup", PopupController)
-
 import HighlightController from "./highlight_controller"
 application.register("highlight", HighlightController)
+
+import PopupController from "./popup_controller"
+application.register("popup", PopupController)
