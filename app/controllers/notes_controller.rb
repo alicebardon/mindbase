@@ -8,14 +8,10 @@ class NotesController < ApplicationController
   def create
     @note = Note.new(note_params)
     @note.user = current_user
-
     respond_to do |format|
       if @note.save
-        format.html {
-          params[:note][:category_ids].delete("")
-          params[:note][:category_ids].each { |cat| CategoryNote.create(note: @note, category_id: cat.to_i) }
-          redirect_to root_path
-        }
+        CategoryNote.create(note: @note, category_id: params[:note][:category_id])
+
         format.json # Follow the classic Rails flow and look for a create.json view
       else
         format.html { render :new, status: :unprocessable_entity }

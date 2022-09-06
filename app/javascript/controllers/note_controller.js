@@ -1,4 +1,5 @@
 import { Controller } from "@hotwired/stimulus"
+import hljs from "highlight.js/lib/common"
 
 // Connects to data-controller="note"
 export default class extends Controller {
@@ -6,6 +7,7 @@ export default class extends Controller {
 
   connect() {
     console.log("note controller connected")
+    console.log(this.element)
   }
 
   new_note() {
@@ -24,7 +26,11 @@ export default class extends Controller {
     })
       .then(response => response.json())
       .then((data) => {
-        console.log(data)
+        this.formTarget.outerHTML = data.form
+        this.element.insertAdjacentHTML('beforebegin', data.inserted_item)
+        hljs.highlightAll();
+        this.showmeTarget.hidden = false;
+        this.hidemeTarget.hidden = true;
       })
 
     console.log("SENT!")
