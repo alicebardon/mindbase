@@ -31,8 +31,7 @@ export default class extends Controller {
         hljs.highlightAll();
         this.showmeTarget.hidden = false;
         this.hidemeTarget.hidden = true;
+        console.log("SENT!");
       })
-
-    console.log("SENT!")
   }
 }
