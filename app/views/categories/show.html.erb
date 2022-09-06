@@ -1,4 +1,4 @@
-<div class="container" data-controller="highlight">
+<div class="container" data-controller="highlight" >
   <div class="head_show">
     <div>
       <%= link_to "< Back", categories_path, {class: "UI_Label_Reg"} %>
@@ -9,6 +9,7 @@
   <h1><%= @category.name %></h1>
   <%= link_to "Delete Page", category_path(@category),data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "UI_Label_Reg" %>
   </div>
+
   <% @notes.each do |note| %>
   <div class="code_content">
     <% if note.comment != "" %>
@@ -34,9 +35,17 @@
   </div>
   <% end %>
 
-  <br>
+  <div data-controller="note">
+    <div class="big_button" data-action="click->note#new_note" data-note-target = "hideme">
+    </div>
+    <div data-note-target = "showme" hidden>
+      <%= render "shared/new_note", note: Note.last %>
+    <div>
+  </div>
+
+  <%# <br>
   <button>
     <%= link_to "Add note", new_note_path(@category) %>
-  </button>
+  <%# </button> %>
 
 </div>
