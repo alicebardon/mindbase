@@ -1,4 +1,4 @@
-<div class="container" data-controller="highlight">
+<div class="container" data-controller="highlight" >
   <div class="head_show">
     <div>
       <%= link_to "< Back", categories_path, {class: "UI_Label_Reg"} %>
@@ -35,7 +35,15 @@
   </div>
   <% end %>
 
-  <%= render "shared/new_note", note: Note.last %>
+  <div data-controller="note">
+    <div class="big_button" data-action="click->note#new_note" data-note-target = "hideme">
+    </div>
+    <div data-note-target = "showme" hidden>
+      <%= render "shared/new_note", note: Note.last %>
+    <div>
+  </div>
+
+
 
   <br>
   <button>
