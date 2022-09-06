@@ -4,7 +4,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: [:github]
 
-
   has_many :notes
   has_many :categories
 
@@ -16,8 +15,10 @@ class User < ApplicationRecord
   def self.from_omniauth(access_token)
     data = access_token.info
     user = User.where(email: data['email']).first
+    #access_token.credentials.token
     unless user
-      user = User.create(name: data['first_name'],
+      name = data["name"]&.split(" ")&.first || data["nickname"]
+      user = User.create(first_name: name,
           email: data['email'],
           password: Devise.friendly_token[0,20]
       )
