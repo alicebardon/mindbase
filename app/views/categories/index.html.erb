@@ -17,26 +17,26 @@
               <% slide_categories.each do |cat| %>
                 <%= link_to category_path(cat) do %>
                   <div class="<%= cat_type == "Project" ? 'card-cat-project' : cat_type == "Language" ? 'card-cat-language' : 'card-cat-personal' %>">
-                    <div class="cat-right">
                       <div class="cat-name">
                         <%= cat.name %>
                       </div>
-                      <div class="cat-date">
-                        <% if ((Time.now.utc - cat.updated_at) / 3600) < 24 %>
-                        <%= "Today" %>
-                        <% else %>
-                        <%= cat.updated_at.strftime("%m/%d/%Y") %>
-                        <% end %>
-                      </div>
-                    </div>
-                    <div class="cat-info">
-                      <div class="cat-notes">
-                        <i class="fa-solid fa-laptop-code"></i>
-                        <%= "Notes: #{cat.notes.count}"%>
-                      </div>
-                      <div class="cat-files">
-                        <i class="fa-regular fa-file"></i>
-                        <%= "Files: #{cat.notes.map {|note| note.file_name }.uniq.size}"%>
+                      <div class="cat-bottom">
+                        <div class="cat-date">
+                          <% if ((Time.now.utc - cat.updated_at) / 3600) < 24 %>
+                          <%= "Today" %>
+                          <% else %>
+                          <%= cat.updated_at.strftime("%m/%d/%Y") %>
+                          <% end %>
+                        </div>
+                      <div class="cat-info">
+                        <div class="cat-notes">
+                          <i class="fa-solid fa-laptop-code"></i>
+                          <%= "Notes: #{cat.notes.count}"%>
+                        </div>
+                        <div class="cat-files">
+                          <i class="fa-regular fa-file"></i>
+                          <%= "Files: #{cat.notes.map {|note| note.file_name }.uniq.size}"%>
+                        </div>
                       </div>
                     </div>
                   </div>
