@@ -2,49 +2,38 @@
 <p>Find me in app/views/github/new.html.erb</p>
 
 
-this is how to get all respositories
-<ul>
-<% @client.repositories.each do |repo| %>
-  <li>
-    owner: <%= repo.owner.login %> <br>
-    name: <%= repo.name %> <br>
-    url: <%= content_path = repo.contents_url.to_s.sub("{+path}","") %> <br>
-    <%# https://api.github.com/repos/jrhome/rails-longest-word-game/git/blobs/2be3af26fc5a3d019690b50e0849651dde258794 %>
-  </li>
-<% end %>
-</ul>
+<div data-controller="create-category">
+  <h3>Import Your Code</h3>
+  <h4>Choose File</h4>
+  <p> Mindbase supports .html, .erb, .js, and .css</p>
 
+  <%= form_with url: upload_path, multipart: true do |form| %>
+    <%= form.file_field :source_code %>
+    <div class="categories">
+      <div class="categ-title">
+        <%= form.label :category, "Choose Categories"%>
+      </div>
+      <div class="categ-list" data-create-category-target="list">
+        <ul>
+          <%= collection_check_boxes(:note, :category_ids, Category.where(user: current_user), :id, :name) do |checkbox|%>
+          <li><%= checkbox.check_box %>
+          <%= checkbox.label %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
 
-this is how to render the contents
-<%# how to get content of a given file  %>
-<% code1 = @client.contents("jrhome/rails-watch-list", :path => 'app/models/movie.rb') %>
-<div style = "white-space: pre">
-<%= Base64.decode64(code1.content) %>
+    <div class="btn-popup">
+    <button class="add-categ-btn" data-action="click->create-category#revealForm">New Category</button>
+    <%= form.submit "Import", class: "import-btn" %>
+    </div>
 
-
-this is how to get a list of files:
-<% lib = @client.contents("jrhome/rails-watch-list") %>
-<% lib.each do |file| %>
-  <%= file.path %> | <%= file.type %> | <%= @client.contents("jrhome/rails-watch-list", :path => file.path).content if file.type == "file" %>
-  <% if file.type == "dir" %>
-    <% child_path = @client.contents("jrhome/rails-watch-list", :path => file.path) %>
-    <% child_path.each do |child_file| %>
-      <%= child_file.path %> | <%= file.type %>
-    <% end %>
   <% end %>
-<% end %>
 
-<!--
-<p>---------------------------------------------------------------------------</p>
-<% lib.each do |file| %>
-  <% if file.type == "file" %>
-    <%= file.name %>
-    <%= file.path %>
-    <% code = @client.contents("jrhome/rails-watch-list", :path => file.path) %>
-    <% if code.content.present? %>
-      <%= Base64.decode64(code.content) %>
-    <% end %>
+  <%= simple_form_for Category.new, html:{class: "d-none", data: { create_category_target:"form" }} do |c| %>
+    <%= c.input :name %>
+    <%= c.input :category_type %>
+    <%= c.button :submit %>
   <% end %>
-<% end %>
+
 </div>
--->
