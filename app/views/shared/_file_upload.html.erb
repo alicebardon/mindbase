@@ -2,11 +2,18 @@
 
 
 <div class="popup popup-container" data-popup-target="popup" data-controller="show-desktop">
+
   <h3>Import Your Code</h3>
-
-  <button class="btn-github">From Github</button>
-  <button class="btn-desktop" data-action="click->show-desktop#revealImportDesktop">From Desktop</button>
-
+  <div class="github_desktop_btn">
+    <button class="github-btn">
+      <i class="fa-brands fa-github"></i>
+      From Github
+    </button>
+    <button class="desktop-btn" data-action="click->show-desktop#revealImportDesktop">
+      <i class="fa-solid fa-display"></i>
+      From Desktop
+    </button>
+  </div>
   <%# ---------- IMPORT FROM GITHUB ------------------------ %>
 
 
