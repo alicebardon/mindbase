@@ -1,15 +1,10 @@
-<h1>Github#new</h1>
-<p>Find me in app/views/github/new.html.erb</p>
-
-
 <div data-controller="create-category">
-  <h3>Import Your Code</h3>
-  <h4>Choose File</h4>
-  <p> Mindbase supports .html, .erb, .js, and .css</p>
+  <h3>Choose Your File</h3>
 
-  <%= form_with url: upload_gh_path, multipart: true do |form| %>
-     <%= form.label :path, "Choose file from: code_samples/"%>
-    <%= form.text_field :path %>
+  <%= form_with url: upload_gh_path do |form| %>
+    <%= form.label :path, "#{params[:repo]}/"%>
+    <%= form.select :path, @files %>
+    <%= form.hidden_field :repo, value: params[:repo] %>
     <div class="categories">
       <div class="categ-title">
         <%= form.label :category, "Choose Categories"%>

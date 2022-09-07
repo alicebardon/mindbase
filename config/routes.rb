@@ -13,5 +13,5 @@ Rails.application.routes.draw do
     resources :notes, except: %i[new create show index]
   end
   resources :notes, only: %i[new create]
-  resources :github, only: %i[new create]
+  resources :github, only: %i[new create index]
 end
