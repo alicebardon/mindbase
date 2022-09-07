@@ -12,35 +12,7 @@
 
   <div class="notes-container" >
     <% @notes.each do |note| %>
-    <div data-controller="note-edit">
-      <div class="code_content">
-        <% if note.comment != "" %>
-          <div class="note_content UI_Label_Regular_black" data-note-edit-target="comment" data-action="click->note-edit#edit_comment">
-<%= note.comment %> <!-- DO NOT CHANGE INDENTATION HERE. Should on first indentation-->
-          </div>
-        <%end%>
-        <% if note.code.gsub(/\s+/, "") != "" %>
-          <pre class="highlight-margin">
-            <code class= "<%= note.language %>" data-note-edit-target="code" data-action="click->note-edit#edit_code">
-<%= note.code %>  <!-- DO NOT CHANGE INDENTATION HERE. Should on first indentation-->
-            </code>
-          </pre>
-          <div class="d-flex flex-row justify-content-between align-items-center">
-            <div class="cat-files">
-              <%= note.file_name %>
-            </div>
-            <div class="UI_Label_Regular_grey_small">
-              <%= note.language.capitalize %>
-            </div>
-          </div>
-        <% end %>
-        <div class="edit-form d-none" data-note-edit-target="showEditForm" >
-          <%= render "shared/edit_note", note: note, category: @category %>
-        </div>
-      </div>
-
-
-    </div>
+      <%= render "notes/note_card", note: note %>
     <% end %>
 
     <div data-controller="note">
