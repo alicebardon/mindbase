@@ -33,11 +33,12 @@ h1 {
   grid-template-columns: 1fr 1fr 1fr 1fr;
   // background-color: lightblue;
   overflow-x: scroll;
+  overflow:hidden;
+  scroll-behavior: smooth;
+
 }
 
-// .swiper {
-//   width: 950px;
-// }
+
 .card-cat {
   // border: 1px solid black;
   margin: 16px;
