@@ -1,1 +1,21 @@
 // Specific CSS for your home-page
+
+.background_video {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  object-fit: cover;
+  top: 0;
+  z-index: -2;
+}
+
+.blue_background {
+  background: linear-gradient(249.92deg, #14143D 14.4%, #0E4D8D 86.94%);
+}
+
+.transparent_background {
+  background: transparent;
+
+}
