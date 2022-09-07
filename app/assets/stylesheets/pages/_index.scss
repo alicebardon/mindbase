@@ -32,12 +32,13 @@ h1 {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   // background-color: lightblue;
-  overflow-x: scroll;
+  // overflow-x: scroll;
+  // overflow:hidden;
+  // scroll-behavior: smooth;
+
 }
 
-// .swiper {
-//   width: 950px;
-// }
+
 .card-cat {
   // border: 1px solid black;
   margin: 16px;
@@ -84,4 +85,27 @@ h1 {
 .cat-files {
   background: #CBE2F9;
   color: #0B5CAD;
+}
+
+
+.carousel-control-next-icon, .carousel-control-prev-icon {
+  // background-color: #0B5CAD;
+  border-radius: 10px;
+  border: 1px solid grey;
+  color: black;
+  width: 24px;
+  height: 24px;
+  background-image: none;
+}
+
+.carousel-inner {
+  padding-left: 50px;
+}
+
+.carousel-control-prev {
+  margin-left: -30px;
+}
+
+.carousel-control-next {
+  margin-right: -30px;
 }
