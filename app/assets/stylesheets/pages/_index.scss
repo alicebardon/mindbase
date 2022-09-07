@@ -32,9 +32,9 @@ h1 {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   // background-color: lightblue;
-  overflow-x: scroll;
-  overflow:hidden;
-  scroll-behavior: smooth;
+  // overflow-x: scroll;
+  // overflow:hidden;
+  // scroll-behavior: smooth;
 
 }
 
@@ -85,4 +85,24 @@ h1 {
 .cat-files {
   background: #CBE2F9;
   color: #0B5CAD;
+}
+
+
+.carousel-control-next-icon, .carousel-control-prev-icon {
+  background-color: #0B5CAD;
+  border-radius: 10px;
+  width: 24px;
+  height: 28px;
+}
+
+.carousel-inner {
+  padding-left: 50px;
+}
+
+.carousel-control-prev {
+  margin-left: -30px;
+}
+
+.carousel-control-next {
+  margin-right: -30px;
 }

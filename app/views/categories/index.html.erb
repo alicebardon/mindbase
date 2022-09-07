@@ -5,26 +5,52 @@
     <ul>
         <% @categories.group_by {|c| c.category_type }.each do |cat_type, categories| %>
           <p class="cat-type"><%= cat_type %></p>
-        <div class="cards">
-                  <% categories.each do |cat| %>
+
+    <div id="carouselExampleControls-<%= cat_type %>" class="carousel slide"  data-bs-ride="carousel">
+      <div class="carousel-inner">
+
+          <%# --------- CARDS ----------- %>
+
+        <% categories.each_slice(3).with_index do |slide_categories, index| %>
+          <div class="carousel-item  <%= 'active' if index.zero? %>">
+            <div class="cards">
+              <% slide_categories.each do |cat| %>
                 <%= link_to category_path(cat) do %>
                   <div class="card-cat">
                     <div class="cat-name">
                       <%= cat.name %>
                     </div>
-                      <div class="cat-info">
-                        <div class="cat-notes">
-                          <%= "Notes: #{cat.notes.count}"%>
-                        </div>
-                        <div class="cat-files">
-                          <%= "Files: #{cat.notes.map {|note| note.file_name }.uniq.size}"%>
-                        </div>
+                    <div class="cat-info">
+                      <div class="cat-notes">
+                        <%= "Notes: #{cat.notes.count}"%>
                       </div>
+                      <div class="cat-files">
+                        <%= "Files: #{cat.notes.map {|note| note.file_name }.uniq.size}"%>
+                      </div>
+                    </div>
                   </div>
                   <% end %>
                 <% end %>
+
+
             </div>
+
+            <%# ------------------------------- %>
+
+          </div>
         <% end %>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls-<%= cat_type %>" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls-<%= cat_type %>" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+      </div>
+
+    <% end %>
     </ul>
   </div>
 
