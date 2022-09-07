@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   root "categories#index"
 
   post '/categories/upload_file', to: 'categories#upload_file', as: 'upload'
+  post '/github/create', to: 'github#create', as: 'upload_gh'
+
   resources :categories do
     resources :notes, except: %i[new create show index]
   end

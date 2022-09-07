@@ -6,16 +6,13 @@ class GithubController < ApplicationController
   end
 
   def create
-    @gh_file = @client.contents("jrhome/rails-watch-list", path: 'app/models/movie.rb')
-    @code = Base64.decode64(@gh_file.content)
-    @file_name = @gh_file.name
+    @client = Octokit::Client.new(access_token: current_user.access_token)
 
-    uploaded_file = file_params  #change this to upload github stuff
-    SourceCodeParser.parse_file(uploaded_file, params, current_user)
+    gh_path = gh_params
+    gh_object = @client.contents("alicebardon/mindbase", path: "#{gh_path}")
+    SourceCodeParser.parse_gh(gh_object, params, current_user)
     redirect_to categories_path, notice: "File successfully uploaded"
 
-    # @repositories = @client.repositories
-    # @repositories.each {|x| x.contents_url.to_s.sub("{+path}","") }
   end
 
   private
@@ -26,6 +23,10 @@ class GithubController < ApplicationController
 
   def file_params
     params.require(:source_code)
+  end
+
+  def gh_params
+    params.require(:path)
   end
 
 end

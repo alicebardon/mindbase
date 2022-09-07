@@ -71,12 +71,6 @@ class CategoriesController < ApplicationController
     redirect_to categories_path, notice: "File successfully uploaded"
   end
 
-  def upload_github
-    uploaded_file = file_params  #change this to upload github stuff
-    SourceCodeParser.parse_file(uploaded_file, params, current_user)
-    redirect_to categories_path, notice: "File successfully uploaded"
-  end
-
   private
 
   def cat_params
