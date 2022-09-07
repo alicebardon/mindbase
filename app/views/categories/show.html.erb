@@ -15,13 +15,13 @@
     <div data-controller="note-edit">
       <div class="code_content">
         <% if note.comment != "" %>
-          <div class="note_content UI_Label_Regular_black" data-note-edit-target="comment" data-action="click->note_edit#edit_comment">
+          <div class="note_content UI_Label_Regular_black" data-note-edit-target="comment" data-action="click->note-edit#edit_comment">
 <%= note.comment %> <!-- DO NOT CHANGE INDENTATION HERE. Should on first indentation-->
           </div>
         <%end%>
         <% if note.code.gsub(/\s+/, "") != "" %>
           <pre class="highlight-margin">
-            <code class= "<%= note.language %>" data-note-edit-target="code" data-action="click->note_edit#edit_code">
+            <code class= "<%= note.language %>" data-note-edit-target="code" data-action="click->note-edit#edit_code">
 <%= note.code %>  <!-- DO NOT CHANGE INDENTATION HERE. Should on first indentation-->
             </code>
           </pre>
@@ -34,7 +34,7 @@
             </div>
           </div>
         <% end %>
-        <div class="edit-form d-none" data-note-target="showEditForm" >
+        <div class="edit-form d-none" data-note-edit-target="showEditForm" >
           <%= render "shared/edit_note", note: note, category: @category %>
         </div>
       </div>
@@ -43,13 +43,13 @@
     </div>
     <% end %>
 
-    <%# <div data-controller="note"> %>
+    <div data-controller="note">
       <div class="big_button" data-action="click->note#new_note" data-note-target="hideme">
       </div>
       <div data-note-target = "showme" hidden>
         <%= render "shared/new_note", note: Note.last %>
       <div>
-    <%# </div> %>
+    </div>
   </div>
   <%# <br>
   <button>
