@@ -1,0 +1,39 @@
+where I keep crap i want to remember
+
+
+<!--
+<%# how to get content of a given file  %>
+<div style = "white-space: pre">
+<%= @file_name %>
+<%= @code %>
+</div>
+
+this is how to get a list of files:
+<% lib = @client.contents("jrhome/rails-watch-list") %>
+<% lib.each do |file| %>
+  <strong> <%= file.path %> | <%= file.type %> </strong>
+  <%= code = @client.contents("jrhome/rails-watch-list", :path => file.path) if file.type == "file" %>
+  <br>
+  <% if file.type == "dir" %>
+    <% child_path = @client.contents("jrhome/rails-watch-list", :path => file.path) %>
+    <% child_path.each do |child_file| %>
+      <strong> <%= child_file.path %> | <%= child_file.type %> </strong>
+      <%= @client.contents("jrhome/rails-watch-list", :path => child_file.path) if child_file.type == "file" %>
+      <br>
+    <% end %>
+  <% end %>
+<% end %>
+
+<p>---------------------------------------------------------------------------</p>
+<% lib.each do |file| %>
+  <% if file.type == "file" %>
+    <%= file.name %>
+    <%= file.path %>
+    <% code = @client.contents("jrhome/rails-watch-list", :path => file.path) %>
+    <% if code.content.present? %>
+      <%= Base64.decode64(code.content) %>
+    <% end %>
+  <% end %>
+<% end %>
+</div>
+-->
