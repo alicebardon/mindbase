@@ -3,14 +3,14 @@
     <% if note.comment != "" %>
       <div class="note_content UI_Label_Regular_black" data-note-edit-target="comment" data-action="click->note-edit#edit_comment">
         <%= note.comment %>
-        <%= text_field_tag 'comment', note.comment, size: 100, data: { note_edit_target: "comment-editor", action: "blur->note-edit#update_comment" } %>
       </div>
+        <%= text_field_tag "comment-#{note.id}", note.comment, size: 100, class: 'd-none', data: { note_edit_target: "commentEditor", action: "blur->note-edit#update_comment" } %>
     <%end%>
     <% if note.code.gsub(/\s+/, "") != "" %>
       <pre class="highlight-margin">
-        <code class= "<% note.language %> px-3 py-4" data-note-edit-target="code" data-action="click->note-edit#edit_code"><%= note.code %></code>
+        <code class= "<%= note.language %> px-3 py-4" data-note-edit-target="code" data-action="click->note-edit#edit_code"><%= note.code %></code>
       </pre>
-        <code class="<% note.language %> px-3 py-4" data-note-edit-target="code-editor"><%= text_field_tag 'code', note.code, size: 100, data: {action: "blur->note-edit#update_code"} %></code>
+        <code id="code-<%= note.id %>" class="<% note.language %> px-3 py-4 d-none" data-note-edit-target="codeEditor"><%= text_field_tag 'code', note.code, size: 100, data: {action: "blur->note-edit#update_code"} %></code>
       <div class="d-flex flex-row justify-content-between align-items-center">
         <div class="cat-files">
           <%= note.file_name %>

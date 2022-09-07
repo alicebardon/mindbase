@@ -11,12 +11,11 @@ class NotesController < ApplicationController
     respond_to do |format|
       if @note.save
         CategoryNote.create(note: @note, category_id: params[:note][:category_id])
-
-        format.json # Follow the classic Rails flow and look for a create.json view
+        # format.json # Follow the classic Rails flow and look for a create.json view
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json # Follow the classic Rails flow and look for a create.json view
       end
+      format.json # Follow the classic Rails flow and look for a create.json view
     end
   end
 

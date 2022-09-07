@@ -17,7 +17,7 @@ export default class extends Controller {
   }
 
   send(event) {
-    event.preventDefault()
+    event.preventDefault();
 
     fetch(this.formTarget.action, {
       method: "POST",
@@ -26,12 +26,12 @@ export default class extends Controller {
     })
       .then(response => response.json())
       .then((data) => {
-        this.formTarget.outerHTML = data.form
-        this.element.insertAdjacentHTML('beforebegin', data.inserted_item)
+        this.formTarget.outerHTML = data.form;
+        this.element.insertAdjacentHTML('beforebegin', data.inserted_item);
         hljs.highlightAll();
         this.showmeTarget.hidden = false;
         this.hidemeTarget.hidden = true;
         console.log("SENT!");
-      })
+      });
   }
 }
