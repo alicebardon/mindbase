@@ -7,10 +7,9 @@
   <h4>Choose File</h4>
   <p> Mindbase supports .html, .erb, .js, and .css</p>
 
-  <%= @client.contents("alicebardon/mindbase", path: 'code_samples/ruby_sampl.rb').map { |x| x} %>
-
   <%= form_with url: upload_gh_path, multipart: true do |form| %>
-    <%= form.hidden_field :path, value: 'code_samples/ruby_sampl.rb' %>
+     <%= form.label :path, "Choose file from: code_samples/"%>
+    <%= form.text_field :path %>
     <div class="categories">
       <div class="categ-title">
         <%= form.label :category, "Choose Categories"%>

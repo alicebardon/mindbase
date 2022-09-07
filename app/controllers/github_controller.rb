@@ -9,7 +9,7 @@ class GithubController < ApplicationController
     @client = Octokit::Client.new(access_token: current_user.access_token)
 
     gh_path = gh_params
-    gh_object = @client.contents("alicebardon/mindbase", path: "#{gh_path}")
+    gh_object = @client.contents("alicebardon/mindbase", path: "code_samples/#{gh_path}")
     SourceCodeParser.parse_gh(gh_object, params, current_user)
     redirect_to categories_path, notice: "File successfully uploaded"
 
