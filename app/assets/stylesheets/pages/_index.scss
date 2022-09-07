@@ -89,10 +89,13 @@ h1 {
 
 
 .carousel-control-next-icon, .carousel-control-prev-icon {
-  background-color: #0B5CAD;
+  // background-color: #0B5CAD;
   border-radius: 10px;
+  border: 1px solid grey;
+  color: black;
   width: 24px;
-  height: 28px;
+  height: 24px;
+  background-image: none;
 }
 
 .carousel-inner {
