@@ -6,7 +6,7 @@
         <% @categories.group_by {|c| c.category_type }.each do |cat_type, categories| %>
           <p class="cat-type"><%= cat_type %></p>
 
-    <div id="carouselExampleControls-<%= cat_type %>" class="carousel slide"  data-bs-ride="carousel">
+    <div id="carouselExampleControls-<%= cat_type %>" class="carousel slide"  data-bs-interval="false">
       <div class="carousel-inner">
 
           <%# --------- CARDS ----------- %>
