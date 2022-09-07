@@ -6,10 +6,12 @@
         <% @categories.group_by {|c| c.category_type }.each do |cat_type, categories| %>
           <p class="cat-type"><%= cat_type %></p>
 
+
+
     <div id="carouselExampleControls-<%= cat_type %>" class="carousel slide"        data-bs-interval="false">
       <div class="carousel-inner">
 
-          <%# --------- CARDS ----------- %>
+          <%# --------- CAROUSEL ----------- %>
 
         <% categories.each_slice(3).with_index do |slide_categories, index| %>
           <div class="carousel-item  <%= 'active' if index.zero? %>">
@@ -42,14 +44,13 @@
                   </div>
                   <% end %>
                 <% end %>
-
-
             </div>
 
             <%# ------------------------------- %>
 
           </div>
         <% end %>
+      </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls-<%= cat_type %>" data-bs-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true">
           <i class="fa-solid fa-arrow-left"></i></span>
@@ -60,7 +61,6 @@
           <i class="fa-solid fa-arrow-right"></i></span>
           <span class="visually-hidden">Next</span>
         </button>
-      </div>
       </div>
 
     <% end %>
