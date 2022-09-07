@@ -4,11 +4,11 @@
 
 import { application } from "./application"
 
-import FlashesController from "./flashes_controller"
-application.register("flashes", FlashesController)
-
 import CreateCategoryController from "./create_category_controller"
 application.register("create-category", CreateCategoryController)
+
+import FlashesController from "./flashes_controller"
+application.register("flashes", FlashesController)
 
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
@@ -16,8 +16,11 @@ application.register("hello", HelloController)
 import HighlightController from "./highlight_controller"
 application.register("highlight", HighlightController)
 
+import NoteController from "./note_controller"
+application.register("note", NoteController)
+
 import PopupController from "./popup_controller"
 application.register("popup", PopupController)
 
-import NoteController from "./note_controller"
-application.register("note", NoteController)
+import ShowDesktopController from "./show_desktop_controller"
+application.register("show-desktop", ShowDesktopController)
