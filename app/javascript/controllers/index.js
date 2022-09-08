@@ -19,6 +19,9 @@ application.register("highlight", HighlightController)
 import NoteController from "./note_controller"
 application.register("note", NoteController)
 
+import NoteEditController from "./note_edit_controller"
+application.register("note-edit", NoteEditController)
+
 import PopupController from "./popup_controller"
 application.register("popup", PopupController)
 
