@@ -52,15 +52,12 @@ h1 {
 }
 
 .card-cat-project {
-  background-color: #E9F3FC;
 }
 
 .card-cat-language {
-  background-color: #ECF4EE;;
 }
 
 .card-cat-personal {
-  background-color: #FDF1DD;
 
 }
 
@@ -140,9 +137,23 @@ h1 {
 }
 
 .carousel-control-prev {
-  margin-left: -30px;
+  left: -30px;
 }
 
 .carousel-control-next {
-  margin-right: -30px;
+  right: -30px;
+  width: inherit;
+}
+
+
+.cat-type-container:nth-child(3n + 1) .card-cat {
+  background-color: #E9F3FC;
+}
+
+.cat-type-container:nth-child(3n + 2) .card-cat {
+  background-color: #ECF4EE;;
+}
+
+.cat-type-container:nth-child(3n) .card-cat {
+  background-color: #FDF1DD;
 }

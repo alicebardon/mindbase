@@ -1,4 +1,23 @@
 .github-new-container {
   width: 50%;
   margin: auto;
+  font-family: Inter, sans-serif;
+
+}
+
+.github-new-container h3 {
+  margin: 10px 0px;
+}
+
+.path-file {
+  margin-bottom: 25px;
+}
+
+.github-new-container ul {
+  list-style-type: none;
+  border-top: 2px solid #5943B6;
+}
+
+.github-new-container li {
+  margin-top: 5px;
 }
