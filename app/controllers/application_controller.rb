@@ -20,13 +20,9 @@ class ApplicationController < ActionController::Base
   def home
   end
 
-<<<<<<< HEAD
   def load_repos
     return [] unless current_user
     @client = Octokit::Client.new(access_token: current_user.access_token)
     @repos = @client.repos
   end
-=======
-
->>>>>>> master
 end
