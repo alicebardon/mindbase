@@ -2,13 +2,39 @@
 
 .background_video {
   width: 100vw;
-  height: 100vh;
+  height: 70vh;
   position: absolute;
   display: flex;
   justify-content: center;
   object-fit: cover;
   top: 0;
-  z-index: -2;
+  z-index: -3;
+}
+
+
+.background_oval {
+    width: 80vw;
+    height: 120vh;
+    background-color: rgba(6, 71, 125, 0.69);
+    border-radius: 50%;
+    position: absolute;
+    top: -27vh;
+    left: -30vw;
+    z-index: -2;
+}
+
+#sign_up {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.grey_banner {
+  width: 100vw;
+  height: 400px;
+  position: absolute;
+  top: 70vh;
+  background-color: lightgrey;
 }
 
 .blue_background {
