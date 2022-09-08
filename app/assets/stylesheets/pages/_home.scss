@@ -1,1 +1,55 @@
 // Specific CSS for your home-page
+
+.background_video {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  object-fit: cover;
+  top: 0;
+  z-index: -3;
+}
+
+
+.background_oval {
+    width: 80vw;
+    height: 150vh;
+    background: #f5f5f5;
+    // rgba(82,82,82,0.6);
+    // linear-gradient(249.92deg, #14143D 14.4%, #0E4D8D 86.94%);
+    border-radius: 50%;
+    position: absolute;
+    top: -30vh;
+    left: -30vw;
+    z-index: -2;
+}
+
+#sign_up {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.grey_banner {
+  width: 100vw;
+  height: 400px;
+  position: absolute;
+  top: 100vh;
+  background-color: lightgrey;
+}
+
+.blue_background {
+  background: linear-gradient(249.92deg, #14143D 14.4%, #0E4D8D 86.94%);
+}
+
+.transparent_background {
+  background: transparent;
+}
+
+#hero-box{
+  position: absolute;
+  top: 39vh;
+  left: 10vw;
+  text-align: left;
+}

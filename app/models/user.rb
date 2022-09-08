@@ -15,7 +15,9 @@ class User < ApplicationRecord
   def self.from_omniauth(access_token)
     data = access_token.info
     user = User.where(email: data['email']).first
-    unless user
+    if user
+      user.update(access_token: access_token['credentials']['token'])
+    else
       name = data["name"]&.split(" ")&.first || data["nickname"]
       user = User.create(first_name: name,
           email: data['email'],
