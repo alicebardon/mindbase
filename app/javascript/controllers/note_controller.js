@@ -35,9 +35,7 @@ export default class extends Controller {
       headers: { "Accept": "application/json" },
       body: new FormData(this.formTarget)
     })
-      .then(response => {
-        return response.json();
-      })
+      .then(response => response.json())
       .then((data) => {
         console.log(data)
         this.formTarget.outerHTML = data.form;
