@@ -16,10 +16,10 @@
     <% end %>
 
     <div data-controller="note">
-      <div class="big_button" data-action="click->note#new_note" data-note-target="hideme">
+      <div class="big_button" data-action="click->note#new_note" data-note-target="bigButton">
       </div>
-      <div data-note-target = "showme" hidden>
-        <%= render "shared/new_note", note: Note.last %>
+      <div data-note-target="newNote" hidden>
+        <%= render "shared/new_note" %>
       <div>
     </div>
   </div>
