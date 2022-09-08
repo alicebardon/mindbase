@@ -2,9 +2,11 @@
   <h3>Choose Your File</h3>
 
   <%= form_with url: upload_gh_path do |form| %>
-    <%= form.label :path, "#{params[:repo]}/"%>
-    <%= form.select :path, @files %>
-    <%= form.hidden_field :repo, value: params[:repo] %>
+    <div class="path-file">
+      <%= form.label :path, "From #{params[:repo]}/"%>
+      <%= form.select :path, @files %>
+      <%= form.hidden_field :repo, value: params[:repo] %>
+    </div>
     <div class="categories">
       <div class="categ-title">
         <%= form.label :category, "Choose Categories"%>
