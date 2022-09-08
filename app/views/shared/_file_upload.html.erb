@@ -1,6 +1,3 @@
-
-
-
 <div class="popup popup-container" data-popup-target="popup" data-controller="show-desktop">
   <div data-controller="show-github">
 
@@ -24,15 +21,16 @@
     <div class = "imp-github mt-5 ml-5 d-none" data-show-github-target="github">
     <h3>Upload a project from Github</h3>
     <br>
-    <div class="list-repos">
-    <ul>
-      <% @repos.each do |repo| %>
-        <li><%= link_to repo.name, new_github_path(repo: repo.name) %></li>
-      <% end %>
-      </ul>
-    </div>
+    <% if user_signed_in? %>
+      <div class="list-repos">
+      <ul>
+        <% @repos.each do |repo| %>
+          <li><%= link_to repo.name, new_github_path(repo: repo.name) %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
   </div>
-
 
 
 

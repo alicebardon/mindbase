@@ -7,7 +7,7 @@ export default class extends Controller {
 
   connect() {
     console.log("note controller connected")
-    console.log(this.element)
+    // console.log(this.element)
   }
 
   new_note() {

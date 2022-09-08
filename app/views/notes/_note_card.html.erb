@@ -1,0 +1,27 @@
+<div data-controller="note-edit">
+  <div class="code_content">
+    <% if note.comment != "" %>
+      <div class="note_content UI_Label_Regular_black" data-note-edit-target="comment" data-action="click->note-edit#edit_comment">
+        <%= note.comment %>
+        <%= text_field_tag 'comment', note.comment, size: 100, data: { note_edit_target: "comment-editor", action: "blur->note-edit#update_comment" } %>
+      </div>
+    <%end%>
+    <% if note.code.gsub(/\s+/, "") != "" %>
+      <pre class="highlight-margin">
+        <code class= "<% note.language %> px-3 py-4" data-note-edit-target="code" data-action="click->note-edit#edit_code"><%= note.code %></code>
+      </pre>
+        <code class="<% note.language %> px-3 py-4" data-note-edit-target="code-editor"><%= text_field_tag 'code', note.code, size: 100, data: {action: "blur->note-edit#update_code"} %></code>
+      <div class="d-flex flex-row justify-content-between align-items-center">
+        <div class="cat-files">
+          <%= note.file_name %>
+        </div>
+        <div class="UI_Label_Regular_grey_small">
+          <%= note.language.capitalize %>
+        </div>
+      </div>
+    <% end %>
+    <div class="edit-form d-none" data-note-edit-target="showEditForm" >
+      <%= render "shared/edit_note", note: note, category: @category %>
+    </div>
+  </div>
+</div>
