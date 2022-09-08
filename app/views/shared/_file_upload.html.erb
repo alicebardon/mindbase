@@ -18,6 +18,16 @@
 
   <%# ---------- IMPORT FROM GITHUB ------------------------ %>
 
+  <div class = 'mt-5 ml-5' >
+  <h3>Upload a project from Github</h3>
+  <br>
+  <ul>
+  <% @repos.each do |repo| %>
+    <li><%= link_to repo.name, new_github_path(repo: repo.name) %></li>
+  <% end %>
+  </ul>
+
+</div>
 
 
   <%# ---------- END OF IMPORT FROM GITHUB ------------------ %>
