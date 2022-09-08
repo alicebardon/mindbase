@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   skip_before_action :authenticate_user!, only: :home
-
+  before_action :load_repos
   # Devise setup
   before_action :configure_permitted_parameters, if: :devise_controller?
 
@@ -20,5 +20,9 @@ class ApplicationController < ActionController::Base
   def home
   end
 
-
+  def load_repos
+    return [] unless current_user
+    @client = Octokit::Client.new(access_token: current_user.access_token)
+    @repos = @client.repos
+  end
 end
