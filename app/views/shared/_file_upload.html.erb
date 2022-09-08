@@ -1,40 +1,77 @@
 
 
 
-<div class="popup popup-container" data-popup-target="popup" data-controller="create-category">
-  <h3>Import Your Code</h3>
-  <h4>Choose File</h4>
-  <p> Mindbase supports .html, .erb, .js, and .css</p>
+<div class="popup popup-container" data-popup-target="popup" data-controller="show-desktop">
 
-  <%= form_with url: upload_path, multipart: true do |form| %>
-    <%= form.file_field :source_code %>
-    <div class="categories">
-      <div class="categ-title">
-        <%= form.label :category, "Choose Categories"%>
-      </div>
-      <div class="categ-list" data-create-category-target="list">
-        <ul>
-          <%= collection_check_boxes(:note, :category_ids, Category.where(user: current_user), :id, :name) do |checkbox|%>
-          <li><%= checkbox.check_box %>
-          <%= checkbox.label %></li>
-          <% end %>
-        </ul>
-      </div>
-    </div>
+  <h3>Upload Your Code</h3>
+  <div class="github_desktop_btn" data-show-desktop-target="choose">
+    <button class="github-btn">
+      <i class="fa-brands fa-github"></i>
+      From Github
+    </button>
+    <button class="desktop-btn" data-action="click->show-desktop#revealImportDesktop">
+      <i class="fa-solid fa-display"></i>
+      From Desktop
+    </button>
+  </div>
 
-    <div class="btn-popup">
-    <button class="cancel-btn">Cancel</button>
-    <button class="add-categ-btn" data-action="click->create-category#revealForm">New Category</button>
-    <%= form.submit "Import", class: "import-btn" %>
-    </div>
 
+  <%# ---------- IMPORT FROM GITHUB ------------------------ %>
+
+  <div class = 'mt-5 ml-5' >
+  <h3>Upload a project from Github</h3>
+  <br>
+  <ul>
+  <% @repos.each do |repo| %>
+    <li><%= link_to repo.name, new_github_path(repo: repo.name) %></li>
   <% end %>
+  </ul>
 
-  <%= simple_form_for Category.new, html:{class: "d-none", data: { create_category_target:"form" }} do |c| %>
-    <%= c.input :name %>
-    <%= c.input :category_type %>
-    <%= c.button :submit %>
-  <% end %>
+</div>
+
+
+  <%# ---------- END OF IMPORT FROM GITHUB ------------------ %>
+
+  <%# ---------- IMPORT FROM DESKTOP ----------------------- %>
+
+  <div class="imp-desktop d-none" data-controller="create-category" data-show-desktop-target="desktop">
+    <h4>Choose File</h4>
+    <p> Mindbase supports .html, .erb, .js, and .css</p>
+
+    <%= form_with url: upload_path, multipart: true do |form| %>
+      <%= form.file_field :source_code %>
+      <div class="categories">
+        <div class="categ-title">
+          <%= form.label :category, "Choose Categories"%>
+        </div>
+        <div class="categ-list" data-create-category-target="list">
+          <ul>
+            <%= collection_check_boxes(:note, :category_ids, Category.where(user: current_user, category_type: "Project"), :id, :name) do |checkbox|%>
+            <li><%= checkbox.check_box %>
+            <%= checkbox.label %></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+
+      <div class="btn-popup">
+      <button class="cancel-btn">Cancel</button>
+      <button class="add-categ-btn" data-action="click->create-category#revealForm">New Category</button>
+      <%= form.submit "Import", class: "import-btn" %>
+      </div>
+
+    <% end %>
+
+
+
+    <%= simple_form_for Category.new, html:{class: "d-none", data: { create_category_target:"form" }} do |c| %>
+      <%= c.input :name %>
+      <%= c.input :category_type %>
+      <%= c.button :submit %>
+    <% end %>
+  </div>
+  <%# ----------- END OF IMPORT FROM DESKTOP ----------------- %>
+
 
 </div>
 
