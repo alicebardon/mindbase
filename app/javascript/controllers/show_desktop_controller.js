@@ -5,9 +5,7 @@ export default class extends Controller {
   static targets = ["desktop", "choose"]
 
   connect() {
-    // console.log("hey");
-    // console.log(this.desktop);
-    console.log(this.choose);
+
   }
 
   revealImportDesktop(event) {

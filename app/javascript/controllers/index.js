@@ -24,3 +24,6 @@ application.register("popup", PopupController)
 
 import ShowDesktopController from "./show_desktop_controller"
 application.register("show-desktop", ShowDesktopController)
+
+import ShowGithubController from "./show_github_controller"
+application.register("show-github", ShowGithubController)
