@@ -51,7 +51,7 @@
           </div>
           <div class="categ-list" data-create-category-target="list">
             <ul>
-              <%= collection_check_boxes(:note, :category_ids, Category.where(user: current_user, category_type: "Project"), :id, :name) do |checkbox|%>
+              <%= collection_check_boxes(:note, :category_ids, Category.where(user: current_user).and(Category.where.not(category_type: "Language")), :id, :name) do |checkbox|%>
               <li><%= checkbox.check_box %>
               <%= checkbox.label %></li>
               <% end %>
