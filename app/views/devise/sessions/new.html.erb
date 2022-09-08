@@ -1,11 +1,9 @@
 <%= video_tag "coding-laptop.mp4", autoplay: :autoplay, loop: :loop, muted: :muted, class: "background_video" %>
 <div class="background_oval"></div>
-<div class="grey_banner"></div>
-<body>
-  <div class="d-flex align-items-center justify-content-center flex-column">
-      <%= render "devise/shared/big_brand" %>
-
-      <%= render "devise/shared/links" %>
-      </div>
+<div id="hero-box">
+  <div class="d-flex flex-column justify-content-left" >
+    <%= render "devise/shared/big_brand" %>
+    <%= render "devise/shared/links" %>
   </div>
-</body>
+</div>
+<div class="grey_banner"></div>

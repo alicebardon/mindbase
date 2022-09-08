@@ -2,7 +2,7 @@
 
 .background_video {
   width: 100vw;
-  height: 70vh;
+  height: 100vh;
   position: absolute;
   display: flex;
   justify-content: center;
@@ -14,11 +14,12 @@
 
 .background_oval {
     width: 80vw;
-    height: 120vh;
-    background-color: rgba(6, 71, 125, 0.69);
+    height: 150vh;
+    background: rgba(82,82,82,0.6);
+    // linear-gradient(249.92deg, #14143D 14.4%, #0E4D8D 86.94%);
     border-radius: 50%;
     position: absolute;
-    top: -27vh;
+    top: -30vh;
     left: -30vw;
     z-index: -2;
 }
@@ -33,7 +34,7 @@
   width: 100vw;
   height: 400px;
   position: absolute;
-  top: 70vh;
+  top: 100vh;
   background-color: lightgrey;
 }
 
@@ -43,5 +44,11 @@
 
 .transparent_background {
   background: transparent;
+}
 
+#hero-box{
+  position: absolute;
+  top: 39vh;
+  left: 10vw;
+  text-align: left;
 }
