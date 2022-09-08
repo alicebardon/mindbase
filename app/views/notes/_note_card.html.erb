@@ -4,13 +4,13 @@
       <div class="note_content UI_Label_Regular_black" data-note-edit-target="comment" data-action="click->note-edit#edit_comment">
         <%= note.comment %>
       </div>
-        <%= text_field_tag "comment-#{note.id}", note.comment, size: 100, class: 'd-none', data: { note_edit_target: "commentEditor", action: "blur->note-edit#update_comment" } %>
+        <%= text_field_tag "note[comment]", note.comment, size: 100, class: 'd-none', data: { note_edit_target: "commentEditor", action: "blur->note-edit#update_comment", note_id: note.id } %>
     <%end%>
     <% if note.code.gsub(/\s+/, "") != "" %>
       <pre class="highlight-margin">
         <code class= "<%= note.language %> px-3 py-4" data-note-edit-target="code" data-action="click->note-edit#edit_code"><%= note.code %></code>
       </pre>
-        <code id="code-<%= note.id %>" class="<% note.language %> px-3 py-4 d-none" data-note-edit-target="codeEditor"><%= text_field_tag 'code', note.code, size: 100, data: {action: "blur->note-edit#update_code"} %></code>
+        <code id="note[code]" class="<%= note.language %> px-3 py-4 d-none" data-note-edit-target="codeEditor" data-note-id="<%= note.id %>"><%= text_field_tag 'code', note.code, size: 100, data: {action: "blur->note-edit#update_code"} %></code>
       <div class="d-flex flex-row justify-content-between align-items-center">
         <div class="cat-files">
           <%= note.file_name %>

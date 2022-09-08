@@ -1,4 +1,5 @@
 import { Controller } from "@hotwired/stimulus"
+import hljs from "highlight.js/lib/common"
 
 // Connects to data-controller="note-edit"
 export default class extends Controller {
@@ -10,8 +11,6 @@ export default class extends Controller {
 
   edit_comment() {
     console.log("Editing comment");
-    console.log(this.commentTarget)
-    console.log(this.commentEditorTarget);
     this.commentEditorTarget.classList.remove("d-none");
     this.commentTarget.classList.add("d-none");
   }
@@ -23,20 +22,28 @@ export default class extends Controller {
   }
 
   update_comment(event) {
-    const note_id = this.commentEditorTarget.id.split("-").pop();
-    console.log(this.commentEditorTarget.value);
-    fetch(`${window.location.pathname}/notes/${note_id}`, {
-          method: "PATCH",
-          headers: { "Accept": "application/json"},
-          body: this.commentEditorTarget.content
-          });
-
-    this.commentEditorTarget.classList.add("d-none");
-    this.commentTarget.classList.remove("d-none");
-    console.log("Comment updated!");
+    const note_id = this.commentEditorTarget.dataset.noteId;
+    const request_body = JSON.stringify({ note: { comment: this.commentEditorTarget.value } });
+    this.#update_request(note_id, request_body);
   }
 
   update_code(event) {
-    console.log("Code updated!");
+    const note_id = this.commentTarget.dataset.noteId;
+    const request_body = JSON.stringify({ note: { code: this.codeEditorTarget.value } });
+    this.#update_request(note_id, request_body);
+  }
+
+  #update_request(note_id, request_body) {
+    fetch(`${window.location.pathname}/notes/${note_id}`, {
+      method: "PATCH",
+      headers: { "Accept": "application/json", "Content-Type": "application/json"},
+      body: request_body
+      })
+      .then(response => response.json())
+      .then((data) => {
+        debugger;
+        this.element.innerHTML = data.note_html;
+        hljs.highlightAll();
+      });
   }
 }
