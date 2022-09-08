@@ -1,7 +1,6 @@
 class GithubController < ApplicationController
   def index
-    @client = Octokit::Client.new(access_token: current_user.access_token)
-    @repos = @client.repos
+
   end
 
   def new
