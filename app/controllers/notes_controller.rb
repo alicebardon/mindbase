@@ -1,6 +1,6 @@
 class NotesController < ApplicationController
   before_action :set_category, only: %i[show edit update destroy]
-
+  skip_forgery_protection only: :update
   def new
     @note = Note.new
   end
@@ -11,12 +11,10 @@ class NotesController < ApplicationController
     respond_to do |format|
       if @note.save
         CategoryNote.create(note: @note, category_id: params[:note][:category_id])
-
-        format.json # Follow the classic Rails flow and look for a create.json view
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json # Follow the classic Rails flow and look for a create.json view
       end
+      format.json # Follow the classic Rails flow and look for a create.json view
     end
   end
 
@@ -26,10 +24,13 @@ class NotesController < ApplicationController
 
   def update
     @note = Note.find(params[:id])
-    if @note.update(note_params_edit)
-      redirect_to category_path(@category)
-    else
-      render :edit, status: :unprocessable_entity
+    respond_to do |format|
+      if @note.update(note_params_edit)
+        format.html { redirect_to category_path(@category) }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+      end
+      format.json
     end
   end
 
