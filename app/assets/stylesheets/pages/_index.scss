@@ -39,25 +39,48 @@ h1 {
 }
 
 
-.card-cat {
+.card-cat-project, .card-cat-language, .card-cat-personal {
   // border: 1px solid black;
   margin: 16px;
-  background-color: #E9F3FC;
   box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1);
   border-radius: 4px;
   width: 200px;
   height: 130px;
   display: flex;
 }
-.cat-name {
-  text-decoration: none;
-  color: black;
-  font-weight: bold;
-  font-size: 16px;
-  padding: 12px;
-  font-family: Inter, sans-serif;
+
+.card-cat-project {
+  background-color: #E9F3FC;
+}
+
+.card-cat-language {
+  background-color: #ECF4EE;;
+}
+
+.card-cat-personal {
+  background-color: #FDF1DD;
 
 }
+
+.cat-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-decoration: none;
+  color: black;
+  padding: 12px;
+  font-family: Inter, sans-serif;
+}
+
+.cat-name {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.cat-date {
+  font-size: 10px;
+}
+
 .cat-info {
   display: flex;
   align-items: flex-end;

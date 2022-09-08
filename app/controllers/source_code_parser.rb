@@ -84,6 +84,33 @@ class SourceCodeParser
     end
   end
 
+  def self.parse_gh(file, params, user)
+    params[:note][:category_ids].delete("")
+    file_name = file[:path]
+    programming_language = LANGUAGE_EXTENSION[file_name.split(".").last.downcase.to_sym]
+    # Create category  programming language, it does not yet exist
+    language_category = Category.find_by("name = :query", query: programming_language.capitalize) ||
+                        Category.create(name: programming_language.capitalize, category_type: "Language", user:)
+    match_pattern = COMMENT_PATTERNS[LANGUAGE_COMMENT_CHAR[programming_language.downcase.to_sym]]
+    code = Base64.decode64(file.content)
+    matches = code.scan(match_pattern)
+    matches.each do |match|
+      clean_content = clean_text(match, programming_language)
+      note = Note.create!(comment: clean_content.first,
+                          code: clean_content.second,
+                          user:,
+                          file_name:,
+                          language: programming_language)
+      # Place note in its language category
+      CategoryNote.create(note:, category: language_category)
+      # Place note in the categories selected by the user
+      params[:note][:category_ids].each do |cat_id|
+        CategoryNote.create!(note:, category_id: cat_id.to_i)
+      end
+    end
+  end
+
+
   def self.clean_text(note, language)
     # code comes after the comment
     if note.first.strip == ""
