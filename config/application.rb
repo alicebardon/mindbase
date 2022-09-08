@@ -8,6 +8,7 @@ Bundler.require(*Rails.groups)
 
 module Mindbase
   class Application < Rails::Application
+    Rails.application.config.assets.paths << "#{Rails.root}/app/assets/videos"
     config.generators do |generate|
       generate.assets false
       generate.helper false
