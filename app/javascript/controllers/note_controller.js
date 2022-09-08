@@ -20,13 +20,12 @@ export default class extends Controller {
 
   send(event) {
     event.preventDefault();
-    console.log(this.commentTarget.value);
-    console.log(this.codeTarget.value);
-    console.log(this.languageTarget.value);
     const comment = this.commentTarget.value;
     const code = this.codeTarget.value;
     const language = this.languageTarget.value;
 
+    // only send the update to the back end if all the mandatory fields 
+    // have been filled in
     if (code == "" || comment == "" || language == "") {
       return;
     }
