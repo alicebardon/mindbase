@@ -10,7 +10,9 @@
       <pre class="highlight-margin">
         <code class= "<%= note.language %> px-3 py-4" data-note-edit-target="code" data-action="click->note-edit#edit_code"><%= note.code %></code>
       </pre>
-        <code id="note[code]" class="<%= note.language %> px-3 py-4 d-none" data-note-edit-target="codeEditor" data-note-id="<%= note.id %>"><%= text_field_tag 'code', note.code, size: 100, data: {action: "blur->note-edit#update_code"} %></code>
+        <code class="<%= note.language %> px-3 py-4" data-note-id="<%= note.id %>">
+          <%= text_area_tag 'note[code]', note.code, class: 'd-none', data: {note_edit_target: "codeEditor", action: "blur->note-edit#update_code", note_id: note.id } %>
+        </code>
       <div class="d-flex flex-row justify-content-between align-items-center">
         <div class="cat-files">
           <%= note.file_name %>

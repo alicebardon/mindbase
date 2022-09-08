@@ -28,7 +28,7 @@ export default class extends Controller {
   }
 
   update_code(event) {
-    const note_id = this.commentTarget.dataset.noteId;
+    const note_id = this.codeEditorTarget.dataset.noteId;
     const request_body = JSON.stringify({ note: { code: this.codeEditorTarget.value } });
     this.#update_request(note_id, request_body);
   }
@@ -41,7 +41,7 @@ export default class extends Controller {
       })
       .then(response => response.json())
       .then((data) => {
-        debugger;
+        console.log(data);
         this.element.innerHTML = data.note_html;
         hljs.highlightAll();
       });
