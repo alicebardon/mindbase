@@ -61,7 +61,7 @@ class SourceCodeParser
   def self.parse_file(file, params, user)
     params[:note][:category_ids].delete("")
     file_name = file.original_filename
-    programming_language = LANGUAGE_EXTENSION[file_name.split(".").last.downcase.to_sym]
+    programming_language = LANGUAGE_EXTENSION[file_name.split(".").last.downcase.to_sym] || "Unknown"
 
     # Create category for programming language if it does not yet exist
     language_category = Category.find_by("name = :query", query: programming_language.capitalize) ||
@@ -87,7 +87,7 @@ class SourceCodeParser
   def self.parse_gh(file, params, user)
     params[:note][:category_ids].delete("")
     file_name = file[:path]
-    programming_language = LANGUAGE_EXTENSION[file_name.split(".").last.downcase.to_sym]
+    programming_language = LANGUAGE_EXTENSION[file_name.split(".").last.downcase.to_sym] || "Unknown"
     # Create category  programming language, it does not yet exist
     language_category = Category.find_by("name = :query", query: programming_language.capitalize) ||
                         Category.create(name: programming_language.capitalize, category_type: "Language", user:)

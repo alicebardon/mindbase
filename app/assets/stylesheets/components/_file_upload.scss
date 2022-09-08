@@ -78,9 +78,13 @@
   height: 100px;
 }
 
+.categ-list ul {
+  border-top: 2px solid #0B5CAD;
+
+}
+
 .popup  ul {
   list-style-type: none;
-  border-top: 1px solid grey;
   margin-top: 6px;
   padding-top: 11px;
   padding-left: 0.7rem;
@@ -89,6 +93,35 @@
 
  .simple-form {
   color: blue;
+ }
+
+
+//  ---- GITHUB PART -------
+
+.list-repos {
+  overflow-y: scroll;
+  height: 200px;
+}
+
+.list-repos {
+  border-top: 2px solid #5943B6;
+}
+ .imp-github a {
+  color: black;
+  font-family: Inter, sans-serif;
+ }
+
+ .imp-github a:hover {
+  color: #5943B6;
+  font-weight: bold;
+ }
+ .imp-github li::marker {
+  content: "▶ ";
+  color: #E1D8F9;
+ }
+
+ .imp-github li:hover::marker {
+  color: #5943B6;
  }
 
 
