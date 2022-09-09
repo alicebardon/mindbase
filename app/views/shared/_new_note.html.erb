@@ -2,13 +2,13 @@
   <div class="form_container">
     <div class="code_content">
       <div class="note_content UI_Label_Regular_black" style="margin-bottom: 0px;">
-  <%= form.text_field :comment, class: "invisible-form", data: { "note-target": "comment", action: "blur->note#send" } %> <!-- DO NOT CHANGE INDENTATION HERE. Should on first indentation-->
+  <%= form.text_field :comment, class: "invisible-form", data: { "note-target": "comment" } %> <!-- DO NOT CHANGE INDENTATION HERE. Should on first indentation-->
       </div>
 
       <%= form.hidden_field :category_id, value: params[:id] %>
 
       <div>
-    <%= form.text_field :code, class: "white-box px-3 py-4", placeholder: "Enter code", data: {"note-target": "code", action: "blur->note#send"} %>  <!-- DO NOT CHANGE INDENTATION HERE. Should on first indentation-->
+    <%= form.text_area :code, class: "white-box px-3 py-4", placeholder: "Enter code", data: {"note-target": "code", action: "blur->note#send"} %>  <!-- DO NOT CHANGE INDENTATION HERE. Should on first indentation-->
       </div>
 
       <div class="d-flex flex-row justify-content-between align-items-center">
@@ -20,8 +20,7 @@
               class: "UI_Label_Regular_grey_small",
               style: "border: none; background-color: transparent; text-align: right;",
               placeholder: "Language",
-              data: { "note-target": "language",
-                      action: "blur->note#send" }
+              data: { "note-target": "language" }
           %>
         </div>
       </div>
