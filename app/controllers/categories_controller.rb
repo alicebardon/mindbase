@@ -15,6 +15,7 @@ class CategoriesController < ApplicationController
 
     @client = Octokit::Client.new(access_token: current_user.access_token)
     @repos = @client.repos
+    @limit = @client.rate_limit_remaining
 
     # @user = current_user
     # @category = Category.new
@@ -35,6 +36,10 @@ class CategoriesController < ApplicationController
     else
       @notes = @category.notes.sort_by(&:created_at)
     end
+
+    @client = Octokit::Client.new(access_token: current_user.access_token)
+    @repos = @client.repos
+    @limit = @client.rate_limit_remaining
   end
 
   def new

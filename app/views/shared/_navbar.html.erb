@@ -8,6 +8,11 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto navbar_right">
+        <% if Rails.env.development? %>
+          <h4 class="d-flex-row align-items-center justify-content-center UI_Display_04_base">
+            API LIMIT <%= @limit %>
+          </h4>
+        <% end %>
         <div class="searchbar">
           <i class="fa-solid fa-magnifying-glass"></i>
           <%= form_with url: categories_path, method: :get, class: "d-flex search_form w-100" do %>
