@@ -14,7 +14,21 @@ class CategoriesController < ApplicationController
     else
       @categories = current_user.categories
     end
+<<<<<<< HEAD
      @repos = @client.repos
+=======
+
+    @client = Octokit::Client.new(access_token: current_user.access_token)
+    @repos = @client.repos
+
+    # @user = current_user
+    # @category = Category.new
+    # @client = Octokit::Client.new(access_token: current_user.access_token)
+    # puts "retrieving"
+    # @files = @client.contents("#{@client.user.login}/#{params[:repo]}").map { |x| x.path }
+
+
+>>>>>>> parent of e665e5a (see gh rate limit in nav bar (on dev only))
   end
 
 
@@ -27,8 +41,11 @@ class CategoriesController < ApplicationController
     else
       @notes = @category.notes.sort_by(&:created_at)
     end
+<<<<<<< HEAD
 
     # @repos = @client.repos
+=======
+>>>>>>> parent of e665e5a (see gh rate limit in nav bar (on dev only))
   end
 
   def new
