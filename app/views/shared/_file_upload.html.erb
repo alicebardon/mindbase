@@ -24,9 +24,9 @@
     <% if user_signed_in? %>
       <div class="list-repos">
       <ul>
-        <%# <% @repos.each do |repo| %>
-          <%# <li><%= link_to repo.name, new_github_path(repo: repo.name) %>
-        <%# <% end %>
+        <% @repos.each do |repo| %>
+          <li><%= link_to repo.name, new_github_path(repo: repo.name) %></li>
+        <% end %>
         </ul>
       </div>
     <% end %>

@@ -15,8 +15,8 @@ class CategoriesController < ApplicationController
       @categories = current_user.categories
     end
 
-    #@client = Octokit::Client.new(access_token: current_user.access_token)
-    #@repos = @client.repos
+    @client = Octokit::Client.new(access_token: current_user.access_token)
+    @repos = @client.repos
 
     # @user = current_user
     # @category = Category.new
