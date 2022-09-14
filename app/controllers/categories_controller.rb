@@ -15,8 +15,13 @@ class CategoriesController < ApplicationController
       @categories = current_user.categories
     end
 
+<<<<<<< HEAD
     # @client = Octokit::Client.new(access_token: current_user.access_token)
     # @repos = @client.repos
+=======
+    @client = Octokit::Client.new(access_token: current_user.access_token)
+    @repos = @client.repos
+>>>>>>> parent of e665e5a (see gh rate limit in nav bar (on dev only))
 
     # @user = current_user
     # @category = Category.new
