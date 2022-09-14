@@ -1,4 +1,6 @@
 class CategoriesController < ApplicationController
+  before_action :load_repos
+
   def index
     if params[:query].present?
       sql_query = <<~SQL
@@ -12,18 +14,7 @@ class CategoriesController < ApplicationController
     else
       @categories = current_user.categories
     end
-
-    @client = Octokit::Client.new(access_token: current_user.access_token)
-    @repos = @client.repos
-    @limit = @client.rate_limit_remaining
-
-    # @user = current_user
-    # @category = Category.new
-    # @client = Octokit::Client.new(access_token: current_user.access_token)
-    # puts "retrieving"
-    # @files = @client.contents("#{@client.user.login}/#{params[:repo]}").map { |x| x.path }
-
-
+     @repos = @client.repos
   end
 
 
@@ -37,9 +28,7 @@ class CategoriesController < ApplicationController
       @notes = @category.notes.sort_by(&:created_at)
     end
 
-    @client = Octokit::Client.new(access_token: current_user.access_token)
-    @repos = @client.repos
-    @limit = @client.rate_limit_remaining
+    # @repos = @client.repos
   end
 
   def new
@@ -91,5 +80,17 @@ class CategoriesController < ApplicationController
 
   def file_params
     params.require(:source_code)
+  end
+
+  def load_repos
+    @client = Octokit::Client.new(access_token: current_user.access_token)
+    # if @client.validate_credentials == false
+    #   # @client.delete_authorization(current_user.access_token)
+    #   # current_user.access_token = nil
+    #   sign_out @user
+    #   redirect_to :root
+    # else
+      @limit = @client.rate_limit_remaining
+    # end
   end
 end
