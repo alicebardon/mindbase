@@ -28,13 +28,14 @@ class CategoriesController < ApplicationController
 
   def show
     @category = Category.find(params[:id])
-
     if params[:query].present?
       sql_query = "code ILIKE :query OR comment ILIKE :query"
       @notes = @category.notes.where(sql_query, query: "%#{params[:query]}%").sort_by(&:created_at)
     else
       @notes = @category.notes.sort_by(&:created_at)
     end
+
+    @client = Octokit::Client.new(access_token: current_user.access_token)
   end
 
   def new
