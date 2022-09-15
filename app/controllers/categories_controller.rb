@@ -23,6 +23,8 @@ class CategoriesController < ApplicationController
     # @client = Octokit::Client.new(access_token: current_user.access_token)
     # puts "retrieving"
     # @files = @client.contents("#{@client.user.login}/#{params[:repo]}").map { |x| x.path }
+
+
   end
 
 
