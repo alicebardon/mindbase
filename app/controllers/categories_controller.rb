@@ -1,5 +1,5 @@
 class CategoriesController < ApplicationController
-  # before_action :load_repos
+  before_action :load_repos
 
   def index
     if params[:query].present?
@@ -15,9 +15,7 @@ class CategoriesController < ApplicationController
       @categories = current_user.categories
     end
 
-    @client = Octokit::Client.new(access_token: current_user.access_token)
     @repos = @client.repos
-
     # @user = current_user
     # @category = Category.new
     # @client = Octokit::Client.new(access_token: current_user.access_token)
@@ -34,8 +32,6 @@ class CategoriesController < ApplicationController
     else
       @notes = @category.notes.sort_by(&:created_at)
     end
-
-    @client = Octokit::Client.new(access_token: current_user.access_token)
   end
 
   def new
@@ -89,8 +85,9 @@ class CategoriesController < ApplicationController
     params.require(:source_code)
   end
 
-  # def load_repos
-    # @client = Octokit::Client.new(access_token: current_user.access_token)
+  def load_repos
+    @client = Octokit::Client.new(access_token: current_user.access_token)
+    @limit = @client.rate_limit_remaining
     # if @client.validate_credentials == false
     #   # @client.delete_authorization(current_user.access_token)
     #   # current_user.access_token = nil
@@ -100,4 +97,5 @@ class CategoriesController < ApplicationController
       # @limit = @client.rate_limit_remaining
     # end
   # end
+  end
 end

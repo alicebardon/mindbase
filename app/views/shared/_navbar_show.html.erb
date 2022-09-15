@@ -5,6 +5,12 @@
       <h4>Mindbase</h4>
     <% end %>
 
+    <% if Rails.env == "development" %>
+      <div>
+        <p style="color: white;"> Requests Remaining: <%= @limit %></p>
+      </div>
+    <% end %>
+
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto navbar_right">
         <div class="searchbar">
