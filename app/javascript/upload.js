@@ -18,9 +18,7 @@ overlay.addEventListener('click', () => {
     closePopup(popup)
   })
 })
-
 }
-
 
 function openPopup(popup) {
   if (popup == null) return
