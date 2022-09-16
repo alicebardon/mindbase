@@ -24,9 +24,10 @@ export default class extends Controller {
     const code = this.codeTarget.value;
     const language = this.languageTarget.value;
 
-    // only send the update to the back end if all the mandatory fields 
+    // only send the update to the back end if all the mandatory fields
     // have been filled in
     if (code == "" || comment == "" || language == "") {
+      console.log("NOT SENT!")
       return;
     }
 
