@@ -81,6 +81,5 @@ class CategoriesController < ApplicationController
   def load_repos
     @client = Octokit::Client.new(access_token: current_user.access_token)
     @limit = @client.rate_limit_remaining
-    @repos = @client.repos
   end
 end
