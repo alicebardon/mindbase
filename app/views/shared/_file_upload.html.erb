@@ -18,20 +18,8 @@
 
     <%# ---------- IMPORT FROM GITHUB ------------------------ %>
 
-    <div class = "imp-github mt-5 ml-5 d-none" data-show-github-target="github">
-    <h3>Upload a project from Github</h3>
-    <br>
-    <% if user_signed_in? %>
-      <div class="list-repos">
-      <ul>
-        <% @client.repos.each do |repo| %>
-          <li><%= link_to repo.name, new_github_path(repo: repo.name) %></li>
-        <% end %>
-        </ul>
-      </div>
-    <% end %>
-  </div>
 
+      <%# see the _github_upload partial %>
 
 
 
@@ -66,8 +54,6 @@
         </div>
 
       <% end %>
-
-
 
       <%= simple_form_for Category.new, html:{class: "d-none", data: { create_category_target:"form" }} do |c| %>
         <%= c.input :name %>
