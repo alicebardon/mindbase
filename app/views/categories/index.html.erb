@@ -1,6 +1,9 @@
 <div class="container" >
 
   <h1 class= "mt-5"> Your comments, all together now.</h1>
+
+  <%= link_to "New Category (Refactored)", new_category_path  %>
+
   <div class="row">
     <ul>
       <% @categories.group_by {|c| c.category_type }.each do |cat_type, categories| %>
