@@ -30,3 +30,6 @@ application.register("show-desktop", ShowDesktopController)
 
 import ShowGithubController from "./show_github_controller"
 application.register("show-github", ShowGithubController)
+
+import TurboController from "./turbo_controller"
+application.register("turbo", TurboController)
