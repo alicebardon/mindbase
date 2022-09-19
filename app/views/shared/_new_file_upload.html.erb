@@ -1,0 +1,24 @@
+<div class="imp-desktop">
+  <h4>Choose File</h4>
+  <p> Mindbase supports .html, .erb, .js, and .css</p>
+
+  <%= form_with url: upload_path, multipart: true do |form| %>
+    <%= form.file_field :source_code %>
+    <div class="categories">
+      <div class="categ-title">
+        <%= form.label :category, "Choose Categories"%>
+      </div>
+      <div class="categ-list" >
+        <ul>
+          <%= collection_check_boxes(:note, :category_ids, Category.where(user: current_user).and(Category.where.not(category_type: "Language")), :id, :name) do |checkbox|%>
+          <li><%= checkbox.check_box %>
+          <%= checkbox.label %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+
+    <%= form.submit "Import", class: "import-btn" %>
+    </div>
+
+  <% end %>
