@@ -3,14 +3,12 @@
   <h1 class= "mt-5"> Your comments, all together now.</h1>
 
   <%= link_to "New Category (Refactored)", new_category_path, "data-controller": "turbo"  %>
-  <%= turbo_frame_tag "remote_modal" %>
 
   <div class="row">
     <ul>
       <% @categories.group_by {|c| c.category_type }.each do |cat_type, categories| %>
         <div class="cat-type-container">
           <p class="cat-type"><%= cat_type %></p>
-
 
           <div id="carouselExampleControls-<%= cat_type %>" class="carousel slide"        data-bs-interval="false">
             <div class="carousel-inner">
