@@ -16,6 +16,9 @@ application.register("hello", HelloController)
 import HighlightController from "./highlight_controller"
 application.register("highlight", HighlightController)
 
+import ModalController from "./modal_controller"
+application.register("modal", ModalController)
+
 import NoteController from "./note_controller"
 application.register("note", NoteController)
 
