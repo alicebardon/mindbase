@@ -9,29 +9,72 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-        <p> Mindbase supports .html, .erb, .js, and .css</p>
-          <%= form_with url: upload_path, multipart: true do |form| %>
-            <%= form.file_field :source_code %>
-            <div class="categories">
-              <div class="categ-title">
-                <%= form.label :category, "Choose Categories"%>
-              </div>
-              <div class="categ-list" >
-                <ul>
-                  <%= collection_check_boxes(:note, :category_ids, Category.where(user: current_user).and(Category.where.not(category_type: "Language")), :id, :name) do |checkbox|%>
-                  <li><%= checkbox.check_box %>
-                  <%= checkbox.label %></li>
+            <div data-controller="show-desktop">
+              <div data-controller="show-github">
+                <div data-show-desktop-target="choose">
+                  <div class="github_desktop_btn" data-show-github-target="choose2">
+                    <button class="github-btn" data-action="click->show-github#revealProjectGithub">
+                      <i class="fa-brands fa-github"></i>
+                      From Github
+                    </button>
+                    <button class="desktop-btn" data-action="click->show-desktop#revealImportDesktop">
+                      <i class="fa-solid fa-display"></i>
+                      From Desktop
+                    </button>
+                  </div>
+                </div>
+
+              <%# GITHUB STUFF %>
+
+                <div class = "imp-github mt-5 ml-5 d-none" data-show-github-target="github">
+                  <h3>Upload a project from Github</h3>
+                  <br>
+                  <% if user_signed_in? %>
+                    <div class="list-repos">
+                    <ul>
+                      <% @client.repos.each do |repo| %>
+                        <li><%= link_to repo.name, new_github_path(repo: repo.name) %> <li>
+                      <% end %>
+                      </ul>
+                    </div>
                   <% end %>
-                </ul>
+                </div>
+
+
+              <%# DESKTOP STUFF %>
+
+                <div class="imp-desktop d-none" data-controller="create-category" data-show-desktop-target="desktop">
+                  <p> Mindbase supports .html, .erb, .js, and .css</p>
+                  <%= form_with url: upload_path, multipart: true do |form| %>
+                    <%= form.file_field :source_code %>
+                    <div class="categories">
+                      <div class="categ-title">
+                        <%= form.label :category, "Choose Categories"%>
+                      </div>
+                      <div class="categ-list" >
+                        <ul>
+                          <%= collection_check_boxes(:note, :category_ids, Category.where(user: current_user).and(Category.where.not(category_type: "Language")), :id, :name) do |checkbox|%>
+                          <li><%= checkbox.check_box %>
+                          <%= checkbox.label %></li>
+                          <% end %>
+                        </ul>
+                      </div>
+                    </div>
+                    <%= form.submit "Import", class: "import-btn" %>
+                </div>
+
               </div>
             </div>
-            <%= form.submit "Import", class: "import-btn" %>
+
         </div>
           <% end %>
         </div>
       </div>
     </div>
   </div>
+
+
+
 <%# $$ %>
 
 
