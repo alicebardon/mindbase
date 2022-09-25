@@ -23,10 +23,12 @@
           <% end %>
         </div>
 
-        <div data-popup-target="#popup" class="nav-item upload">
-          <i class="fa-solid fa-square-plus"></i>
-          <%= link_to "Upload Code", "#", class: "nav-link" %>
-        </div>
+        <%= link_to new_category_path, "data-controller": "turbo" do %>
+          <div class="nav-item upload">
+            <i class="fa-solid fa-square-plus"></i>
+            <p class= "nav-link">Upload Code</p>
+          </div>
+        <% end %>
 
         <div class="user_dropdown">
           <ul>
