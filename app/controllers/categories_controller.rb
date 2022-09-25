@@ -36,7 +36,7 @@ class CategoriesController < ApplicationController
     @category = Category.new(cat_params)
     @category.user = current_user
     if @category.save
-      redirect_to upload_path
+      redirect_to categories_path
     else
       render :new, status: :unprocessable_entity
     end

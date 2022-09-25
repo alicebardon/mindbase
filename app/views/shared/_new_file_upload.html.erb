@@ -60,7 +60,16 @@
                         </ul>
                       </div>
                     </div>
+                    <button class="add-categ-btn" data-action="click->create-category#revealForm">New Category</button>
                     <%= form.submit "Import", class: "import-btn" %>
+
+                         <%= simple_form_for Category.new, html:{class: "d-none", data: { create_category_target:"form" }} do |c| %>
+                          <%= c.input :name %>
+                           <%= c.input :category_type %>
+                          <%= c.button :submit %>
+                           <% end %>
+
+
                 </div>
 
               </div>
