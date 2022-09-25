@@ -10,7 +10,7 @@ export default class extends Controller {
 
   revealForm(event) {
     event.preventDefault();
-    this.listTarget.classList.add("d-none")
+    //this.listTarget.classList.add("d-none")
     this.formTarget.classList.remove("d-none")
   }
 }

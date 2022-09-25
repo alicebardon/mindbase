@@ -16,6 +16,9 @@ application.register("hello", HelloController)
 import HighlightController from "./highlight_controller"
 application.register("highlight", HighlightController)
 
+import ModalController from "./modal_controller"
+application.register("modal", ModalController)
+
 import NoteController from "./note_controller"
 application.register("note", NoteController)
 
@@ -30,3 +33,6 @@ application.register("show-desktop", ShowDesktopController)
 
 import ShowGithubController from "./show_github_controller"
 application.register("show-github", ShowGithubController)
+
+import TurboController from "./turbo_controller"
+application.register("turbo", TurboController)
