@@ -1,5 +1,6 @@
 class CategoriesController < ApplicationController
   before_action :load_repos
+  include ActionView::Helpers::DateHelper
 
   def index
     if params[:query].present?
@@ -14,6 +15,16 @@ class CategoriesController < ApplicationController
     else
       @categories = current_user.categories
     end
+    #from_time = Time.now.strftime("%A")
+    from_time = Date.today
+    @test_date = from_time
+
+    # @datetime = Time.now.utc - cat.updated_at
+    #   <% if ((Time.now.utc - cat.updated_at) / 3600) < 24 %>
+    #                           <%= "Today" %>
+    #                           <% else %>
+    #                           <%= cat.updated_at.strftime("%m/%d/%Y") %>
+    #                           <% end
   end
 
 
