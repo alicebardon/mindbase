@@ -2,12 +2,13 @@
 
   <h1 class= "mt-5"> Your comments, all together now.</h1>
 
+  <%= @test_date %>
+
   <div class="row">
     <ul>
       <% @categories.group_by {|c| c.category_type }.each do |cat_type, categories| %>
         <div class="cat-type-container">
           <p class="cat-type"><%= cat_type %></p>
-
           <div id="carouselExampleControls-<%= cat_type %>" class="carousel slide"        data-bs-interval="false">
             <div class="carousel-inner">
 
@@ -24,10 +25,16 @@
                           </div>
                           <div class="cat-bottom">
                             <div class="cat-date">
-                              <% if ((Time.now.utc - cat.updated_at) / 3600) < 24 %>
-                              <%= "Today" %>
+                              <% if (Date.today - cat.updated_at.to_date).to_i == 0 %>
+                                <%= "Today" %>
+                              <% elsif (Date.today - cat.updated_at.to_date).to_i == 1 %>
+                                <%= "Yesterday" %>
+                              <% elsif (Date.today - cat.updated_at.to_date).to_i == 2 %>
+                                <%= "Two Days Ago" %>
+                              <% elsif (Date.today - cat.updated_at.to_date).to_i <= 7 %>
+                                <%= cat.updated_at.strftime("%A") %>
                               <% else %>
-                              <%= cat.updated_at.strftime("%m/%d/%Y") %>
+                                <%= cat.updated_at.strftime("%m/%d/%Y") %>
                               <% end %>
                             </div>
                           <div class="cat-info">
