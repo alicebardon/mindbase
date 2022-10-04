@@ -274,7 +274,7 @@ Devise.setup do |config|
   if Rails.env.production?
     config.omniauth :github, '4ea62ee81286281bfa93', ENV['GITHUB_API_KEY'], scope: 'user,public_repo'
   else
-    config.omniauth :github, '31cac159a64f176ac9bf', ENV['GITHUB_API_KEY'], scope: 'user,public_repo'
+    config.omniauth :github, '8be21ecd917d25a6d249', ENV['GITHUB_API_KEY'], scope: 'user,public_repo'
   end
 
   # ==> Warden configuration
