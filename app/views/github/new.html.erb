@@ -6,6 +6,7 @@
       <%= form.label :path, "From #{params[:repo]}/"%>
       <%= form.select :path, @files %>
       <%= form.hidden_field :repo, value: params[:repo] %>
+      <%= form.hidden_field :owner, value: params[:owner] %>
     </div>
     <div class="categories">
       <div class="categ-title">

@@ -8,13 +8,13 @@ class GithubController < ApplicationController
     @category = Category.new
     @client = Octokit::Client.new(access_token: current_user.access_token)
     puts "retrieving"
-    @files = @client.contents("#{@client.user.login}/#{params[:repo]}").map { |x| x.path if x.type == "file" }
+    @files = @client.contents("#{params[:owner]}/#{params[:repo]}").map { |x| x.path if x.type == "file" }
   end
 
   def create
     @client = Octokit::Client.new(access_token: current_user.access_token)
     gh_path = gh_params
-    gh_object = @client.contents("#{@client.user.login}/#{gh_path[:repo]}", path: "#{gh_path[:path]}")
+    gh_object = @client.contents("#{params[:owner]}/#{gh_path[:repo]}", path: "#{gh_path[:path]}")
     SourceCodeParser.parse_gh(gh_object, params, current_user)
     redirect_to categories_path, notice: "File successfully uploaded"
   end
@@ -30,7 +30,7 @@ class GithubController < ApplicationController
   end
 
   def gh_params
-    params.permit(:path, :repo)
+    params.permit(:path, :owner, :repo)
   end
 
 end

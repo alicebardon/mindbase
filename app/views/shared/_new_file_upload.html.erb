@@ -33,7 +33,7 @@
                     <div class="list-repos">
                     <ul>
                       <% @client.repos.each do |repo| %>
-                        <li><%= link_to repo.name, new_github_path(repo: repo.name) %> <li>
+                        <li><%= link_to repo.name, new_github_path(repo: repo.name, owner: repo.owner.login)  %> <li>
                       <% end %>
                       </ul>
                     </div>
