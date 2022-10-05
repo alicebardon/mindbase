@@ -34,7 +34,7 @@
                     <ul>
                       <% @client.repos.each do |repo| %>
                         <% if repo.name != ""  %>
-                          <li><%= link_to repo.name, new_github_path(repo: repo.name, owner: repo.owner.login)  %> <li>
+                          <li> <%= link_to repo.name, new_github_path(repo: repo.name, owner: repo.owner.login) %> </li>
                         <% end %>
                       <% end %>
                       </ul>

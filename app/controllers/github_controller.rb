@@ -8,7 +8,7 @@ class GithubController < ApplicationController
     @category = Category.new
     @client = Octokit::Client.new(access_token: current_user.access_token)
     puts "retrieving"
-    @files = @client.contents("#{params[:owner]}/#{params[:repo]}").map { |x| x.path if x.type == "file" }
+    @files = @client.contents("#{params[:owner]}/#{params[:repo]}").map { |x| x.path if x.type == "file" }.compact
   end
 
   def create
