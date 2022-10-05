@@ -5,7 +5,9 @@
       <div class="list-repos">
       <ul>
          <% @client.repos.each do |repo| %>
-          <li><%= link_to repo.name, new_github_path(repo: repo.name) %> <li>
+          <% if repo.name != "" %>
+            <li><%= link_to repo.name, new_github_path(repo: repo.name) %> </li>
+          <% end %>
         <% end %>
         </ul>
       </div>
