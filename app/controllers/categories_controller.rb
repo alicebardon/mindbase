@@ -5,9 +5,9 @@ class CategoriesController < ApplicationController
   def index
     if params[:query].present?
       sql_query = <<~SQL
-        categories.name ILIKE :query
-        OR notes.code ILIKE :query
-        OR notes.comment ILIKE :query
+        categories.name @@ :query
+        OR notes.code @@ :query
+        OR notes.comment @@ :query
       SQL
       @categories = Category.joins(:notes)
                             .where(sql_query, query: "%#{params[:query]}%")
