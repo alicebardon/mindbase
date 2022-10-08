@@ -6,7 +6,7 @@ export default class extends Controller {
   static targets = ["comment", "code", "comment", "commentEditor"]
 
   connect() {
-    console.log("Note edit controller now connected");
+    console.log("Note Edit Controller connected");
   }
 
   update_comment(event) {

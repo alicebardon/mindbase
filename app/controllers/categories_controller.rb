@@ -87,6 +87,10 @@ class CategoriesController < ApplicationController
 
   def load_repos
     @client = Octokit::Client.new(access_token: current_user.access_token)
-    @limit = @client.rate_limit_remaining
+    if Rails.env == "development" #FIX THIS WHEN CONNECTED TO THE INTERNET
+      @limit = "No connection"
+    else
+      @limit = @client.rate_limit_remaining
+    end
   end
 end

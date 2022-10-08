@@ -28,6 +28,9 @@ application.register("note-edit", NoteEditController)
 import PopupController from "./popup_controller"
 application.register("popup", PopupController)
 
+import SearchController from "./search_controller"
+application.register("search", SearchController)
+
 import ShowDesktopController from "./show_desktop_controller"
 application.register("show-desktop", ShowDesktopController)
 
