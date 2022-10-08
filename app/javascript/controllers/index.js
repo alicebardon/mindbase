@@ -10,9 +10,6 @@ application.register("create-category", CreateCategoryController)
 import FlashesController from "./flashes_controller"
 application.register("flashes", FlashesController)
 
-import HelloController from "./hello_controller"
-application.register("hello", HelloController)
-
 import HighlightController from "./highlight_controller"
 application.register("highlight", HighlightController)
 
