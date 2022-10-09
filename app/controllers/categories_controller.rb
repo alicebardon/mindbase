@@ -5,9 +5,9 @@ class CategoriesController < ApplicationController
   def index
     if params[:query].present?
       sql_query = <<~SQL
-        categories.name ILIKE :query
-        OR notes.code ILIKE :query
-        OR notes.comment ILIKE :query
+        categories.name @@ :query
+        OR notes.code @@ :query
+        OR notes.comment @@ :query
       SQL
       @categories = Category.joins(:notes)
                             .where(sql_query, query: "%#{params[:query]}%")
@@ -87,6 +87,10 @@ class CategoriesController < ApplicationController
 
   def load_repos
     @client = Octokit::Client.new(access_token: current_user.access_token)
-    @limit = @client.rate_limit_remaining
+    if Rails.env == "development" #FIX THIS WHEN CONNECTED TO THE INTERNET
+      @limit = "No connection"
+    else
+      @limit = @client.rate_limit_remaining
+    end
   end
 end

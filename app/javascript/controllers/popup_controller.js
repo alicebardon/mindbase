@@ -5,19 +5,9 @@ export default class extends Controller {
   static targets = ["overlay", "popup"]
 
   connect() {
-    console.log("dft");
-    console.log(this.popup);
-    console.log(this.overlay);
-
-    // this.popup.addEventListener('click', (event) => {
-    //   event.preventDefault()
-    //   openPopup(this.popup)
-    // })
-
-    // this.overlay.addEventListener('click', () => {
-    //     closePopup(this.popup)
-    // })
-
+    // console.log("pop-up controller connected");
+    // console.log(this.popup);
+    // console.log(this.overlay);
     }
 
    openPopup() {

@@ -10,9 +10,6 @@ application.register("create-category", CreateCategoryController)
 import FlashesController from "./flashes_controller"
 application.register("flashes", FlashesController)
 
-import HelloController from "./hello_controller"
-application.register("hello", HelloController)
-
 import HighlightController from "./highlight_controller"
 application.register("highlight", HighlightController)
 
@@ -27,6 +24,9 @@ application.register("note-edit", NoteEditController)
 
 import PopupController from "./popup_controller"
 application.register("popup", PopupController)
+
+import SearchController from "./search_controller"
+application.register("search", SearchController)
 
 import ShowDesktopController from "./show_desktop_controller"
 application.register("show-desktop", ShowDesktopController)
