@@ -27,12 +27,13 @@
     <%= render "shared/navbar_show" %>
     <body data-controller="popup">
   <% end %>
-    <%= turbo_frame_tag "remote_modal" %>
 
+    <%= turbo_frame_tag "remote_modal" %>
 
     <%= yield %>
 
     <%= render "shared/flashes" %>
-    <%= render 'shared/file_upload' %>
+    <%= render "shared/file_upload" %>
+
     </body>
 </html>
